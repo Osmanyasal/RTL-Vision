@@ -1,0 +1,71 @@
+# Vivado/Xilinx Files
+*.jou
+*.log
+*.rpt
+*.dcp
+*.bit
+*.ltx
+*.mmi
+*.xpe
+*.hwdef
+*.sysdef
+*.hdf
+*.xml
+*.html
+*.xsa
+*.cache/
+*.hw/
+*.ip_user_files/
+*.runs/
+*.sim/
+*.srcs/
+*.data/
+*.gen/
+*_wrapper.v
+*_wrapper.vhd
+vivado*.jou
+vivado*.log
+vivado*.str
+.Xil/
+.hbs/
+NA/
+planAhead.*
+
+# Simulation Files
+*.wdb
+*.wcfg
+*.vcd
+*.saif
+xsim.dir/
+xelab.*
+xvlog.*
+xvhdl.*
+webtalk*
+
+# Temporary Files
+*.swp
+*.swo
+*~
+.DS_Store
+*.tmp
+*.bak
+
+# Build Directories
+build/
+output/
+work/
+transcript
+vsim.wlf
+modelsim.ini
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+venv/
+.venv/
+
+# Documentation Build
+docs/_build/
+docs/.doctrees/
