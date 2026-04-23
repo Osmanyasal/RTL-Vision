@@ -1,0 +1,6 @@
+Time resolution is 1 ps
+Image Info: 512 x 512, Data starts at: 54
+Starting on-the-fly processing...
+Image processed and saved successfully.
+$finish called at time : 2621455 ns : File "/home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/sim_1/new/ex_grayscale.sv" Line 141
+INFO: xsimkernel Simulation Memory Usage: 281136 KB (Peak: 338408 KB), Simulation CPU Usage: 940 ms
