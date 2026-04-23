@@ -1,0 +1,4 @@
+Time resolution is 1 ps
+tb_grayscale passed
+$finish called at time : 56 ns : File "/home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/sim_1/new/tb_grayscale.sv" Line 109
+INFO: xsimkernel Simulation Memory Usage: 289840 KB (Peak: 338400 KB), Simulation CPU Usage: 610 ms
