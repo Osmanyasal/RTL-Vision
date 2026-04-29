@@ -19,9 +19,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
-(* keep_hierarchy = "yes" *)
-(* dont_touch = "true" *)
+ 
 module grayscale(
     input logic clk,
     input logic rst,

@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1776968697" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/grayscale.dcp">
-  <File Type="VDS-TIMING-PB" Name="grayscale_timing_summary_synth.pb"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="grayscale_timing_summary_synth.rpt"/>
   <File Type="RDS-DCP" Name="grayscale.dcp"/>
-  <File Type="RDS-UTIL-PB" Name="grayscale_utilization_synth.pb"/>
-  <File Type="RDS-UTIL" Name="grayscale_utilization_synth.rpt"/>
-  <File Type="RDS-PROPCONSTRS" Name="grayscale_drc_synth.rpt"/>
   <File Type="RDS-RDS" Name="grayscale.vds"/>
-  <File Type="REPORTS-TCL" Name="grayscale_reports.tcl"/>
+  <File Type="RDS-UTIL" Name="grayscale_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="grayscale_utilization_synth.pb"/>
   <File Type="PA-TCL" Name="grayscale.tcl"/>
+  <File Type="REPORTS-TCL" Name="grayscale_reports.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/grayscale.sv">
@@ -51,9 +48,7 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025">
-      <Desc>Vivado Synthesis Defaults</Desc>
-    </StratHandle>
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2025"/>
     <Step Id="synth_design"/>
   </Strategy>
 </GenRun>

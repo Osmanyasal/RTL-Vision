@@ -8,8 +8,8 @@ def main():
     # Define the inputs, outputs, and size parameters
     parser.add_argument("-i", "--input", required=True, help="Path to the input image")
     parser.add_argument("-o", "--output", default="output.bmp", help="Path to the output BMP file")
-    parser.add_argument("-w", "--width", type=int, default=512, help="Target width (default: 512)")
-    parser.add_argument("-H", "--height", type=int, default=512, help="Target height (default: 512)")
+    parser.add_argument("-w", "--width", type=int, default=1280, help="Target width (default: 1280)")
+    parser.add_argument("-H", "--height", type=int, default=720, help="Target height (default: 720)")
     
     args = parser.parse_args()
 

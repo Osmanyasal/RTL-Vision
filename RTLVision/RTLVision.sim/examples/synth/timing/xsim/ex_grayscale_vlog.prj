@@ -1,0 +1,9 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  --include "../../../../../../../../vivado/2025.2/data/rsb/busdef" \
+"ex_grayscale_time_synth.v" \
+
+sv xil_defaultlib  --include "../../../../../../../../vivado/2025.2/data/rsb/busdef" \
+"../../../../../RTLVision.srcs/sim_1/new/ex_grayscale.sv" \
+
+# Do not sort compile order
+nosort
