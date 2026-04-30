@@ -3,5 +3,9 @@
 Nov 14 2025
 12:36:23
 /home/rt7/Desktop/RTLVision/RTLVision/RTLVision.sim/examples/behav/xsim/glbl.v,1756381829,verilog,,,,glbl,,uvm,,,,,,
+/home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/examples/new/ex_sobel.sv,1777550964,systemVerilog,,,,ex_sobel,,uvm,../../../../../../../vivado/2025.2/data/rsb/busdef,,,,,
 /home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/sim_1/new/ex_grayscale.sv,1776974148,systemVerilog,,,,ex_grayscale,,uvm,../../../../../../../vivado/2025.2/data/rsb/busdef,,,,,
-/home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/grayscale.sv,1776975085,systemVerilog,,/home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/sim_1/new/ex_grayscale.sv,,grayscale,,uvm,../../../../../../../vivado/2025.2/data/rsb/busdef,,,,,
+/home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/fifo_pipeline.sv,1777549993,systemVerilog,,/home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/grayscale.sv,,fifo_pipeline,,uvm,../../../../../../../vivado/2025.2/data/rsb/busdef,,,,,
+/home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/grayscale.sv,1777551044,systemVerilog,,/home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/sobel.sv,,grayscale,,uvm,../../../../../../../vivado/2025.2/data/rsb/busdef,,,,,
+/home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/sobel.sv,1777550766,systemVerilog,,/home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/sync_fifo.sv,,sobel,,uvm,../../../../../../../vivado/2025.2/data/rsb/busdef,,,,,
+/home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/sync_fifo.sv,1777549755,systemVerilog,,/home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/examples/new/ex_sobel.sv,,sync_fifo,,uvm,../../../../../../../vivado/2025.2/data/rsb/busdef,,,,,

@@ -37,4 +37,4 @@ EAStep()
      fi
 }
 
-EAStep vivado -log grayscale.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source grayscale.tcl
+EAStep vivado -log sobel.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source sobel.tcl

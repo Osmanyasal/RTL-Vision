@@ -1,6 +1,7 @@
 Time resolution is 1 ps
 Image Info: 1280 x 720, Data starts at: 54
-Starting on-the-fly processing...
-Image processed and saved successfully.
-$finish called at time : 9216015 ns : File "/home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/sim_1/new/ex_grayscale.sv" Line 141
-INFO: xsimkernel Simulation Memory Usage: 281136 KB (Peak: 338408 KB), Simulation CPU Usage: 1600 ms
+WARNING: BMP width (1280) != IMG_WIDTH parameter (1024). Sobel line buffer will misalign.
+Starting Sobel streaming...
+Sobel image processed and saved.
+$finish called at time : 9190535 ns : File "/home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/examples/new/ex_sobel.sv" Line 181
+INFO: xsimkernel Simulation Memory Usage: 281180 KB (Peak: 338452 KB), Simulation CPU Usage: 2680 ms

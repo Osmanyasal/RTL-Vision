@@ -1,10 +1,10 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2025.2 (lin64) Build 6299465 Fri Nov 14 12:34:56 MST 2025
-| Date         : Thu Apr 23 21:25:15 2026
+| Date         : Thu Apr 30 15:15:12 2026
 | Host         : rt7-desktop1 running 64-bit Ubuntu 24.04.3 LTS
-| Command      : report_utilization -file grayscale_utilization_synth.rpt -pb grayscale_utilization_synth.pb
-| Design       : grayscale
+| Command      : report_utilization -file sobel_utilization_synth.rpt -pb sobel_utilization_synth.pb
+| Design       : sobel
 | Device       : xc7a100tcsg324-1
 | Speed File   : -1
 | Design State : Synthesized
@@ -28,19 +28,19 @@ Table of Contents
 1. Slice Logic
 --------------
 
-+-------------------------+------+-------+------------+-----------+-------+
-|        Site Type        | Used | Fixed | Prohibited | Available | Util% |
-+-------------------------+------+-------+------------+-----------+-------+
-| Slice LUTs*             |   23 |     0 |          0 |     63400 |  0.04 |
-|   LUT as Logic          |   23 |     0 |          0 |     63400 |  0.04 |
-|   LUT as Memory         |    0 |     0 |          0 |     19000 |  0.00 |
-| Slice Registers         |   27 |     0 |          0 |    126800 |  0.02 |
-|   Register as Flip Flop |   27 |     0 |          0 |    126800 |  0.02 |
-|   Register as Latch     |    0 |     0 |          0 |    126800 |  0.00 |
-| F7 Muxes                |    0 |     0 |          0 |     31700 |  0.00 |
-| F8 Muxes                |    0 |     0 |          0 |     15850 |  0.00 |
-| Unique Control Sets     |    2 |       |          0 |     15850 |  0.01 |
-+-------------------------+------+-------+------------+-----------+-------+
++-------------------------+-------+-------+------------+-----------+-------+
+|        Site Type        |  Used | Fixed | Prohibited | Available | Util% |
++-------------------------+-------+-------+------------+-----------+-------+
+| Slice LUTs*             |  7049 |     0 |          0 |     63400 | 11.12 |
+|   LUT as Logic          |  7049 |     0 |          0 |     63400 | 11.12 |
+|   LUT as Memory         |     0 |     0 |          0 |     19000 |  0.00 |
+| Slice Registers         | 16667 |     0 |          0 |    126800 | 13.14 |
+|   Register as Flip Flop | 16667 |     0 |          0 |    126800 | 13.14 |
+|   Register as Latch     |     0 |     0 |          0 |    126800 |  0.00 |
+| F7 Muxes                |  2176 |     0 |          0 |     31700 |  6.86 |
+| F8 Muxes                |  1088 |     0 |          0 |     15850 |  6.86 |
+| Unique Control Sets     |  2056 |       |          0 |     15850 | 12.97 |
++-------------------------+-------+-------+------------+-----------+-------+
 * Warning! The Final LUT count, after physical optimizations and full implementation, is typically lower. Run opt_design after synthesis, if not already completed, for a more realistic count.
 Warning! LUT value is adjusted to account for LUT combining.
 Warning! For any ECO changes, please run place_design if there are unplaced instances
@@ -60,9 +60,9 @@ Warning! For any ECO changes, please run place_design if there are unplaced inst
 | 0     |            _ |       Reset |            - |
 | 0     |          Yes |           - |            - |
 | 0     |          Yes |           - |          Set |
-| 0     |          Yes |           - |        Reset |
+| 193   |          Yes |           - |        Reset |
 | 0     |          Yes |         Set |            - |
-| 27    |          Yes |       Reset |            - |
+| 16474 |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -95,7 +95,7 @@ Warning! For any ECO changes, please run place_design if there are unplaced inst
 +-----------------------------+------+-------+------------+-----------+-------+
 |          Site Type          | Used | Fixed | Prohibited | Available | Util% |
 +-----------------------------+------+-------+------------+-----------+-------+
-| Bonded IOB                  |   29 |     0 |          0 |       210 | 13.81 |
+| Bonded IOB                  |   20 |     0 |          0 |       210 |  9.52 |
 | Bonded IPADs                |    0 |     0 |          0 |         2 |  0.00 |
 | PHY_CONTROL                 |    0 |     0 |          0 |         6 |  0.00 |
 | PHASER_REF                  |    0 |     0 |          0 |         6 |  0.00 |
@@ -148,21 +148,24 @@ Warning! For any ECO changes, please run place_design if there are unplaced inst
 7. Primitives
 -------------
 
-+----------+------+---------------------+
-| Ref Name | Used | Functional Category |
-+----------+------+---------------------+
-| FDRE     |   27 |        Flop & Latch |
-| IBUF     |   20 |                  IO |
-| OBUF     |    9 |                  IO |
-| LUT3     |    8 |                 LUT |
-| LUT5     |    7 |                 LUT |
-| LUT4     |    6 |                 LUT |
-| LUT2     |    5 |                 LUT |
-| CARRY4   |    4 |          CarryLogic |
-| LUT6     |    3 |                 LUT |
-| LUT1     |    1 |                 LUT |
-| BUFG     |    1 |               Clock |
-+----------+------+---------------------+
++----------+-------+---------------------+
+| Ref Name |  Used | Functional Category |
++----------+-------+---------------------+
+| FDRE     | 16474 |        Flop & Latch |
+| LUT6     |  4805 |                 LUT |
+| MUXF7    |  2176 |               MuxFx |
+| LUT5     |  1989 |                 LUT |
+| MUXF8    |  1088 |               MuxFx |
+| FDCE     |   193 |        Flop & Latch |
+| LUT3     |    95 |                 LUT |
+| LUT1     |    78 |                 LUT |
+| LUT2     |    77 |                 LUT |
+| LUT4     |    48 |                 LUT |
+| CARRY4   |    26 |          CarryLogic |
+| IBUF     |    11 |                  IO |
+| OBUF     |     9 |                  IO |
+| BUFG     |     1 |               Clock |
++----------+-------+---------------------+
 
 
 8. Black Boxes
