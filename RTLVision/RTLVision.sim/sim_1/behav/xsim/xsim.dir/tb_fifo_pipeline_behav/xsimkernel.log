@@ -2,3 +2,6 @@ Running: xsim.dir/tb_fifo_pipeline_behav/xsimk -simmode gui -wdb tb_fifo_pipelin
 Design successfully loaded
 Design Loading Memory Usage: 199148 KB (Peak: 199148 KB)
 Design Loading CPU Usage: 620 ms
+Simulation completed
+Simulation Memory Usage: 281144 KB (Peak: 338416 KB)
+Simulation CPU Usage: 640 ms

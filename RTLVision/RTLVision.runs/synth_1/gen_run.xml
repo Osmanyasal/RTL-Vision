@@ -1,14 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1776968697" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/grayscale.dcp">
-  <File Type="RDS-DCP" Name="grayscale.dcp"/>
-  <File Type="RDS-RDS" Name="grayscale.vds"/>
-  <File Type="RDS-UTIL" Name="fifo_pipeline_utilization_synth.rpt"/>
-  <File Type="RDS-UTIL-PB" Name="fifo_pipeline_utilization_synth.pb"/>
-  <File Type="PA-TCL" Name="grayscale.tcl"/>
-  <File Type="REPORTS-TCL" Name="grayscale_reports.tcl"/>
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1777551277" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/grayscale.dcp">
+  <File Type="VDS-TIMING-PB" Name="sobel_timing_summary_synth.pb"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="sobel_timing_summary_synth.rpt"/>
+  <File Type="RDS-DCP" Name="sobel.dcp"/>
+  <File Type="RDS-UTIL-PB" Name="sobel_utilization_synth.pb"/>
+  <File Type="RDS-UTIL" Name="sobel_utilization_synth.rpt"/>
+  <File Type="RDS-PROPCONSTRS" Name="sobel_drc_synth.rpt"/>
+  <File Type="RDS-RDS" Name="sobel.vds"/>
+  <File Type="REPORTS-TCL" Name="sobel_reports.tcl"/>
+  <File Type="PA-TCL" Name="sobel.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/grayscale.sv">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/fifo_pipeline.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/sync_fifo.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/sobel.sv">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
@@ -17,7 +42,7 @@
     </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
-      <Option Name="TopModule" Val="grayscale"/>
+      <Option Name="TopModule" Val="sobel"/>
       <Option Name="TopAutoSet" Val="TRUE"/>
     </Config>
   </FileSet>

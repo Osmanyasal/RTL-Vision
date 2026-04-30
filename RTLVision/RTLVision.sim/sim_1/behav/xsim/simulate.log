@@ -54,3 +54,4 @@ read data:
 	  3   4   5 
 	  7   8   9
 $finish called at time : 216 ns : File "/home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/examples/new/tb_fifo_pipeline.sv" Line 87
+INFO: xsimkernel Simulation Memory Usage: 281144 KB (Peak: 338416 KB), Simulation CPU Usage: 640 ms

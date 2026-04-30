@@ -1,0 +1,13 @@
+# compile verilog/system verilog design source files
+sv xil_defaultlib  --include "../../../../../../../vivado/2025.2/data/rsb/busdef" \
+"../../../../RTLVision.srcs/sources_1/new/fifo_pipeline.sv" \
+"../../../../RTLVision.srcs/sources_1/new/grayscale.sv" \
+"../../../../RTLVision.srcs/sources_1/new/sobel.sv" \
+"../../../../RTLVision.srcs/sources_1/new/sync_fifo.sv" \
+"../../../../RTLVision.srcs/examples/new/ex_sobel.sv" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort
