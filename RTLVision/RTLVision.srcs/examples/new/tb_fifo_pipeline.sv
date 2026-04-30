@@ -63,20 +63,17 @@ module tb_fifo_pipeline;
             #1;
             @(posedge clk); 
             $display("data->%d",w_data);
-        end
-        @(posedge clk); 
+        end 
         w_en = 0;
-        #1; 
-        @(posedge clk); 
-
-        r_en = 1;
-        w_en = 1; // keep writing data while reading to test the pipeline behavior under continuous load
-        w_data = 0;
-        @(posedge clk); // read one cycle to start the pipeline
+        #1;  
+        
         for (int i = 0; i < `depth * 2; i++) begin
             w_data = i;
+            r_en = 1;
+            w_en = 1; // keep writing data while reading to test the pipeline behavior under continuous load
             #1;
             @(posedge clk);
+            #1
             if (out_data_valid) begin
                 $display("read data: \n\t%d %d %d \n\t%d %d %d \n\t%d %d %d", r_data[0], r_data[1], r_data[2], r_data[3], r_data[4], r_data[5], r_data[6], r_data[7], r_data[8]);
             end else begin
@@ -86,6 +83,7 @@ module tb_fifo_pipeline;
         @(posedge clk);
         r_en = 0;
         #1;
+        $display("read data: \n\t%d %d %d \n\t%d %d %d \n\t%d %d %d", r_data[0], r_data[1], r_data[2], r_data[3], r_data[4], r_data[5], r_data[6], r_data[7], r_data[8]);
         $finish;
     end
 

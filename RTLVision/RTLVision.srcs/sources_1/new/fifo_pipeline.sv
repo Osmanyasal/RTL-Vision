@@ -44,10 +44,13 @@ logic [DATA_WIDTH-1:0] fifo_0_to_fifo_1_data;
 logic [DATA_WIDTH-1:0] fifo_1_to_kernel_data;
 logic [DATA_WIDTH-1:0] input_p0, input_p1, input_p2;
 
-assign fifo_0_write_en = w_en && !fifo_0_full;
-assign fifo_0_read_en = !fifo_0_empty && (!fifo_1_full || fifo_1_read_en);;
-assign fifo_1_write_en = fifo_0_read_en;
+// Allow write when full IF a read is also happening this cycle (concurrent r/w keeps fill constant)
+assign fifo_0_write_en = w_en && (!fifo_0_full || fifo_0_read_en);
+assign fifo_0_read_en = !fifo_0_empty && (!fifo_1_full || fifo_1_read_en);
+
+assign fifo_1_write_en = fifo_0_read_en; // same-cycle accept handled inside sync_fifo
 assign fifo_1_read_en = r_en && !fifo_1_empty;
+
 assign full = fifo_0_full && fifo_1_full; // if both fifos are full, then the pipeline is full.
 
 always_ff @(posedge clk) begin
@@ -73,9 +76,7 @@ always_ff @(posedge clk) begin
     end else if (fifo_1_read_en) begin
         p0 <= p1; p1 <= p2; p2 <= fifo_1_to_kernel_data;
         p3 <= p4; p4 <= p5; p5 <= fifo_0_to_fifo_1_data;
-        p6 <= input_p0;
-        p7 <= input_p1;
-        p8 <= input_p2;
+        p6 <= p7; p7 <= p8; p8 <= input_p2;
         out_data_valid <= 1; // output data is valid after the first read 
     end
     else begin

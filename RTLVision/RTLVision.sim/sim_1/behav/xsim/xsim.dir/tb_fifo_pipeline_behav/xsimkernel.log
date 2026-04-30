@@ -1,7 +1,4 @@
-Running: xsim.dir/tb_fifo_pipeline_behav/xsimk -simmode gui -wdb tb_fifo_pipeline_behav.wdb -simrunnum 0 -socket 41977
+Running: xsim.dir/tb_fifo_pipeline_behav/xsimk -simmode gui -wdb tb_fifo_pipeline_behav.wdb -simrunnum 0 -socket 39277
 Design successfully loaded
-Design Loading Memory Usage: 199152 KB (Peak: 199152 KB)
-Design Loading CPU Usage: 650 ms
-Simulation completed
-Simulation Memory Usage: 281148 KB (Peak: 338420 KB)
-Simulation CPU Usage: 680 ms
+Design Loading Memory Usage: 199148 KB (Peak: 199148 KB)
+Design Loading CPU Usage: 620 ms

@@ -50,9 +50,10 @@ module sync_fifo #(parameter DATA_WIDTH = 8, parameter DEPTH = 16, parameter ADD
         if(rst) begin
             w_ptr <= 0;
         end 
-        else if (w_en && !full) begin
+        // Allow write when full IF a read is also happening this cycle (slot is freed concurrently)
+        else if (w_en && (!full || r_en)) begin
             mem[w_ptr[ADDR_WIDTH-1:0]] <= w_data;
-            w_ptr <= ((w_ptr + 1) == DEPTH) ? {1'b1, {ADDR_WIDTH{1'b0}}} : w_ptr + 1; // wrap around
+            w_ptr <= ((w_ptr[ADDR_WIDTH-1:0] + 1) == DEPTH) ? {~w_ptr[ADDR_WIDTH], {ADDR_WIDTH{1'b0}}} : w_ptr + 1; // wrap around
         end
     end
     
@@ -61,7 +62,7 @@ module sync_fifo #(parameter DATA_WIDTH = 8, parameter DEPTH = 16, parameter ADD
         if (rst) begin
             r_ptr <= '0;
         end else if (r_en && !empty) begin
-            r_ptr <= ((r_ptr + 1) == DEPTH) ? {1'b1, {ADDR_WIDTH{1'b0}}} : r_ptr + 1;
+            r_ptr <= ((r_ptr[ADDR_WIDTH-1:0] + 1) == DEPTH) ? {~r_ptr[ADDR_WIDTH], {ADDR_WIDTH{1'b0}}} : r_ptr + 1;
         end
     end
            // Continuous Read Output

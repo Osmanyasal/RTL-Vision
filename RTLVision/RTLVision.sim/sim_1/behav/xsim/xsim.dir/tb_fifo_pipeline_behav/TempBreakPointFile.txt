@@ -1,4 +1,1 @@
 Breakpoint File Version 1.0
-75,true,"/home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/examples/new/tb_fifo_pipeline.sv"
-76,true,"/home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/examples/new/tb_fifo_pipeline.sv"
-78,true,"/home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/examples/new/tb_fifo_pipeline.sv"
