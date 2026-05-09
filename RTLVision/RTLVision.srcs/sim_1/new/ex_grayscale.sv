@@ -117,17 +117,13 @@ module ex_grayscale #(
                         // Wait for clock edge, then wait 1ns for DUT to update
                         @(posedge clk);
                         #1; 
-                        
-                        // If ready_out is 0, keep waiting
-                        while (!ready_out) begin
-                            @(posedge clk);
-                            #1;
-                        end
-                        
-                        // Write the grayscale byte to B, G, and R channels
-                        $fwrite(file_out, "%c", gray_out); 
-                        $fwrite(file_out, "%c", gray_out); 
-                        $fwrite(file_out, "%c", gray_out); 
+                         
+                        if(ready_out) begin
+                            // Write the grayscale byte to B, G, and R channels
+                            $fwrite(file_out, "%c", gray_out); 
+                            $fwrite(file_out, "%c", gray_out); 
+                            $fwrite(file_out, "%c", gray_out);
+                        end 
                     end
                 end
             end
