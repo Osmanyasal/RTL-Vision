@@ -22,7 +22,7 @@
 
 module ex_sobel3x3 #(
     parameter string file_name     = "/home/rt7/Desktop/RTLVision/kaan.bmp",
-    parameter string out_file_name = "/home/rt7/Desktop/RTLVision/kaan_sobel.bmp",
+    parameter string out_file_name = "/home/rt7/Desktop/RTLVision/kaan_sobel3x3.bmp",
     parameter int    IMG_WIDTH     = 1024  // must match BMP width
 )();
 
