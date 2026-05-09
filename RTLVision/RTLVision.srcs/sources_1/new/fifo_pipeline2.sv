@@ -66,7 +66,10 @@ always_ff @(posedge clk) begin
 end
 
 
-logic [DATA_WIDTH-1:0] p0,p1,p2, p3,p4,p5, p6,p7,p8; // kernel
+logic [DATA_WIDTH-1:0] p0,p1,p2, 
+                       p3,p4,p5, 
+                       p6,p7,p8; // 3x3 kernel
+
 always_ff @(posedge clk) begin
     if (rst) begin
         p0 <= 0; p1 <= 0; p2 <= 0;
