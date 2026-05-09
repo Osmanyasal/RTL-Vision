@@ -2,3 +2,6 @@ Running: xsim.dir/ex_thresh_behav/xsimk -simmode gui -wdb ex_thresh_behav.wdb -s
 Design successfully loaded
 Design Loading Memory Usage: 199144 KB (Peak: 199200 KB)
 Design Loading CPU Usage: 660 ms
+Simulation completed
+Simulation Memory Usage: 281140 KB (Peak: 338412 KB)
+Simulation CPU Usage: 1650 ms

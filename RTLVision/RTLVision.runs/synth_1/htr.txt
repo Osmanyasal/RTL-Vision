@@ -7,4 +7,4 @@
 # Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 #
 
-vivado -log sobel.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source sobel.tcl
+vivado -log sobel3x3.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source sobel3x3.tcl

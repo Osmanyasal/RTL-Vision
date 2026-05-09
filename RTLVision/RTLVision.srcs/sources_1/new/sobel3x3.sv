@@ -18,6 +18,7 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
+`timescale 1ns / 1ps
 
 module sobel3x3 #(parameter IMG_WIDTH = 1024)(
     input  logic       clk,
@@ -26,14 +27,10 @@ module sobel3x3 #(parameter IMG_WIDTH = 1024)(
     input  logic [7:0] gray_in,
     output logic [7:0] sobel_out,
     output logic       ready_out
-    );
+);
 
     // ---------------------------------------------------------------------
     // 3x3 sliding-window line buffer
-    // r_data layout:
-    //   [0] [1] [2]   <- row 0 (oldest line)
-    //   [3] [4] [5]   <- row 1
-    //   [6] [7] [8]   <- row 2 (newest line)
     // ---------------------------------------------------------------------
     logic [7:0] r_data [0:8];
     logic       window_valid;
@@ -48,52 +45,81 @@ module sobel3x3 #(parameter IMG_WIDTH = 1024)(
         .w_data(gray_in),
         .w_en(ready_in),
         .full(win_full),
-        .r_en(1'b1),                // pull as soon as a window is ready
+        .r_en(1'b1),                
         .r_data(r_data),
         .out_data_valid(window_valid)
     );
 
     // ---------------------------------------------------------------------
-    // Sobel kernels
-    //   Gx = [-1  0 +1]      Gy = [-1 -2 -1]
-    //        [-2  0 +2]           [ 0  0  0]
-    //        [-1  0 +1]           [+1 +2 +1]
+    // Stage 1: Convolution (Gx, Gy)
     // ---------------------------------------------------------------------
-    logic signed [11:0] gx_c, gy_c;
-    logic        [11:0] abs_gx_c, abs_gy_c;
-    logic        [12:0] mag_c;
+    logic signed [11:0] gx_p1, gy_p1;
+    logic               valid_p1;
 
-    always_comb begin
-        gx_c =  -$signed({4'b0, r_data[0]})
-                +$signed({4'b0, r_data[2]})
-                -$signed({3'b0, r_data[3], 1'b0})    // -2 * r_data[3]
-                +$signed({3'b0, r_data[5], 1'b0})    // +2 * r_data[5]
-                -$signed({4'b0, r_data[6]})
-                +$signed({4'b0, r_data[8]});
+    always_ff @(posedge clk) begin
+        if (rst) begin
+            gx_p1    <= 12'd0;
+            gy_p1    <= 12'd0;
+            valid_p1 <= 1'b0;
+        end else begin
+            // Shift the valid signal into Stage 1
+            valid_p1 <= window_valid;
+            
+            // Only toggle data when valid to save dynamic power
+            if (window_valid) begin
+                gx_p1 <= -$signed({4'b0, r_data[0]})
+                         +$signed({4'b0, r_data[2]})
+                         -$signed({3'b0, r_data[3], 1'b0})    
+                         +$signed({3'b0, r_data[5], 1'b0})    
+                         -$signed({4'b0, r_data[6]})
+                         +$signed({4'b0, r_data[8]});
 
-        gy_c =  -$signed({4'b0, r_data[0]})
-                -$signed({3'b0, r_data[1], 1'b0})    // -2 * r_data[1]
-                -$signed({4'b0, r_data[2]})
-                +$signed({4'b0, r_data[6]})
-                +$signed({3'b0, r_data[7], 1'b0})    // +2 * r_data[7]
-                +$signed({4'b0, r_data[8]});
-
-        abs_gx_c = gx_c[11] ? 12'(-gx_c) : 12'(gx_c);
-        abs_gy_c = gy_c[11] ? 12'(-gy_c) : 12'(gy_c);
-        mag_c    = abs_gx_c + abs_gy_c;            // |Gx| + |Gy| approximation
+                gy_p1 <= -$signed({4'b0, r_data[0]})
+                         -$signed({3'b0, r_data[1], 1'b0})    
+                         -$signed({4'b0, r_data[2]})
+                         +$signed({4'b0, r_data[6]})
+                         +$signed({3'b0, r_data[7], 1'b0})    
+                         +$signed({4'b0, r_data[8]});
+            end
+        end
     end
 
     // ---------------------------------------------------------------------
-    // Output register (clamp to 8 bits)
-    // ready_out is the registered window_valid -> aligns with sobel_out.
+    // Stage 2: Absolute Value & Magnitude
+    // ---------------------------------------------------------------------
+    logic [12:0] mag_p2;
+    logic        valid_p2;
+
+    always_ff @(posedge clk) begin
+        if (rst) begin
+            mag_p2   <= 13'd0;
+            valid_p2 <= 1'b0;
+        end else begin
+            // Shift the valid signal into Stage 2
+            valid_p2 <= valid_p1;
+            
+            if (valid_p1) begin
+                // Compute absolute value combinatorially, then add and register it.
+                // This fits easily within a 10ns clock cycle.
+                mag_p2 <= (gx_p1[11] ? -gx_p1 : gx_p1) + 
+                          (gy_p1[11] ? -gy_p1 : gy_p1);
+            end
+        end
+    end
+
+    // ---------------------------------------------------------------------
+    // Stage 3: Output register (Clamp to 8 bits)
     // ---------------------------------------------------------------------
     always_ff @(posedge clk) begin
         if (rst) begin
             sobel_out <= 8'd0;
             ready_out <= 1'b0;
         end else begin
-            sobel_out <= (mag_c > 13'd255) ? 8'd255 : mag_c[7:0];
-            ready_out <= window_valid;
+            ready_out <= valid_p2;
+            
+            if (valid_p2) begin
+                sobel_out <= (mag_p2 > 13'd255) ? 8'd255 : mag_p2[7:0];
+            end
         end
     end
 

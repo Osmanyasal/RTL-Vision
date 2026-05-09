@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "/home/rt7/Desktop/RTLVision/RTLVision/RTLVision.runs/synth_1/sobel.tcl"
+  variable script "/home/rt7/Desktop/RTLVision/RTLVision/RTLVision.runs/synth_1/sobel3x3.tcl"
   variable category "vivado_synth"
 }
 
@@ -57,6 +57,7 @@ if {$::dispatch::connected} {
 
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param general.usePosixSpawnForFork 1
+set_msg_config -id {Common 17-41} -limit 10000000
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a100tcsg324-1
 
@@ -74,9 +75,9 @@ set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib -sv {
-  /home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/fifo_pipeline.sv
+  /home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/fifo_pipeline2.sv
   /home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/sync_fifo.sv
-  /home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/sobel.sv
+  /home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/sobel3x3.sv
 }
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
@@ -96,7 +97,7 @@ read_checkpoint -auto_incremental -incremental /home/rt7/Desktop/RTLVision/RTLVi
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }
-synth_design -top sobel -part xc7a100tcsg324-1
+synth_design -top sobel3x3 -part xc7a100tcsg324-1
 OPTRACE "synth_design" END { }
 if { [get_msg_config -count -severity {CRITICAL WARNING}] > 0 } {
  send_msg_id runtcl-6 info "Synthesis results are not added to the cache due to CRITICAL_WARNING"
@@ -106,10 +107,10 @@ if { [get_msg_config -count -severity {CRITICAL WARNING}] > 0 } {
 OPTRACE "write_checkpoint" START { CHECKPOINT }
 # disable binary constraint mode for synth run checkpoints
 set_param constraints.enableBinaryConstraints false
-write_checkpoint -force -noxdef sobel.dcp
+write_checkpoint -force -noxdef sobel3x3.dcp
 OPTRACE "write_checkpoint" END { }
 OPTRACE "synth reports" START { REPORT }
-generate_parallel_reports -reports { "report_utilization -file sobel_utilization_synth.rpt -pb sobel_utilization_synth.pb"  } 
+generate_parallel_reports -reports { "report_utilization -file sobel3x3_utilization_synth.rpt -pb sobel3x3_utilization_synth.pb"  } 
 OPTRACE "synth reports" END { }
 file delete __synthesis_is_running__
 close [open __synthesis_is_complete__ w]
