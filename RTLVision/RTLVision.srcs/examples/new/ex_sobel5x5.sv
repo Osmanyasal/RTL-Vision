@@ -3,6 +3,28 @@
 // Company: 
 // Engineer: 
 // 
+// Create Date: 05/09/2026 08:53:30 PM
+// Design Name: 
+// Module Name: ex_sobel5x5
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
+
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
 // Create Date: 04/30/2026 03:09:05 PM
 // Design Name: 
 // Module Name: ex_sobel3x3
@@ -20,9 +42,9 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module ex_sobel3x3 #(
+module ex_sobel5x5 #(
     parameter string file_name     = "/home/rt7/Desktop/RTLVision/kaan.bmp",
-    parameter string out_file_name = "/home/rt7/Desktop/RTLVision/kaan_sobel3x3.bmp",
+    parameter string out_file_name = "/home/rt7/Desktop/RTLVision/kaan_sobel5x5.bmp",
     parameter int    IMG_WIDTH     = 1024  // must match BMP width
 )();
 
@@ -70,7 +92,7 @@ module ex_sobel3x3 #(
         .ready_out(gray_valid)
     );
 
-    sobel3x3 #(
+    sobel5x5 #(
         .IMG_WIDTH(IMG_WIDTH)
     ) uut (
         .clk(clk),
