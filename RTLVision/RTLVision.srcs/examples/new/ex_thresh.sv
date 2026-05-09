@@ -1,8 +1,30 @@
 `timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 05/09/2026 09:44:36 PM
+// Design Name: 
+// Module Name: ex_thresh
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
 
-module ex_grayscale #(
+
+`timescale 1ns / 1ps
+
+module ex_thresh #(
     parameter string file_name = "/home/rt7/Desktop/RTLVision/kaan.bmp", 
-    parameter string out_file_name = "/home/rt7/Desktop/RTLVision/kaan_grayscale.bmp"
+    parameter string out_file_name = "/home/rt7/Desktop/RTLVision/kaan_thresh128.bmp"
 )();
      
     // -----------------------------------------
@@ -29,10 +51,11 @@ module ex_grayscale #(
     // -----------------------------------------
     logic ready_in;
     logic [7:0] red_in, green_in, blue_in;
-    logic [7:0] gray_out;
-    logic ready_out;
+    logic [7:0] gray_out, thresh_out;
+    logic grayscale_ready_out;
+    logic thresh_ready_out;
 
-    grayscale uut (
+    grayscale uut_grayscale (
         .clk(clk),
         .rst(rst),
         .ready_in(ready_in),
@@ -40,7 +63,16 @@ module ex_grayscale #(
         .green_in(green_in),
         .blue_in(blue_in),
         .gray_out(gray_out),
-        .ready_out(ready_out)
+        .ready_out(grayscale_ready_out)
+    );
+    
+    threshold uut_thresh (
+        .clk(clk),
+        .gray_in(gray_out),
+        .thresh(128),
+        .ready_in(grayscale_ready_out),
+        .gray_out(thresh_out),
+        .ready_out(thresh_ready_out)
     );
         
     initial begin
@@ -118,11 +150,11 @@ module ex_grayscale #(
                         @(posedge clk);
                         #1; 
                          
-                        if(ready_out) begin
+                        if(thresh_ready_out) begin
                             // Write the grayscale byte to B, G, and R channels
-                            $fwrite(file_out, "%c", gray_out); 
-                            $fwrite(file_out, "%c", gray_out); 
-                            $fwrite(file_out, "%c", gray_out);
+                            $fwrite(file_out, "%c", thresh_out); 
+                            $fwrite(file_out, "%c", thresh_out); 
+                            $fwrite(file_out, "%c", thresh_out);
                         end 
                     end
                 end
