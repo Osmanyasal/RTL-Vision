@@ -64,80 +64,108 @@ module sobel5x5 #(parameter IMG_WIDTH = 1024)(
     //        [-4 -8  0 +8 +4]           [+2 +8 +12 +8 +2]
     //        [-1 -2  0 +2 +1]           [+1 +4 +6  +4 +1]
     // ---------------------------------------------------------------------
-        logic signed [24:0] gx_c, gy_c;
-        logic        [24:0] abs_gx_c, abs_gy_c;
-        logic        [24:0] mag_c;
+       // ---------------------------------------------------------------------
+    // Stage 1: The Convolution (Calculate Gx and Gy)
+    // ---------------------------------------------------------------------
+    logic signed [24:0] gx_p1, gy_p1;
+    logic               valid_p1;
 
-        function automatic logic signed [24:0] pix_s(input logic [7:0] pixel);
+    function automatic logic signed [24:0] pix_s(input logic [7:0] pixel);
         pix_s = $signed({17'b0, pixel});
-        endfunction
+    endfunction
 
-    always_comb begin
-        gx_c =  - pix_s(r_data[0])
-            - (pix_s(r_data[1]) <<< 1)
-            + (pix_s(r_data[3]) <<< 1)
-            + pix_s(r_data[4])
+    always_ff @(posedge clk) begin
+        if (rst) begin
+            gx_p1    <= '0;
+            gy_p1    <= '0;
+            valid_p1 <= 1'b0;
+        end else begin
+            // Shift the valid signal into stage 1
+            valid_p1 <= window_valid; 
+            
+            if (window_valid) begin
+                // The synthesis tool will easily route this single stage of math
+                gx_p1 <=  - pix_s(r_data[0])
+                          - (pix_s(r_data[1]) <<< 1)
+                          + (pix_s(r_data[3]) <<< 1)
+                          + pix_s(r_data[4])
+                          - (pix_s(r_data[5]) <<< 2)
+                          - (pix_s(r_data[6]) <<< 3)
+                          + (pix_s(r_data[8]) <<< 3)
+                          + (pix_s(r_data[9]) <<< 2)
+                          - ((pix_s(r_data[10]) <<< 2) + (pix_s(r_data[10]) <<< 1))
+                          - ((pix_s(r_data[11]) <<< 3) + (pix_s(r_data[11]) <<< 2))
+                          + ((pix_s(r_data[13]) <<< 3) + (pix_s(r_data[13]) <<< 2))
+                          + ((pix_s(r_data[14]) <<< 2) + (pix_s(r_data[14]) <<< 1))
+                          - (pix_s(r_data[15]) <<< 2)
+                          - (pix_s(r_data[16]) <<< 3)
+                          + (pix_s(r_data[18]) <<< 3)
+                          + (pix_s(r_data[19]) <<< 2)
+                          - pix_s(r_data[20])
+                          - (pix_s(r_data[21]) <<< 1)
+                          + (pix_s(r_data[23]) <<< 1)
+                          + pix_s(r_data[24]);
 
-            - (pix_s(r_data[5]) <<< 2)
-            - (pix_s(r_data[6]) <<< 3)
-            + (pix_s(r_data[8]) <<< 3)
-            + (pix_s(r_data[9]) <<< 2)
-
-            - ((pix_s(r_data[10]) <<< 2) + (pix_s(r_data[10]) <<< 1))
-            - ((pix_s(r_data[11]) <<< 3) + (pix_s(r_data[11]) <<< 2))
-            + ((pix_s(r_data[13]) <<< 3) + (pix_s(r_data[13]) <<< 2))
-            + ((pix_s(r_data[14]) <<< 2) + (pix_s(r_data[14]) <<< 1))
-
-            - (pix_s(r_data[15]) <<< 2)
-            - (pix_s(r_data[16]) <<< 3)
-            + (pix_s(r_data[18]) <<< 3)
-            + (pix_s(r_data[19]) <<< 2)
-
-            - pix_s(r_data[20])
-            - (pix_s(r_data[21]) <<< 1)
-            + (pix_s(r_data[23]) <<< 1)
-            + pix_s(r_data[24]);
-
-        gy_c =  - pix_s(r_data[0])
-            - (pix_s(r_data[1]) <<< 2)
-            - ((pix_s(r_data[2]) <<< 2) + (pix_s(r_data[2]) <<< 1))
-            - (pix_s(r_data[3]) <<< 2)
-            - pix_s(r_data[4])
-
-            - (pix_s(r_data[5]) <<< 1)
-            - (pix_s(r_data[6]) <<< 3)
-            - ((pix_s(r_data[7]) <<< 3) + (pix_s(r_data[7]) <<< 2))
-            - (pix_s(r_data[8]) <<< 3)
-            - (pix_s(r_data[9]) <<< 1)
-
-            + (pix_s(r_data[15]) <<< 1)
-            + (pix_s(r_data[16]) <<< 3)
-            + ((pix_s(r_data[17]) <<< 3) + (pix_s(r_data[17]) <<< 2))
-            + (pix_s(r_data[18]) <<< 3)
-            + (pix_s(r_data[19]) <<< 1)
-
-            + pix_s(r_data[20])
-            + (pix_s(r_data[21]) <<< 2)
-            + ((pix_s(r_data[22]) <<< 2) + (pix_s(r_data[22]) <<< 1))
-            + (pix_s(r_data[23]) <<< 2)
-            + pix_s(r_data[24]);
-
-        abs_gx_c = gx_c[24] ? $unsigned(-gx_c) : $unsigned(gx_c);
-        abs_gy_c = gy_c[24] ? $unsigned(-gy_c) : $unsigned(gy_c);
-        mag_c    = abs_gx_c + abs_gy_c;            // |Gx| + |Gy| approximation
+                gy_p1 <=  - pix_s(r_data[0])
+                          - (pix_s(r_data[1]) <<< 2)
+                          - ((pix_s(r_data[2]) <<< 2) + (pix_s(r_data[2]) <<< 1))
+                          - (pix_s(r_data[3]) <<< 2)
+                          - pix_s(r_data[4])
+                          - (pix_s(r_data[5]) <<< 1)
+                          - (pix_s(r_data[6]) <<< 3)
+                          - ((pix_s(r_data[7]) <<< 3) + (pix_s(r_data[7]) <<< 2))
+                          - (pix_s(r_data[8]) <<< 3)
+                          - (pix_s(r_data[9]) <<< 1)
+                          + (pix_s(r_data[15]) <<< 1)
+                          + (pix_s(r_data[16]) <<< 3)
+                          + ((pix_s(r_data[17]) <<< 3) + (pix_s(r_data[17]) <<< 2))
+                          + (pix_s(r_data[18]) <<< 3)
+                          + (pix_s(r_data[19]) <<< 1)
+                          + pix_s(r_data[20])
+                          + (pix_s(r_data[21]) <<< 2)
+                          + ((pix_s(r_data[22]) <<< 2) + (pix_s(r_data[22]) <<< 1))
+                          + (pix_s(r_data[23]) <<< 2)
+                          + pix_s(r_data[24]);
+            end
+        end
     end
 
     // ---------------------------------------------------------------------
-    // Output register (clamp to 8 bits)
-    // ready_out is the registered window_valid -> aligns with sobel_out.
+    // Stage 2: Absolute Value and Magnitude
+    // ---------------------------------------------------------------------
+    logic [24:0] mag_p2;
+    logic        valid_p2;
+
+    always_ff @(posedge clk) begin
+        if (rst) begin
+            mag_p2   <= '0;
+            valid_p2 <= 1'b0;
+        end else begin
+            // Shift the valid signal into stage 2
+            valid_p2 <= valid_p1;
+            
+            if (valid_p1) begin
+                // Compute |Gx| + |Gy|
+                mag_p2 <= (gx_p1[24] ? $unsigned(-gx_p1) : $unsigned(gx_p1)) + 
+                          (gy_p1[24] ? $unsigned(-gy_p1) : $unsigned(gy_p1));
+            end
+        end
+    end
+
+    // ---------------------------------------------------------------------
+    // Stage 3: Output Register (Clamp to 8 bits)
     // ---------------------------------------------------------------------
     always_ff @(posedge clk) begin
         if (rst) begin
             sobel_out <= 8'd0;
             ready_out <= 1'b0;
         end else begin
-            sobel_out <= (mag_c > 25'd255) ? 8'd255 : mag_c[7:0];
-            ready_out <= window_valid;
+            // Shift the valid signal to the final output
+            ready_out <= valid_p2;
+            
+            if (valid_p2) begin
+                sobel_out <= (mag_p2 > 25'd255) ? 8'd255 : mag_p2[7:0];
+            end
         end
     end
 
