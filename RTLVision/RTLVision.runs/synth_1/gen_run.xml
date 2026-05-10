@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1778362856" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/grayscale.dcp">
-  <File Type="VDS-TIMING-PB" Name="sobel3x3_timing_summary_synth.pb"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="sobel3x3_timing_summary_synth.rpt"/>
-  <File Type="RDS-DCP" Name="sobel3x3.dcp"/>
-  <File Type="RDS-UTIL-PB" Name="sobel3x3_utilization_synth.pb"/>
-  <File Type="RDS-UTIL" Name="sobel3x3_utilization_synth.rpt"/>
-  <File Type="RDS-PROPCONSTRS" Name="sobel3x3_drc_synth.rpt"/>
-  <File Type="RDS-RDS" Name="sobel3x3.vds"/>
-  <File Type="REPORTS-TCL" Name="sobel3x3_reports.tcl"/>
-  <File Type="PA-TCL" Name="sobel3x3.tcl"/>
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1778401873" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/grayscale.dcp">
+  <File Type="VDS-TIMING-PB" Name="sharpen3x3_ycbcr_timing_summary_synth.pb"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="sharpen3x3_ycbcr_timing_summary_synth.rpt"/>
+  <File Type="RDS-DCP" Name="sharpen3x3_ycbcr.dcp"/>
+  <File Type="RDS-UTIL-PB" Name="sharpen3x3_ycbcr_utilization_synth.pb"/>
+  <File Type="RDS-UTIL" Name="sharpen3x3_ycbcr_utilization_synth.rpt"/>
+  <File Type="RDS-PROPCONSTRS" Name="sharpen3x3_ycbcr_drc_synth.rpt"/>
+  <File Type="RDS-RDS" Name="sharpen3x3_ycbcr.vds"/>
+  <File Type="REPORTS-TCL" Name="sharpen3x3_ycbcr_reports.tcl"/>
+  <File Type="PA-TCL" Name="sharpen3x3_ycbcr.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/blur5x5_ycbcr.sv">
@@ -20,22 +20,6 @@
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sources_1/new/grayscale.sv">
-      <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/rgb_to_ycbcr.sv">
-      <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/sharpen3x3_ycbcr.sv">
       <FileInfo>
         <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -91,6 +75,22 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PSRCDIR/sources_1/new/sobel3x3.sv">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/rgb_to_ycbcr.sv">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PSRCDIR/sources_1/new/fifo_pipeline2.sv">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -105,7 +105,7 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/sobel3x3.sv">
+    <File Path="$PSRCDIR/sources_1/new/sharpen3x3_ycbcr.sv">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
@@ -114,7 +114,7 @@
     </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
-      <Option Name="TopModule" Val="sobel3x3"/>
+      <Option Name="TopModule" Val="sharpen3x3_ycbcr"/>
     </Config>
   </FileSet>
   <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1" RelGenDir="$PGENDIR/constrs_1">

@@ -15,7 +15,7 @@
 // 
 // Revision:
 // Revision 0.01 - File Created
-// Additional Comments:
+// Additional Comments: Pipelined
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
@@ -79,12 +79,10 @@ module sobel5x5 #(parameter IMG_WIDTH = 1024)(
             gx_p1    <= '0;
             gy_p1    <= '0;
             valid_p1 <= 1'b0;
-        end else begin
-            // Shift the valid signal into stage 1
+        end else begin 
             valid_p1 <= window_valid; 
             
-            if (window_valid) begin
-                // The synthesis tool will easily route this single stage of math
+            if (window_valid) begin 
                 gx_p1 <=  - pix_s(r_data[0])
                           - (pix_s(r_data[1]) <<< 1)
                           + (pix_s(r_data[3]) <<< 1)

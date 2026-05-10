@@ -37,4 +37,4 @@ EAStep()
      fi
 }
 
-EAStep vivado -log sobel3x3.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source sobel3x3.tcl
+EAStep vivado -log sharpen3x3_ycbcr.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source sharpen3x3_ycbcr.tcl

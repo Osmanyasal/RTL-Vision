@@ -32,12 +32,8 @@ module grayscale(
     );
     
     always_ff @(posedge clk) begin
-        
-        if(rst) begin
-            ready_out <= 0;
-            gray_out <= 0;
-        end
-        else if(ready_in) begin
+         
+        if(ready_in) begin
             gray_out <= (red_in >> 2) + (red_in >> 5) + 
                         (green_in >> 1) + (green_in >> 4) + 
                         (blue_in >> 4) + (blue_in >> 5);
