@@ -1,6 +1,63 @@
 # RTL-Vision
 FPGA-based image processing library targeting real-time and low-latency vision workloads.
 
+### Kernel Comparison Table
+<table>
+	<thead>
+		<tr>
+			<th>Kernel</th>
+			<th>Verilog Output</th>
+			<th>CPU Output</th>
+			<th>Verilog Time</th>
+			<th>CPU Time</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><code>blur3x3_ycbcr</code></td>
+			<td><img src="kaan_blur3x3.bmp" alt="RTLVision blur3x3 output" width="280"></td>
+			<td><img src="cpu_kaan_blur3x3.png" alt="CPU blur3x3 output" width="280"></td>
+			<td>9.19 ms</td>
+			<td>29.339 ms </td>
+		</tr>
+		<tr>
+			<td><code>blur5x5_ycbcr</code></td>
+			<td><img src="kaan_blur5x5.bmp" alt="RTLVision blur5x5 output" width="280"></td>
+			<td><img src="cpu_kaan_blur5x5.png" alt="CPU blur5x5 output" width="280"></td>
+			<td>9.16 ms</td>
+			<td>43.624 ms </td>
+		</tr>
+		<tr>
+			<td><code>grayscale</code></td>
+			<td><img src="kaan_grayscale.bmp" alt="RTLVision grayscale output" width="280"></td>
+			<td><img src="cpu_kaan_grayscale.png" alt="CPU grayscale output" width="280"></td>
+			<td>9.21 ms</td>
+			<td>6.161 ms </td>
+		</tr>
+		<tr>
+			<td><code>sharpen3x3_ycbcr</code></td>
+			<td><img src="kaan_sharpen.bmp" alt="RTLVision sharpen3x3 output" width="280"></td>
+			<td><img src="cpu_kaan_sharpen3x3.png" alt="CPU sharpen3x3 output" width="280"></td>
+			<td>9.19 ms</td>
+			<td>7.556 ms </td>
+		</tr>
+		<tr>
+			<td><code>sobel3x3</code></td>
+			<td><img src="kaan_sobel3x3.bmp" alt="RTLVision sobel3x3 output" width="280"></td>
+			<td><img src="cpu_kaan_sobel3x3.png" alt="CPU sobel3x3 output" width="280"></td>
+			<td>9.19 ms</td>
+			<td>16.664 ms </td>
+		</tr>
+		<tr>
+			<td><code>threshold_128</code></td>
+			<td><img src="kaan_thresh128.bmp" alt="RTLVision threshold output" width="280"></td>
+			<td><img src="cpu_kaan_thresh128.png" alt="CPU threshold output" width="280"></td>
+			<td>9.21 ms</td>
+			<td>7.909 ms </td>
+		</tr>
+	</tbody>
+</table>
+
 ## Kernel Set
 The checked-in HDL sources currently cover these image-processing kernels and helpers:
 
@@ -64,61 +121,4 @@ Dependencies are captured in `requirements.txt`.
 
 The timings below come from one local run of `python3 cpu_compare.py` inside the project `.venv`. This run uses the default streaming benchmark settings: `--warmup-runs 0 --benchmark-runs 1 --sample-iterations 1`. Image write-out is not included in the reported time. For comparison, the RTL pipeline is listed as `9.2 ms` per frame.
 
-## Kernel Comparison Table
-<table>
-	<thead>
-		<tr>
-			<th>Kernel</th>
-			<th>Verilog Output</th>
-			<th>CPU Output</th>
-			<th>Verilog Time</th>
-			<th>CPU Time</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td><code>blur3x3_ycbcr</code></td>
-			<td><img src="kaan_blur3x3.bmp" alt="RTLVision blur3x3 output" width="280"></td>
-			<td><img src="cpu_kaan_blur3x3.png" alt="CPU blur3x3 output" width="280"></td>
-			<td>9.19 ms</td>
-			<td>29.339 ms mean</td>
-		</tr>
-		<tr>
-			<td><code>blur5x5_ycbcr</code></td>
-			<td><img src="kaan_blur5x5.bmp" alt="RTLVision blur5x5 output" width="280"></td>
-			<td><img src="cpu_kaan_blur5x5.png" alt="CPU blur5x5 output" width="280"></td>
-			<td>9.16 ms</td>
-			<td>43.624 ms mean</td>
-		</tr>
-		<tr>
-			<td><code>grayscale</code></td>
-			<td><img src="kaan_grayscale.bmp" alt="RTLVision grayscale output" width="280"></td>
-			<td><img src="cpu_kaan_grayscale.png" alt="CPU grayscale output" width="280"></td>
-			<td>9.21 ms</td>
-			<td>6.161 ms mean</td>
-		</tr>
-		<tr>
-			<td><code>sharpen3x3_ycbcr</code></td>
-			<td><img src="kaan_sharpen.bmp" alt="RTLVision sharpen3x3 output" width="280"></td>
-			<td><img src="cpu_kaan_sharpen3x3.png" alt="CPU sharpen3x3 output" width="280"></td>
-			<td>9.19 ms</td>
-			<td>7.556 ms mean</td>
-		</tr>
-		<tr>
-			<td><code>sobel3x3</code></td>
-			<td><img src="kaan_sobel3x3.bmp" alt="RTLVision sobel3x3 output" width="280"></td>
-			<td><img src="cpu_kaan_sobel3x3.png" alt="CPU sobel3x3 output" width="280"></td>
-			<td>9.19 ms</td>
-			<td>16.664 ms mean</td>
-		</tr>
-		<tr>
-			<td><code>threshold_128</code></td>
-			<td><img src="kaan_thresh128.bmp" alt="RTLVision threshold output" width="280"></td>
-			<td><img src="cpu_kaan_thresh128.png" alt="CPU threshold output" width="280"></td>
-			<td>9.21 ms</td>
-			<td>7.909 ms mean</td>
-		</tr>
-	</tbody>
-</table>
-
-CPU batch total mean across kernels for this run: `111.253 ms`
+ 
