@@ -1,41 +1,124 @@
 # RTL-Vision
-FPGA based image processing library targeting real-time and low-latency vision workloads.
+FPGA-based image processing library targeting real-time and low-latency vision workloads.
 
-## Vivado compatibility
-This repository is kept **version-agnostic** by treating Vivado project files as generated artifacts.
-Do **not** rely on the checked-in `.xpr` or run/cache directories for long-term compatibility across Vivado releases.
+## Kernel Set
+The checked-in HDL sources currently cover these image-processing kernels and helpers:
 
-### Open in any compatible Vivado version
-Create a new RTL project for part `xc7a100tcsg324-1`, then add the repository sources manually:
+### Processing kernels
+- `blur3x3_ycbcr`
+- `blur5x5_ycbcr`
+- `grayscale`
+- `sharpen3x3_ycbcr`
+- `sobel3x3`
+- `sobel5x5`
+- `threshold` (example path)
 
-#### Design sources
-- `RTLVision/RTLVision.srcs/sources_1/new/grayscale.sv`
-- `RTLVision/RTLVision.srcs/sources_1/new/fifo_pipeline.sv`
-- `RTLVision/RTLVision.srcs/sources_1/new/sync_fifo.sv`
-- `RTLVision/RTLVision.srcs/sources_1/new/sobel.sv`
+### Supporting modules
+- `fifo_pipeline2`
+- `fifo_pipeline5`
+- `rgb_to_hsv`
+- `rgb_to_ycbcr`
+- `sync_fifo`
 
-#### Constraints
-- `RTLVision/RTLVision.srcs/constrs_1/new/constraints.xdc`
+## Sample Timing
+The default frame budget is approximately `~9.2 ms`.
 
-#### Optional simulation sources
-- `RTLVision/RTLVision.srcs/sim_1/new/tb_grayscale.sv`
-- `RTLVision/RTLVision.srcs/sim_1/new/ex_grayscale.sv`
-- `RTLVision/RTLVision.srcs/examples/new/ex_sobel.sv`
-- `RTLVision/RTLVision.srcs/examples/new/tb_fifo_pipeline.sv`
-- `RTLVision/RTLVision.srcs/examples/new/tb_sync_fifo.sv`
+For the commonly cited `1024 x 768` reference case at `100 MHz`:
 
-### Recommended top modules
-- Synthesis top: `sobel`
-- Example simulation top: `ex_sobel`
-- Other available testbenches: `tb_grayscale`, `tb_fifo_pipeline`, `tb_sync_fifo`
+- Total pixels per frame: $1024 \times 768 = 786,432$
+- Clock frequency: $100\,\text{MHz}$, so each cycle is $10\,\text{ns}$
+- Total active pixel time: $786,432 \times 10\,\text{ns} \approx 7.86\,\text{ms}$
 
-### Version-specific files
-The following are Vivado-generated and may differ between Vivado versions, so they should not be used as the portability baseline:
-- `RTLVision/RTLVision.xpr`
-- `RTLVision/RTLVision.runs/`
-- `RTLVision/RTLVision.cache/`
-- `RTLVision/RTLVision.hw/`
-- `RTLVision/RTLVision.ip_user_files/`
-- `RTLVision/RTLVision.sim/`
+For the same `1024 x 768` frame at `5.4 GHz`:
 
-If you regenerate project artifacts locally, keep the HDL and XDC sources under `RTLVision/RTLVision.srcs/` as the source of truth.
+- Clock frequency: $5.4\,\text{GHz}$, so each cycle is $\frac{1}{5.4}\,\text{ns} \approx 0.185\,\text{ns}$
+- Total active pixel time: $786,432 \times 0.185\,\text{ns} \approx 145,636\,\text{ns} \approx 0.146\,\text{ms}$
+
+The difference between the idealized active-pixel time of $7.86\,\text{ms}$ and the rough end-to-end frame budget of `~9.2 ms` comes from blanking intervals plus pipeline and control overhead. The sample `kaan` image artifacts committed in this repository are `1280 x 720`; the math above is the default latency estimate requested for the `1024 x 768` case.
+
+## CPU Comparison Flow
+`cpu_compare.py` reads `kaan.bmp` or `kaan.png` as the software input image. It does not generate any Verilog-side assets. It executes the CPU-streaming equivalents of the kernels and writes `cpu_*` output images.
+
+The processing path now follows a streaming model instead of applying full-frame image filters:
+
+- pixels are consumed in raster order
+- grayscale and threshold run row by row
+- `3x3` and `5x5` kernels keep only the active line buffers needed for the current window
+- outputs become valid only after the trailing window is filled, so the leading border remains zeroed just like a streaming pipeline
+
+The input still comes from an image file for repeatability, but the kernel execution itself is modeled as if pixels were arriving from a camera stream.
+
+Running the script:
+
+```bash
+python3 -m pip install -r requirements.txt
+python3 cpu_compare.py
+python3 cpu_compare.py --input kaan.png
+```
+
+Generates:
+
+- `cpu_kaan_*.png` as CPU-streaming reference outputs
+
+Dependencies are captured in `requirements.txt`.
+
+The timings below come from one local run of `python3 cpu_compare.py` inside the project `.venv`. This run uses the default streaming benchmark settings: `--warmup-runs 0 --benchmark-runs 1 --sample-iterations 1`. Image write-out is not included in the reported time. For comparison, the RTL pipeline is listed as `9.2 ms` per frame.
+
+## Kernel Comparison Table
+<table>
+	<thead>
+		<tr>
+			<th>Kernel</th>
+			<th>Verilog Output</th>
+			<th>CPU Output</th>
+			<th>Verilog Time</th>
+			<th>CPU Time</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><code>blur3x3_ycbcr</code></td>
+			<td><img src="kaan_blur3x3.bmp" alt="RTLVision blur3x3 output" width="280"></td>
+			<td><img src="cpu_kaan_blur3x3.png" alt="CPU blur3x3 output" width="280"></td>
+			<td>9.19 ms</td>
+			<td>29.339 ms mean</td>
+		</tr>
+		<tr>
+			<td><code>blur5x5_ycbcr</code></td>
+			<td><img src="kaan_blur5x5.bmp" alt="RTLVision blur5x5 output" width="280"></td>
+			<td><img src="cpu_kaan_blur5x5.png" alt="CPU blur5x5 output" width="280"></td>
+			<td>9.16 ms</td>
+			<td>43.624 ms mean</td>
+		</tr>
+		<tr>
+			<td><code>grayscale</code></td>
+			<td><img src="kaan_grayscale.bmp" alt="RTLVision grayscale output" width="280"></td>
+			<td><img src="cpu_kaan_grayscale.png" alt="CPU grayscale output" width="280"></td>
+			<td>9.21 ms</td>
+			<td>6.161 ms mean</td>
+		</tr>
+		<tr>
+			<td><code>sharpen3x3_ycbcr</code></td>
+			<td><img src="kaan_sharpen.bmp" alt="RTLVision sharpen3x3 output" width="280"></td>
+			<td><img src="cpu_kaan_sharpen3x3.png" alt="CPU sharpen3x3 output" width="280"></td>
+			<td>9.19 ms</td>
+			<td>7.556 ms mean</td>
+		</tr>
+		<tr>
+			<td><code>sobel3x3</code></td>
+			<td><img src="kaan_sobel3x3.bmp" alt="RTLVision sobel3x3 output" width="280"></td>
+			<td><img src="cpu_kaan_sobel3x3.png" alt="CPU sobel3x3 output" width="280"></td>
+			<td>9.19 ms</td>
+			<td>16.664 ms mean</td>
+		</tr>
+		<tr>
+			<td><code>threshold_128</code></td>
+			<td><img src="kaan_thresh128.bmp" alt="RTLVision threshold output" width="280"></td>
+			<td><img src="cpu_kaan_thresh128.png" alt="CPU threshold output" width="280"></td>
+			<td>9.21 ms</td>
+			<td>7.909 ms mean</td>
+		</tr>
+	</tbody>
+</table>
+
+CPU batch total mean across kernels for this run: `111.253 ms`

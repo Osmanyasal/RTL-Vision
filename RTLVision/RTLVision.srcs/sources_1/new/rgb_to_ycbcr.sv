@@ -15,10 +15,9 @@
 // 
 // Revision:
 // Revision 0.01 - File Created
-// Additional Comments:
+// Additional Comments: Pipelined
 // 
 //////////////////////////////////////////////////////////////////////////////////
-
 module rgb_to_ycbcr(
     input  logic        clk,
     input  logic        rst,
@@ -26,43 +25,55 @@ module rgb_to_ycbcr(
     input  logic [7:0]  red_in,
     input  logic [7:0]  green_in,
     input  logic [7:0]  blue_in,
-    output logic [23:0] ycbcr_out, // Changed to a 24-bit packed vector
+    output logic [23:0] ycbcr_out,
     output logic        ready_out
 );
     
-    // Fixed: 8-bit outputs
-    logic [7:0] y, cb, cr;
-    
-    // We need signed intermediate variables for the math to work correctly.
-    logic signed [9:0] r_s, g_s, b_s;
-    
-    assign r_s = $signed({1'b0, red_in});
-    assign g_s = $signed({1'b0, green_in});
-    assign b_s = $signed({1'b0, blue_in});
+    // Stage 1: Input Registration (Making sure inputs are "ready")
+    logic signed [9:0] r_s1, g_s1, b_s1;
+    logic              vld1;
 
     always_ff @(posedge clk) begin
         if (rst) begin
-            ready_out <= 0;
-            y  <= '0; 
-            cb <= '0; 
-            cr <= '0;
-        end
-        else if (ready_in) begin
-            // Math is safely signed. 
-            y  <= (  77*r_s + 150*g_s +  29*b_s) >> 8;
-            cb <= (( -43*r_s -  85*g_s + 128*b_s) >> 8) + 128;
-            cr <= (( 128*r_s - 107*g_s -  21*b_s) >> 8) + 128;
-            ready_out <= 1;
-        end
-        else begin
-            ready_out <= 0;
-            y  <= '0; 
-            cb <= '0; 
-            cr <= '0;
+            vld1 <= 1'b0;
+        end else begin
+            vld1 <= ready_in;
+            r_s1 <= $signed({1'b0, red_in});
+            g_s1 <= $signed({1'b0, green_in});
+            b_s1 <= $signed({1'b0, blue_in});
         end
     end
+
+    // Stage 2: Product Calculation (The "Heavy" Math)
+    // We calculate the products and register them to break the timing path
+    logic signed [17:0] y_prod, cb_prod, cr_prod;
+    logic               vld2;
+
+    always_ff @(posedge clk) begin
+        vld2 <= vld1;
+        if (vld1) begin
+            y_prod  <= (77 * r_s1)  + (150 * g_s1) + (29 * b_s1);
+            cb_prod <= (-43 * r_s1) - (85 * g_s1)  + (128 * b_s1);
+            cr_prod <= (128 * r_s1) - (107 * g_s1) - (21 * b_s1);
+        end
+    end
+
+    // Stage 3: Final Scaling, Offsets, and Packing
+    logic [7:0] y_reg, cb_reg, cr_reg;
     
-    // Pack the 8-bit channels into the 24-bit output bus
-    assign ycbcr_out = {y, cb, cr};
+    always_ff @(posedge clk) begin
+        if (rst) begin
+            ready_out <= 1'b0;
+        end else begin
+            ready_out <= vld2;
+            if (vld2) begin
+                y_reg  <= y_prod[15:8];            // Logical shift right by 8
+                cb_reg <= cb_prod[15:8] + 8'd128;  // Apply chrominance offset
+                cr_reg <= cr_prod[15:8] + 8'd128;
+            end
+        end
+    end
+
+    assign ycbcr_out = {y_reg, cb_reg, cr_reg};
     
 endmodule

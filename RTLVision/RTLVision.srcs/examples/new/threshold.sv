@@ -31,7 +31,7 @@ module threshold(
      
     always_ff @(posedge clk) begin
         if(ready_in) begin
-            gray_out <= (thresh > gray_in) ? 0 : gray_in;
+            gray_out <= (thresh > gray_in) ? 0 : 255;
             ready_out <= 'b1;
         end
         else begin gray_out <= 0; ready_out <= 0; end

@@ -1,7 +1,7 @@
-Running: xsim.dir/ex_blur5x5_behav/xsimk -simmode gui -wdb ex_blur5x5_behav.wdb -simrunnum 0 -socket 44805
+Running: xsim.dir/ex_blur5x5_behav/xsimk -simmode gui -wdb ex_blur5x5_behav.wdb -simrunnum 0 -socket 35229
 Design successfully loaded
 Design Loading Memory Usage: 199228 KB (Peak: 199228 KB)
-Design Loading CPU Usage: 620 ms
+Design Loading CPU Usage: 660 ms
 Simulation completed
 Simulation Memory Usage: 281224 KB (Peak: 338496 KB)
-Simulation CPU Usage: 4400 ms
+Simulation CPU Usage: 4570 ms
