@@ -55,6 +55,20 @@ FPGA-based image processing library targeting real-time and low-latency vision w
 			<td>9.21 ms</td>
 			<td>7.909 ms </td>
 		</tr>
+		<tr>
+			<td><code>dilation3x3</code></td>
+			<td><img src="kaan_dilation3x3.bmp" alt="RTLVision threshold output" width="280"></td>
+			<td><img src="cpu_kaan_dilation3x3.png" alt="CPU threshold output" width="280"></td>
+			<td>9.2 ms</td>
+			<td>7.909 ms </td>
+		</tr>
+		<tr>
+			<td><code>erosion3x3</code></td>
+			<td><img src="kaan_erosion3x3.bmp" alt="RTLVision threshold output" width="280"></td>
+			<td><img src="cpu_kaan_erosion3x3.png" alt="CPU threshold output" width="280"></td>
+			<td>9.2 ms</td>
+			<td>7.909 ms </td>
+		</tr>
 	</tbody>
 </table>
 
