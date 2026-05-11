@@ -23,10 +23,10 @@
 module sobel3x3 #(parameter IMG_WIDTH = 1024)(
     input  logic       clk,
     input  logic       rst,
-    input  logic       ready_in,
-    input  logic [7:0] gray_in,
-    output logic [7:0] sobel_out,
-    output logic       ready_out
+    input  logic       in_ready,
+    input  logic [7:0] in_gray,
+    output logic [7:0] out_sobel,
+    output logic       out_ready
 );
 
     // ---------------------------------------------------------------------
@@ -42,8 +42,8 @@ module sobel3x3 #(parameter IMG_WIDTH = 1024)(
     ) u_window (
         .clk(clk),
         .rst(rst),
-        .w_data(gray_in),
-        .w_en(ready_in),
+        .w_data(in_gray),
+        .w_en(in_ready),
         .full(win_full),
         .r_en(1'b1),                
         .r_data(r_data),
@@ -112,13 +112,13 @@ module sobel3x3 #(parameter IMG_WIDTH = 1024)(
     // ---------------------------------------------------------------------
     always_ff @(posedge clk) begin
         if (rst) begin
-            sobel_out <= 8'd0;
-            ready_out <= 1'b0;
+            out_sobel <= 8'd0;
+            out_ready <= 1'b0;
         end else begin
-            ready_out <= valid_p2;
+            out_ready <= valid_p2;
             
             if (valid_p2) begin
-                sobel_out <= (mag_p2 > 13'd255) ? 8'd255 : mag_p2[7:0];
+                out_sobel <= (mag_p2 > 13'd255) ? 8'd255 : mag_p2[7:0];
             end
         end
     end

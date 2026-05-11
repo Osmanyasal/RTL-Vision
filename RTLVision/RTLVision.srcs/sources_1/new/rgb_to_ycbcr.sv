@@ -21,12 +21,12 @@
 module rgb_to_ycbcr(
     input  logic        clk,
     input  logic        rst,
-    input  logic        ready_in,
-    input  logic [7:0]  red_in,
-    input  logic [7:0]  green_in,
-    input  logic [7:0]  blue_in,
-    output logic [23:0] ycbcr_out,
-    output logic        ready_out
+    input  logic        in_ready,
+    input  logic [7:0]  in_red,
+    input  logic [7:0]  in_green,
+    input  logic [7:0]  in_blue,
+    output logic [23:0] out_ycbcr,
+    output logic        out_ready
 );
     
     // Stage 1: Input Registration (Making sure inputs are "ready")
@@ -37,13 +37,13 @@ module rgb_to_ycbcr(
         if (rst) begin
             vld1 <= 1'b0;
         end else begin
-            vld1 <= ready_in;
-            r_s1 <= $signed({1'b0, red_in});
-            g_s1 <= $signed({1'b0, green_in});
-            b_s1 <= $signed({1'b0, blue_in});
+            vld1 <= in_ready;
+            r_s1 <= $signed({1'b0, in_red});
+            g_s1 <= $signed({1'b0, in_green});
+            b_s1 <= $signed({1'b0, in_blue});
         end
     end
-
+    
     // Stage 2: Product Calculation (The "Heavy" Math)
     // We calculate the products and register them to break the timing path
     logic signed [17:0] y_prod, cb_prod, cr_prod;
@@ -63,9 +63,9 @@ module rgb_to_ycbcr(
     
     always_ff @(posedge clk) begin
         if (rst) begin
-            ready_out <= 1'b0;
+            out_ready <= 1'b0;
         end else begin
-            ready_out <= vld2;
+            out_ready <= vld2;
             if (vld2) begin
                 y_reg  <= y_prod[15:8];            // Logical shift right by 8
                 cb_reg <= cb_prod[15:8] + 8'd128;  // Apply chrominance offset
@@ -74,6 +74,6 @@ module rgb_to_ycbcr(
         end
     end
 
-    assign ycbcr_out = {y_reg, cb_reg, cr_reg};
+    assign out_ycbcr = {y_reg, cb_reg, cr_reg};
     
 endmodule

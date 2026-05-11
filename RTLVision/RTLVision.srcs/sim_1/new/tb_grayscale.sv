@@ -23,22 +23,22 @@
 module tb_grayscale;
     logic clk;
     logic rst;
-    logic ready_in;
-    logic [7:0] red_in;
-    logic [7:0] green_in;
-    logic [7:0] blue_in;
-    logic [7:0] gray_out;
-    logic ready_out;
+    logic in_ready;
+    logic [7:0] in_red;
+    logic [7:0] in_green;
+    logic [7:0] in_blue;
+    logic [7:0] out_gray;
+    logic out_ready;
 
     grayscale dut (
         .clk(clk),
         .rst(rst),
-        .ready_in(ready_in),
-        .red_in(red_in),
-        .green_in(green_in),
-        .blue_in(blue_in),
-        .gray_out(gray_out),
-        .ready_out(ready_out)
+        .in_ready(in_ready),
+        .in_red(in_red),
+        .in_green(in_green),
+        .in_blue(in_blue),
+        .out_gray(out_gray),
+        .out_ready(out_ready)
     );
 
     always #5 clk = ~clk;
@@ -58,9 +58,9 @@ module tb_grayscale;
         input logic [7:0] expected_value,
         input string test_name
     );
-        if ((ready_out !== expected_ready) || (gray_out !== expected_value)) begin
-            $error("%s failed: ready_out=%0b expected=%0b gray_out=0x%0h expected=0x%0h",
-                   test_name, ready_out, expected_ready, gray_out, expected_value);
+        if ((out_ready !== expected_ready) || (out_gray !== expected_value)) begin
+            $error("%s failed: out_ready=%0b expected=%0b out_gray=0x%0h expected=0x%0h",
+                   test_name, out_ready, expected_ready, out_gray, expected_value);
             $fatal;
         end
     endtask
@@ -68,42 +68,42 @@ module tb_grayscale;
     initial begin
         clk = 1'b0;
         rst = 1'b1;
-        ready_in = 1'b0;
-        red_in = 8'h00;
-        green_in = 8'h00;
-        blue_in = 8'h00;
+        in_ready = 1'b0;
+        in_red = 8'h00;
+        in_green = 8'h00;
+        in_blue = 8'h00;
 
         repeat (2) @(posedge clk);
         check_outputs(1'b0, 8'h00, "reset clears outputs");
 
         rst = 1'b0;
 
-        red_in = 8'd120;
-        green_in = 8'd200;
-        blue_in = 8'd32;
-        ready_in = 1'b1;
+        in_red = 8'd120;
+        in_green = 8'd200;
+        in_blue = 8'd32;
+        in_ready = 1'b1;
         @(posedge clk);
         #1;
         check_outputs(1'b1, expected_gray(8'd120, 8'd200, 8'd32), "valid input produces grayscale");
 
-        ready_in = 1'b0;
+        in_ready = 1'b0;
         @(posedge clk);
         #1;
         check_outputs(1'b0, 8'h00, "idle cycle clears outputs");
 
-        red_in = 8'd255;
-        green_in = 8'd128;
-        blue_in = 8'd64;
-        ready_in = 1'b1;
+        in_red = 8'd255;
+        in_green = 8'd128;
+        in_blue = 8'd64;
+        in_ready = 1'b1;
         @(posedge clk);
         #1;
         check_outputs(1'b1, expected_gray(8'd255, 8'd128, 8'd64), "second sample matches expected grayscale");
 
         rst = 1'b1;
-        ready_in = 1'b1;
+        in_ready = 1'b1;
         @(posedge clk);
         #1;
-        check_outputs(1'b0, 8'h00, "reset has priority over ready_in");
+        check_outputs(1'b0, 8'h00, "reset has priority over in_ready");
 
         $display("tb_grayscale passed");
         $finish;

@@ -17,19 +17,19 @@
 module sharpen3x3_ycbcr #(parameter IMG_WIDTH = 1024)(
     input  logic        clk,
     input  logic        rst,
-    input  logic        ready_in,
-    input  logic [23:0] ycbcr_in,  
-    output logic [23:0] ycbcr_out, 
-    output logic        ready_out
+    input  logic        in_ready,
+    input  logic [23:0] in_ycbcr,  
+    output logic [23:0] out_ycbcr, 
+    output logic        out_ready
 );
     
-    logic [7:0] y_in;
+    logic [7:0] in_y;
     logic [7:0] r_data [0:8];
     logic       window_valid;
     logic       win_full;
 
     // Extract Y component for the window buffer
-    assign y_in = ycbcr_in[23:16]; 
+    assign in_y = in_ycbcr[23:16]; 
 
     // ---------------------------------------------------------------------
     // 1. Sliding Window Buffer (Line Buffers)
@@ -40,8 +40,8 @@ module sharpen3x3_ycbcr #(parameter IMG_WIDTH = 1024)(
     ) u_window (
         .clk(clk),
         .rst(rst),
-        .w_data(y_in),
-        .w_en(ready_in),
+        .w_data(in_y),
+        .w_en(in_ready),
         .full(win_full),
         .r_en(1'b1),                
         .r_data(r_data),
@@ -77,7 +77,7 @@ module sharpen3x3_ycbcr #(parameter IMG_WIDTH = 1024)(
                 
                 // IMPORTANT: You need a way to pass the CbCr through the 
                 // window buffer to keep them aligned. 
-                cbcr_p1     <= ycbcr_in[15:0]; // Placeholder for aligned Chroma
+                cbcr_p1     <= in_ycbcr[15:0]; // Placeholder for aligned Chroma
             end
         end
     end
@@ -106,21 +106,21 @@ module sharpen3x3_ycbcr #(parameter IMG_WIDTH = 1024)(
     // ---------------------------------------------------------------------
     always_ff @(posedge clk) begin
         if (rst) begin
-            ready_out <= 1'b0;
-            ycbcr_out <= 24'd0;
+            out_ready <= 1'b0;
+            out_ycbcr <= 24'd0;
         end else begin
-            ready_out <= vld2;
+            out_ready <= vld2;
             if (vld2) begin
                 if (sharp_raw_p2 > 13'sd255) 
-                    ycbcr_out[23:16] <= 8'd255;
+                    out_ycbcr[23:16] <= 8'd255;
                 else if (sharp_raw_p2 < 13'sd0) 
-                    ycbcr_out[23:16] <= 8'd0;
+                    out_ycbcr[23:16] <= 8'd0;
                 else 
-                    ycbcr_out[23:16] <= sharp_raw_p2[7:0];
+                    out_ycbcr[23:16] <= sharp_raw_p2[7:0];
 
-                ycbcr_out[15:0] <= cbcr_p2;
+                out_ycbcr[15:0] <= cbcr_p2;
             end else begin
-                ycbcr_out <= 24'd0;
+                out_ycbcr <= 24'd0;
             end
         end
     end

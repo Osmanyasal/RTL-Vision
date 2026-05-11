@@ -50,7 +50,7 @@ module ex_blur3x3 #(
     // 2. DUT Signals
     // -----------------------------------------
     logic       rgb_valid;
-    logic [7:0] red_in, green_in, blue_in;
+    logic [7:0] in_red, in_green, in_blue;
 
     logic [23:0] ycbcr_pix;
     logic        ycbcr_valid;
@@ -58,18 +58,18 @@ module ex_blur3x3 #(
     logic [23:0] blur_ycbcr_pix;
     logic        blur_valid;
 
-    logic [7:0] red_out, green_out, blue_out;
-    logic       rgb_out_valid;
+    logic [7:0] out_red, out_green, out_blue;
+    logic       out_rgb_valid;
 
     rgb_to_ycbcr u_rgb_to_ycbcr (
         .clk(clk),
         .rst(rst),
-        .ready_in(rgb_valid),
-        .red_in(red_in),
-        .green_in(green_in),
-        .blue_in(blue_in),
-        .ycbcr_out(ycbcr_pix),
-        .ready_out(ycbcr_valid)
+        .in_ready(rgb_valid),
+        .in_red(in_red),
+        .in_green(in_green),
+        .in_blue(in_blue),
+        .out_ycbcr(ycbcr_pix),
+        .out_ready(ycbcr_valid)
     );
 
     blur3x3_ycbcr #(
@@ -77,29 +77,29 @@ module ex_blur3x3 #(
     ) u_blur (
         .clk(clk),
         .rst(rst),
-        .ready_in(ycbcr_valid),
-        .ycbcr_in(ycbcr_pix),
-        .ycbcr_out(blur_ycbcr_pix),
-        .ready_out(blur_valid)
+        .in_ready(ycbcr_valid),
+        .in_ycbcr(ycbcr_pix),
+        .out_ycbcr(blur_ycbcr_pix),
+        .out_ready(blur_valid)
     );
 
     ycbcr_to_rgb u_ycbcr_to_rgb (
         .clk(clk),
         .rst(rst),
-        .ready_in(blur_valid),
-        .ycbcr_in(blur_ycbcr_pix),
-        .red_out(red_out),
-        .green_out(green_out),
-        .blue_out(blue_out),
-        .ready_out(rgb_out_valid)
+        .in_ready(blur_valid),
+        .in_ycbcr(blur_ycbcr_pix),
+        .out_red(out_red),
+        .out_green(out_green),
+        .out_blue(out_blue),
+        .out_ready(out_rgb_valid)
     );
 
     initial begin
         rst       = 1;
         rgb_valid = 0;
-        red_in    = 0;
-        green_in  = 0;
-        blue_in   = 0;
+        in_red    = 0;
+        in_green  = 0;
+        in_blue   = 0;
         @(posedge clk);
         #1 rst = 0;
         @(posedge clk);
@@ -141,9 +141,9 @@ module ex_blur3x3 #(
             begin
                 for (int i = 0; i < height; i++) begin
                     for (int j = 0; j < width; j++) begin
-                        blue_in   = $fgetc(file_h);
-                        green_in  = $fgetc(file_h);
-                        red_in    = $fgetc(file_h);
+                        in_blue   = $fgetc(file_h);
+                        in_green  = $fgetc(file_h);
+                        in_red    = $fgetc(file_h);
                         rgb_valid = 1;
                         @(posedge clk);
                     end
@@ -167,10 +167,10 @@ module ex_blur3x3 #(
                 while (produced < valid_target) begin
                     @(posedge clk);
                     #1;
-                    if (rgb_out_valid) begin
-                        $fwrite(file_out, "%c", blue_out);
-                        $fwrite(file_out, "%c", green_out);
-                        $fwrite(file_out, "%c", red_out);
+                    if (out_rgb_valid) begin
+                        $fwrite(file_out, "%c", out_blue);
+                        $fwrite(file_out, "%c", out_green);
+                        $fwrite(file_out, "%c", out_red);
                         produced++;
                     end
                 end

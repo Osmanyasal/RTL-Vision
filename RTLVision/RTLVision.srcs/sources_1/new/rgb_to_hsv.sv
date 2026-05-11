@@ -23,14 +23,14 @@
 module rgb_to_hsv( 
     input  logic        clk,
     input  logic        rst,            
-    input  logic        ready_in,       // Pipeline valid input
-    input  logic [7:0]  red_in,
-    input  logic [7:0]  green_in,
-    input  logic [7:0]  blue_in,
-    output logic [7:0]  hue_out,        
-    output logic [7:0]  saturation_out, 
-    output logic [7:0]  value_out,      
-    output logic        ready_out       // Pipeline valid output
+    input  logic        in_ready,       // Pipeline valid input
+    input  logic [7:0]  in_red,
+    input  logic [7:0]  in_green,
+    input  logic [7:0]  in_blue,
+    output logic [7:0]  out_hue,        
+    output logic [7:0]  out_saturation, 
+    output logic [7:0]  out_value,      
+    output logic        out_ready       // Pipeline valid output
 );
 
     // ---------------------------------------------------------
@@ -54,30 +54,30 @@ module rgb_to_hsv(
 
     always_comb begin
         // Find Max
-        if (red_in >= green_in && red_in >= blue_in) begin
-            cmax_c = red_in; max_color_c = 2'd0;
-        end else if (green_in >= red_in && green_in >= blue_in) begin
-            cmax_c = green_in; max_color_c = 2'd1;
+        if (in_red >= in_green && in_red >= in_blue) begin
+            cmax_c = in_red; max_color_c = 2'd0;
+        end else if (in_green >= in_red && in_green >= in_blue) begin
+            cmax_c = in_green; max_color_c = 2'd1;
         end else begin
-            cmax_c = blue_in; max_color_c = 2'd2;
+            cmax_c = in_blue; max_color_c = 2'd2;
         end
 
         // Find Min
-        if (red_in <= green_in && red_in <= blue_in) begin
-            cmin_c = red_in;
-        end else if (green_in <= red_in && green_in <= blue_in) begin
-            cmin_c = green_in;
+        if (in_red <= in_green && in_red <= in_blue) begin
+            cmin_c = in_red;
+        end else if (in_green <= in_red && in_green <= in_blue) begin
+            cmin_c = in_green;
         end else begin
-            cmin_c = blue_in;
+            cmin_c = in_blue;
         end
         
         delta_c = cmax_c - cmin_c;
 
         // Calculate raw hue difference based on dominant color
         case (max_color_c)
-            2'd0: hue_diff_c = $signed({1'b0, green_in}) - $signed({1'b0, blue_in});
-            2'd1: hue_diff_c = $signed({1'b0, blue_in})  - $signed({1'b0, red_in});
-            2'd2: hue_diff_c = $signed({1'b0, red_in})   - $signed({1'b0, green_in});
+            2'd0: hue_diff_c = $signed({1'b0, in_green}) - $signed({1'b0, in_blue});
+            2'd1: hue_diff_c = $signed({1'b0, in_blue})  - $signed({1'b0, in_red});
+            2'd2: hue_diff_c = $signed({1'b0, in_red})   - $signed({1'b0, in_green});
             default: hue_diff_c = '0;
         endcase
     end
@@ -97,8 +97,8 @@ module rgb_to_hsv(
         if (rst) begin
             vld1 <= 1'b0;
         end else begin
-            vld1 <= ready_in;
-            if (ready_in) begin
+            vld1 <= in_ready;
+            if (in_ready) begin
                 cmax1      <= cmax_c;
                 delta1     <= delta_c;
                 max_color1 <= max_color_c;
@@ -152,27 +152,27 @@ module rgb_to_hsv(
     // ---------------------------------------------------------
     always_ff @(posedge clk) begin
         if (rst) begin
-            ready_out <= 1'b0;
-            hue_out   <= '0;
-            saturation_out <= '0;
-            value_out <= '0;
+            out_ready <= 1'b0;
+            out_hue   <= '0;
+            out_saturation <= '0;
+            out_value <= '0;
         end else begin
-            ready_out <= vld2;
+            out_ready <= vld2;
             if (vld2) begin
                 // 1. Value Calculation
-                value_out <= cmax2;
+                out_value <= cmax2;
 
                 // 2. Saturation Calculation
                 if (cmax2 == 0) begin
-                    saturation_out <= 8'd0;
+                    out_saturation <= 8'd0;
                 end else begin
                     // Equivalent to dividing by 65536
-                    saturation_out <= sat_mult2[23:16];
+                    out_saturation <= sat_mult2[23:16];
                 end
 
                 // 3. Hue Calculation
                 if (delta2 == 0) begin
-                    hue_out <= 8'd0;
+                    out_hue <= 8'd0;
                 end else begin
                     // Shift signed result right by 16 bits
                     logic signed [15:0] hue_base;
@@ -181,10 +181,10 @@ module rgb_to_hsv(
                     // Apply phase offsets (85 = 120 deg, 171 = 240 deg)
                     // Standard 8-bit unsigned addition naturally handles negative wrap-around
                     case (max_color2)
-                        2'd0: hue_out <= hue_base[7:0];                 
-                        2'd1: hue_out <= 8'd85  + hue_base[7:0];        
-                        2'd2: hue_out <= 8'd171 + hue_base[7:0];        
-                        default: hue_out <= '0;
+                        2'd0: out_hue <= hue_base[7:0];                 
+                        2'd1: out_hue <= 8'd85  + hue_base[7:0];        
+                        2'd2: out_hue <= 8'd171 + hue_base[7:0];        
+                        default: out_hue <= '0;
                     endcase
                 end
             end

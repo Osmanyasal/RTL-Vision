@@ -23,26 +23,26 @@
 module grayscale(
     input logic clk,
     input logic rst,
-    input logic ready_in,
-    input logic[7:0] red_in,
-    input logic[7:0] green_in,
-    input logic[7:0] blue_in,
-    output logic[7:0] gray_out,
-    output logic ready_out
+    input logic in_ready,
+    input logic[7:0] in_red,
+    input logic[7:0] in_green,
+    input logic[7:0] in_blue,
+    output logic[7:0] out_gray,
+    output logic out_ready
     );
     
     always_ff @(posedge clk) begin
          
-        if(ready_in) begin
-            gray_out <= (red_in >> 2) + (red_in >> 5) + 
-                        (green_in >> 1) + (green_in >> 4) + 
-                        (blue_in >> 4) + (blue_in >> 5);
-            ready_out <= 1;   
+        if(in_ready) begin
+            out_gray <= (in_red >> 2) + (in_red >> 5) + 
+                        (in_green >> 1) + (in_green >> 4) + 
+                        (in_blue >> 4) + (in_blue >> 5);
+            out_ready <= 1;   
             
         end
         else begin
-            ready_out <= 0;
-            gray_out <= 0;
+            out_ready <= 0;
+            out_gray <= 0;
         end
     end
 endmodule

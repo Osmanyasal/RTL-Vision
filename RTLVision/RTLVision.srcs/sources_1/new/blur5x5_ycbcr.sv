@@ -22,10 +22,10 @@
 module blur5x5_ycbcr #(parameter IMG_WIDTH = 1024)(
     input  logic        clk,
     input  logic        rst,
-    input  logic        ready_in,
-    input  logic [23:0] ycbcr_in,  // 24-bit packed vector {Y, Cb, Cr}
-    output logic [23:0] ycbcr_out, // 24-bit packed vector {Y, Cb, Cr}
-    output logic        ready_out
+    input  logic        in_ready,
+    input  logic [23:0] in_ycbcr,  // 24-bit packed vector {Y, Cb, Cr}
+    output logic [23:0] out_ycbcr, // 24-bit packed vector {Y, Cb, Cr}
+    output logic        out_ready
 );
 
     logic [7:0] y;
@@ -42,7 +42,7 @@ module blur5x5_ycbcr #(parameter IMG_WIDTH = 1024)(
     logic [7:0]  blurred_y_raw;
 
     // Extract Y component continuously
-    assign y = ycbcr_in[23:16];
+    assign y = in_ycbcr[23:16];
 
     fifo_pipeline5 #(
         .DATA_WIDTH(8),
@@ -51,7 +51,7 @@ module blur5x5_ycbcr #(parameter IMG_WIDTH = 1024)(
         .clk(clk),
         .rst(rst),
         .w_data(y),
-        .w_en(ready_in),
+        .w_en(in_ready),
         .full(win_full),
         .r_en(1'b1),
         .r_data(r_data),
@@ -72,22 +72,22 @@ module blur5x5_ycbcr #(parameter IMG_WIDTH = 1024)(
     // --- Sequential Output & Clamping ---
     always_ff @(posedge clk) begin
         if (rst) begin
-            ready_out <= 0;
-            ycbcr_out <= 0;
+            out_ready <= 0;
+            out_ycbcr <= 0;
         end
         else if (window_valid) begin
             // Procedural clipping
             if (blurred_y_raw > 8'd255)
-                ycbcr_out[23:16] <= 8'd255;
+                out_ycbcr[23:16] <= 8'd255;
             else
-                ycbcr_out[23:16] <= blurred_y_raw[7:0];
+                out_ycbcr[23:16] <= blurred_y_raw[7:0];
 
-            ycbcr_out[15:0] <= ycbcr_in[15:0];
-            ready_out       <= 1;
+            out_ycbcr[15:0] <= in_ycbcr[15:0];
+            out_ready       <= 1;
         end
         else begin
-            ready_out <= 0;
-            ycbcr_out <= 0;
+            out_ready <= 0;
+            out_ycbcr <= 0;
         end
     end
 endmodule
