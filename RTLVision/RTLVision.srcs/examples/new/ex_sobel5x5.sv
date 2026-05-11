@@ -71,7 +71,7 @@ module ex_sobel5x5 #(
     // -----------------------------------------
     // Producer drives RGB into the grayscale module.
     logic       rgb_valid;
-    logic [7:0] red_in, green_in, blue_in;
+    logic [7:0] in_red, in_green, in_blue;
 
     // grayscale -> sobel interconnect
     logic [7:0] gray_pix;
@@ -79,17 +79,17 @@ module ex_sobel5x5 #(
 
     // sobel outputs
     logic [7:0] sobel_pix;
-    logic       ready_out;
+    logic       out_ready;
 
     grayscale u_gray (
         .clk(clk),
         .rst(rst),
-        .ready_in(rgb_valid),
-        .red_in(red_in),
-        .green_in(green_in),
-        .blue_in(blue_in),
-        .gray_out(gray_pix),
-        .ready_out(gray_valid)
+        .in_ready(rgb_valid),
+        .in_red(in_red),
+        .in_green(in_green),
+        .in_blue(in_blue),
+        .out_gray(gray_pix),
+        .out_ready(gray_valid)
     );
 
     sobel5x5 #(
@@ -97,19 +97,19 @@ module ex_sobel5x5 #(
     ) uut (
         .clk(clk),
         .rst(rst),
-        .ready_in(gray_valid),
-        .gray_in(gray_pix),
-        .sobel_out(sobel_pix),
-        .ready_out(ready_out)
+        .in_ready(gray_valid),
+        .in_gray(gray_pix),
+        .out_sobel(sobel_pix),
+        .out_ready(out_ready)
     );
 
     initial begin
         // init
         rst       = 1;
         rgb_valid = 0;
-        red_in    = 0;
-        green_in  = 0;
-        blue_in   = 0;
+        in_red    = 0;
+        in_green  = 0;
+        in_blue   = 0;
         @(posedge clk);
         #1 rst = 0;
         @(posedge clk);
@@ -156,9 +156,9 @@ module ex_sobel5x5 #(
             begin
                 for (int i = 0; i < height; i++) begin
                     for (int j = 0; j < width; j++) begin
-                        blue_in   = $fgetc(file_h);
-                        green_in  = $fgetc(file_h);
-                        red_in    = $fgetc(file_h);
+                        in_blue   = $fgetc(file_h);
+                        in_green  = $fgetc(file_h);
+                        in_red    = $fgetc(file_h);
                         rgb_valid = 1;
                         @(posedge clk);
                     end
@@ -166,7 +166,7 @@ module ex_sobel5x5 #(
                 rgb_valid = 0;
             end
 
-            // Consumer: capture sobel_out, write BMP
+            // Consumer: capture out_sobel, write BMP
             begin
                 int produced;
                 int valid_target;
@@ -184,7 +184,7 @@ module ex_sobel5x5 #(
                 while (produced < valid_target) begin
                     @(posedge clk);
                     #1;
-                    if (ready_out) begin
+                    if (out_ready) begin
                         $fwrite(file_out, "%c", sobel_pix); // B
                         $fwrite(file_out, "%c", sobel_pix); // G
                         $fwrite(file_out, "%c", sobel_pix); // R

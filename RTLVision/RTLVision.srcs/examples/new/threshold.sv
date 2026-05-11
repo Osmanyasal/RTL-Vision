@@ -22,18 +22,18 @@
 
 module threshold(
     input logic clk,
-    input logic [7:0] gray_in, // 0-255
+    input logic [7:0] in_gray, // 0-255
     input logic [7:0] thresh, // 0-255
-    input logic [7:0] ready_in, // 0 or 1
-    output logic[7:0] gray_out,  // 0 or gray_in
-    output logic ready_out  // 0 or 1
+    input logic [7:0] in_ready, // 0 or 1
+    output logic[7:0] out_gray,  // 0 or in_gray
+    output logic out_ready  // 0 or 1
     );
      
     always_ff @(posedge clk) begin
-        if(ready_in) begin
-            gray_out <= (thresh > gray_in) ? 0 : 255;
-            ready_out <= 'b1;
+        if(in_ready) begin
+            out_gray <= (thresh > in_gray) ? 0 : 255;
+            out_ready <= 'b1;
         end
-        else begin gray_out <= 0; ready_out <= 0; end
+        else begin out_gray <= 0; out_ready <= 0; end
     end
 endmodule

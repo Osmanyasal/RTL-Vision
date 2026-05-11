@@ -9,7 +9,7 @@
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
-// Description: Multiply Add module, value_out <= a1 * a2 + b1
+// Description: Multiply Add module, out_value <= a1 * a2 + b1
 // 
 // Dependencies: 
 // 
@@ -23,12 +23,12 @@
 module mac(
     input logic clk,
     input logic rst,
-    input logic ready_in,
+    input logic in_ready,
     input logic[7:0] a1,
     input logic[7:0] a2,
     input logic[7:0] b1,
-    output logic[7:0] value_out,
-    output logic ready_out
+    output logic[7:0] out_value,
+    output logic out_ready
     );
 
     logic mul_valid;
@@ -42,7 +42,7 @@ module mac(
             carry_b1 <= 0;
         end 
         else begin
-            mul_valid <= ready_in;
+            mul_valid <= in_ready;
             mul_result <= a1 * a2;
             carry_b1 <= b1;
         end
@@ -54,12 +54,12 @@ module mac(
 
     always_ff @( posedge clk ) begin
         if(rst) begin
-            value_out <= 0;
-            ready_out <= 0;
+            out_value <= 0;
+            out_ready <= 0;
         end
         else begin
-            ready_out <= mul_valid;
-            value_out <= full_sum > 16'd255 ? 8'd255 : full_sum[7:0];        
+            out_ready <= mul_valid;
+            out_value <= full_sum > 16'd255 ? 8'd255 : full_sum[7:0];        
 end
     end
 endmodule

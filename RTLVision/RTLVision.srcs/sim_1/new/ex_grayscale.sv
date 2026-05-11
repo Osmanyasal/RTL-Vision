@@ -27,30 +27,30 @@ module ex_grayscale #(
     // -----------------------------------------
     // 2. DUT Signals & Instantiation
     // -----------------------------------------
-    logic ready_in;
-    logic [7:0] red_in, green_in, blue_in;
-    logic [7:0] gray_out;
-    logic ready_out;
+    logic in_ready;
+    logic [7:0] in_red, in_green, in_blue;
+    logic [7:0] out_gray;
+    logic out_ready;
 
     grayscale uut (
         .clk(clk),
         .rst(rst),
-        .ready_in(ready_in),
-        .red_in(red_in),
-        .green_in(green_in),
-        .blue_in(blue_in),
-        .gray_out(gray_out),
-        .ready_out(ready_out)
+        .in_ready(in_ready),
+        .in_red(in_red),
+        .in_green(in_green),
+        .in_blue(in_blue),
+        .out_gray(out_gray),
+        .out_ready(out_ready)
     );
         
     initial begin
         // Initialize DUT signals
         clk = 0;
         rst = 1;
-        ready_in = 0;
-        red_in = 0;
-        green_in = 0;
-        blue_in = 0;
+        in_ready = 0;
+        in_red = 0;
+        in_green = 0;
+        in_blue = 0;
         @(posedge clk);
         #1 rst = 0;
         @(posedge clk);
@@ -99,14 +99,14 @@ module ex_grayscale #(
             begin
                 for (int i = 0; i < height; i++) begin
                     for (int j = 0; j < width; j++) begin
-                        blue_in  = $fgetc(file_h);
-                        green_in = $fgetc(file_h);
-                        red_in   = $fgetc(file_h);
-                        ready_in = 1;
+                        in_blue  = $fgetc(file_h);
+                        in_green = $fgetc(file_h);
+                        in_red   = $fgetc(file_h);
+                        in_ready = 1;
                         @(posedge clk);
                     end
                 end
-                ready_in = 0; // Stop feeding after the last pixel
+                in_ready = 0; // Stop feeding after the last pixel
             end
             
             // Thread 2: Catch from DUT -> Write to file
@@ -118,11 +118,11 @@ module ex_grayscale #(
                         @(posedge clk);
                         #1; 
                          
-                        if(ready_out) begin
+                        if(out_ready) begin
                             // Write the grayscale byte to B, G, and R channels
-                            $fwrite(file_out, "%c", gray_out); 
-                            $fwrite(file_out, "%c", gray_out); 
-                            $fwrite(file_out, "%c", gray_out);
+                            $fwrite(file_out, "%c", out_gray); 
+                            $fwrite(file_out, "%c", out_gray); 
+                            $fwrite(file_out, "%c", out_gray);
                         end 
                     end
                 end
