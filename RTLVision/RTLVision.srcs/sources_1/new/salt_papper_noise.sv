@@ -80,7 +80,7 @@ module salt_pepper_noise (
 
             if (in_valid) begin
                 if (lfsr[7:0] < noise_level) begin
-                    if (lfsr[15] == 1'b1) begin
+                    if (lfsr[0] == 1'b1) begin
                         out_red <= 8'hFF; // Salt (White)
                         out_green <= 8'hFF; // Salt (White)
                         out_blue <= 8'hFF; // Salt (White)
