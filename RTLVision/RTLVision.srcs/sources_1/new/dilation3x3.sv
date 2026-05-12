@@ -50,14 +50,14 @@ module dilation3x3 #(parameter IMG_WIDTH = 1280)(
         .out_data_valid(window_valid)
     );
     
-    // Combinational logic signals for the minimum tree
+    // Combinational logic signals for the OR tree
     logic [7:0] current_or;
     
     // -----------------------------------------------------------------
-    // Combinational AND Tree with Dynamic Kernel Masking
+    // Combinational OR Tree with Dynamic Kernel Masking
     // -----------------------------------------------------------------
     always_comb begin
-        // Initialize to 0 (False). A logical OR chain must start at 1.
+        // Initialize to 0 (False). A logical OR chain must start at 0.
         current_or = 8'b0000_0000; 
         
         for (int i = 0; i < 9; i++) begin
@@ -78,7 +78,6 @@ module dilation3x3 #(parameter IMG_WIDTH = 1280)(
             out_pixel <= 0;
         end
         else if (window_valid) begin
-            // Register the result of our combinational AND tree
             out_pixel <= current_or;
             out_valid <= 1'b1;
         end

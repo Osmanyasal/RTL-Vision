@@ -4,12 +4,6 @@ This document outlines future development targets for the project.
 
 ## Future Development Targets
 
-### Morphological Operations
-- Erosion (`erode3x3`)
-- Dilation (`dilate3x3`)
-- Opening (`open3x3`)
-- Closing (`close3x3`)
-
 ### Noise Reduction
 - Median filter (`median3x3`)
 - Larger-window median filter (`median5x5`)
