@@ -74,7 +74,7 @@ module ex_erosion5x5 #(
         .out_ready(out_thresh_ready)
     );
     
-    erosion3x3 uut_erosion5x5(
+    erosion5x5 uut_erosion5x5(
         .clk(clk),
         .rst(rst),
         .in_valid(out_thresh_ready),
