@@ -2,3 +2,6 @@ Running: xsim.dir/ex_dilation5x5_behav/xsimk -simmode gui -wdb ex_dilation5x5_be
 Design successfully loaded
 Design Loading Memory Usage: 199212 KB (Peak: 199212 KB)
 Design Loading CPU Usage: 620 ms
+Simulation completed
+Simulation Memory Usage: 281208 KB (Peak: 338480 KB)
+Simulation CPU Usage: 2470 ms
