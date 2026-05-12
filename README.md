@@ -74,23 +74,20 @@ FPGA-based image processing library targeting real-time and low-latency vision w
 
 ## Kernel Set
 The checked-in HDL sources currently cover these image-processing kernels and helpers:
-
-### Processing kernels
-- Blur: `blur3x3_ycbcr`, `blur5x5_ycbcr`
-- Grayscale: `grayscale`
-- Sharpen: `sharpen3x3_ycbcr`
-- Sobel: `sobel3x3`, `sobel5x5`
-- Threshold example path: `threshold`
-
+ 
 ### Morphological Operations
-- Erosion (`erode3x3`, `erosion3x3`, `erosion5x5`)
+- Erosion (`erosion3x3`, `erosion5x5`)
 - Dilation (`dilation3x3`, `dilation5x5`)
 
 ### Noise Reduction
-- Median filter (`median3x3`)
-- Larger-window median filter (`median5x5`)
+- Salt Papper (`saltpapper`)
+- Median filter (`median3x3`, `median5x5`)
 
 ### Edge and Feature Extraction
+- Sobel: `sobel3x3`, `sobel5x5`
+- Sharpen: `sharpen3x3_ycbcr`
+- Blur: `blur3x3_ycbcr`, `blur5x5_ycbcr`
+- Grayscale: `grayscale`
 - Prewitt filter (`prewitt3x3`)
 - Laplacian filter (`laplacian3x3`)
 - Emboss filter (`emboss3x3`)
@@ -103,15 +100,16 @@ The checked-in HDL sources currently cover these image-processing kernels and he
 - False-color mask overlay
 
 ### Thresholding Improvements
+- Threshold simple: `threshold`
 - Adaptive / local thresholding (`adaptive_threshold`)
 - Otsu thresholding or a hardware-friendly approximation
 - Mean-based local thresholding
 - Dynamic thresholding from running luminance statistics
 
 ### Histogram and Contrast Operations
-- Histogram generator (`histogram_luma`)
+- Histogram generator (`histogram`)
 - Contrast stretch (`contrast_stretch`)
-- Histogram equalization (`hist_eq`)
+- Histogram equalization (`histeq`)
 
 ### Pixel Arithmetic and Compositing
 - Brightness adjustment (`brightness`)
