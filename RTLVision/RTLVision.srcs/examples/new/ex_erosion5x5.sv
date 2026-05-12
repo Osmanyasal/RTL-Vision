@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 05/09/2026 09:44:36 PM
+// Create Date: 05/11/2026 02:52:14 PM
 // Design Name: 
-// Module Name: ex_thresh
+// Module Name: ex_erosion5x5
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -18,13 +18,11 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
-
-
 `timescale 1ns / 1ps
 
-module ex_thresh #(
+module ex_erosion5x5 #(
     parameter string file_name = "../../../../../kaan.bmp", 
-    parameter string out_file_name = "../../../../../kaan_thresh128.bmp"
+    parameter string out_file_name = "../../../../../kaan_erosion5x5.bmp"
 )();
      
     // -----------------------------------------
@@ -54,7 +52,8 @@ module ex_thresh #(
     logic [7:0] out_gray, out_thresh;
     logic out_grayscale_ready;
     logic out_thresh_ready;
-
+    logic [8:0] out_pixel;
+    logic out_valid;
     grayscale uut_grayscale (
         .clk(clk),
         .rst(rst),
@@ -74,7 +73,16 @@ module ex_thresh #(
         .out_gray(out_thresh),
         .out_ready(out_thresh_ready)
     );
-        
+    
+    erosion3x3 uut_erosion5x5(
+        .clk(clk),
+        .rst(rst),
+        .in_valid(out_thresh_ready),
+        .in_pixel(out_thresh),
+        .in_kernel(25'b00100_01110_11111_01110_00100), // 5x5 diamond kernel for erosion
+        .out_pixel(out_pixel),
+        .out_valid(out_valid)
+    );
     initial begin
         // Initialize DUT signals
         clk = 0;
@@ -150,11 +158,11 @@ module ex_thresh #(
                         @(posedge clk);
                         #1; 
                          
-                        if(out_thresh_ready) begin
+                        if(out_valid) begin
                             // Write the grayscale byte to B, G, and R channels
-                            $fwrite(file_out, "%c", out_thresh); 
-                            $fwrite(file_out, "%c", out_thresh); 
-                            $fwrite(file_out, "%c", out_thresh);
+                            $fwrite(file_out, "%c", out_pixel); 
+                            $fwrite(file_out, "%c", out_pixel); 
+                            $fwrite(file_out, "%c", out_pixel);
                         end 
                     end
                 end
@@ -169,3 +177,4 @@ module ex_thresh #(
         $finish;
     end
 endmodule
+

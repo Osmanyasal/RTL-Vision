@@ -44,8 +44,8 @@
 
 
 module ex_dilation3x3 #(
-    parameter string file_name = "/home/rt7/Desktop/RTLVision/kaan.bmp", 
-    parameter string out_file_name = "/home/rt7/Desktop/RTLVision/kaan_dilation3x3.bmp"
+    parameter string file_name = "../../../../../kaan.bmp", 
+    parameter string out_file_name = "../../../../../kaan_dilation3x3.bmp"
 )();
      
     // -----------------------------------------
