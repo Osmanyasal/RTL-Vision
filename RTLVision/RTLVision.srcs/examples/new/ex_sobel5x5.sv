@@ -43,8 +43,8 @@
 
 
 module ex_sobel5x5 #(
-    parameter string file_name     = "/home/rt7/Desktop/RTLVision/kaan.bmp",
-    parameter string out_file_name = "/home/rt7/Desktop/RTLVision/kaan_sobel5x5.bmp",
+    parameter string file_name     = "../../../../../kaan.bmp",
+    parameter string out_file_name = "../../../../../kaan_sobel5x5.bmp",
     parameter int    IMG_WIDTH     = 1024  // must match BMP width
 )();
 

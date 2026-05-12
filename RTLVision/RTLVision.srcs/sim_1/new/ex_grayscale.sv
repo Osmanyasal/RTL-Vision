@@ -1,8 +1,8 @@
 `timescale 1ns / 1ps
 
 module ex_grayscale #(
-    parameter string file_name = "/home/rt7/Desktop/RTLVision/kaan.bmp", 
-    parameter string out_file_name = "/home/rt7/Desktop/RTLVision/kaan_grayscale.bmp"
+    parameter string file_name = "../../../../../kaan.bmp", 
+    parameter string out_file_name = "../../../../../kaan_grayscale.bmp"
 )();
      
     // -----------------------------------------

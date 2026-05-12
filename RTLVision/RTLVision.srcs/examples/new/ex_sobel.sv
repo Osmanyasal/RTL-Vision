@@ -21,8 +21,8 @@
 
 
 module ex_sobel #(
-    parameter string file_name     = "/home/rt7/Desktop/RTLVision/kaan.bmp",
-    parameter string out_file_name = "/home/rt7/Desktop/RTLVision/kaan_sobel.bmp",
+    parameter string file_name     = "../../../../../kaan.bmp",
+    parameter string out_file_name = "../../../../../kaan_sobel.bmp",
     parameter int    IMG_WIDTH     = 1024  // must match BMP width
 )();
 

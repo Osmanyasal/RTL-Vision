@@ -23,8 +23,8 @@
 
 
 module ex_blur3x3 #(
-    parameter string file_name     = "/home/rt7/Desktop/RTLVision/kaan.bmp",
-    parameter string out_file_name = "/home/rt7/Desktop/RTLVision/kaan_blur3x3.bmp",
+    parameter string file_name     = "../../../../../kaan.bmp",
+    parameter string out_file_name = "../../../../../kaan_blur3x3.bmp",
     parameter int    IMG_WIDTH     = 1024
 )();
 

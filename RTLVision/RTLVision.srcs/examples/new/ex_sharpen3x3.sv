@@ -23,8 +23,8 @@
 
 
 module ex_sharpen3x3 #(
-    parameter string file_name     = "/home/rt7/Desktop/RTLVision/kaan.bmp",
-    parameter string out_file_name = "/home/rt7/Desktop/RTLVision/kaan_sharpen.bmp",
+    parameter string file_name     = "../../../../../kaan.bmp",
+    parameter string out_file_name = "../../../../../kaan_sharpen.bmp",
     parameter int    IMG_WIDTH     = 1024
 )();
 
