@@ -3,4 +3,4 @@ Image Info: 1280 x 720, Data starts at: 54
 Starting on-the-fly processing...
 Image processed and saved successfully.
 $finish called at time : 9216015 ns : File "/home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/examples/new/ex_salt_papper_noise.sv" Line 183
-INFO: xsimkernel Simulation Memory Usage: 281136 KB (Peak: 338408 KB), Simulation CPU Usage: 2120 ms
+INFO: xsimkernel Simulation Memory Usage: 281136 KB (Peak: 338408 KB), Simulation CPU Usage: 2180 ms
