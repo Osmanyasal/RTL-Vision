@@ -80,7 +80,7 @@ The checked-in HDL sources currently cover these image-processing kernels and he
 - ✅ Dilation (`dilation3x3`, `dilation5x5`)
 
 ### Noise Reduction
-- Salt Papper (`saltpapper`)
+- ✅ Salt Papper (`saltpapper`)
 - Median filter (`median3x3`, `median5x5`)
 
 ### Edge and Feature Extraction
