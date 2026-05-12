@@ -76,21 +76,70 @@ FPGA-based image processing library targeting real-time and low-latency vision w
 The checked-in HDL sources currently cover these image-processing kernels and helpers:
 
 ### Processing kernels
-- `blur3x3_ycbcr`
-- `blur5x5_ycbcr`
-- `grayscale`
-- `sharpen3x3_ycbcr`
-- `sobel3x3`
-- `sobel5x5`
-- `threshold` (example path)
+- Blur: `blur3x3_ycbcr`, `blur5x5_ycbcr`
+- Grayscale: `grayscale`
+- Sharpen: `sharpen3x3_ycbcr`
+- Sobel: `sobel3x3`, `sobel5x5`
+- Threshold example path: `threshold`
 
-### Supporting modules
-- `fifo_pipeline2`
-- `fifo_pipeline5`
-- `rgb_to_hsv`
-- `rgb_to_ycbcr`
-- `sync_fifo`
+### Morphological Operations
+- Erosion (`erode3x3`, `erosion3x3`, `erosion5x5`)
+- Dilation (`dilation3x3`, `dilation5x5`)
 
+### Noise Reduction
+- Median filter (`median3x3`)
+- Larger-window median filter (`median5x5`)
+
+### Edge and Feature Extraction
+- Prewitt filter (`prewitt3x3`)
+- Laplacian filter (`laplacian3x3`)
+- Emboss filter (`emboss3x3`)
+- Gradient magnitude / gradient direction split
+
+### Color Segmentation and Masking
+- HSV range threshold (`hsv_inrange`)
+- YCbCr skin-color detector (`ycbcr_skin_mask`)
+- Channel extraction (`channel_extract`)
+- False-color mask overlay
+
+### Thresholding Improvements
+- Adaptive / local thresholding (`adaptive_threshold`)
+- Otsu thresholding or a hardware-friendly approximation
+- Mean-based local thresholding
+- Dynamic thresholding from running luminance statistics
+
+### Histogram and Contrast Operations
+- Histogram generator (`histogram_luma`)
+- Contrast stretch (`contrast_stretch`)
+- Histogram equalization (`hist_eq`)
+
+### Pixel Arithmetic and Compositing
+- Brightness adjustment (`brightness`)
+- Contrast adjustment (`contrast`)
+- Invert (`invert`)
+- Gamma approximation / LUT-based gamma (`gamma_lut`)
+- Alpha blending (`alpha_blend`)
+- Image or mask add/subtract operations
+
+### Geometric Operations
+- Crop ROI (`crop_roi`)
+- Resize with nearest-neighbor (`resize_nn`)
+- Horizontal flip (`flip_horizontal`)
+- Vertical flip
+- Rotate 90° (if buffering strategy allows)
+
+### Advanced Vision Features
+- Scharr filter
+- Corner response approximation
+- Non-maximum suppression
+- Hough pre-processing blocks
+
+### Binary Image Analysis
+- Connected-component pre-label helpers
+- Blob area counter
+- Bounding box extractor
+- Centroid estimator
+ 
 ## Sample Timing
 The default frame budget is approximately `~9.2 ms`.
 

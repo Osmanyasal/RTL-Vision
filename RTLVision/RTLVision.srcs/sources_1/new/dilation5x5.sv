@@ -5,7 +5,7 @@
 // 
 // Create Date: 05/11/2026 01:25:32 PM
 // Design Name: 
-// Module Name: dilation3x3
+// Module Name: dilation5x5
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,23 +20,23 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module dilation3x3 #(parameter IMG_WIDTH = 1280)(
+module dilation5x5 #(parameter IMG_WIDTH = 1280)(
         input logic clk,
         input logic rst,
         input logic in_valid,
         input logic [7:0] in_pixel,
-        input logic [8:0] in_kernel,
+        input logic [24:0] in_kernel,
         output logic [7:0] out_pixel,
         output logic out_valid
     );
     
-    logic [7:0] r_data [0:8];
+    logic [7:0] r_data [0:24];
     logic       pipeline_full;
     logic       pipeline_empty;
     logic       window_valid;
 
     
-    fifo_pipeline2 #(
+    fifo_pipeline5 #(
         .DATA_WIDTH(8),
         .DEPTH(IMG_WIDTH)
     ) u_window (
@@ -50,7 +50,7 @@ module dilation3x3 #(parameter IMG_WIDTH = 1280)(
         .out_data_valid(window_valid)
     );
     
-    // Combinational logic signals for the OR tree
+    // Combinational logic signals for the minimum tree
     logic [7:0] current_or;
     
     // -----------------------------------------------------------------
@@ -60,7 +60,7 @@ module dilation3x3 #(parameter IMG_WIDTH = 1280)(
         // Initialize to 0 (False). A logical OR chain must start at 0.
         current_or = 8'b0000_0000; 
         
-        for (int i = 0; i < 9; i++) begin
+        for (int i = 0; i < 25; i++) begin
             // If the kernel bit is active, OR the current state with the pixel.
             // If the pixel is 0, it pulls the whole chain down to 0 permanently.
             if (in_kernel[i] == 1'b1) begin
@@ -78,6 +78,7 @@ module dilation3x3 #(parameter IMG_WIDTH = 1280)(
             out_pixel <= 0;
         end
         else if (window_valid) begin
+            // Register the result of our combinational AND tree
             out_pixel <= current_or;
             out_valid <= 1'b1;
         end

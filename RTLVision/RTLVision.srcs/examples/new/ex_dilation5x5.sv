@@ -5,7 +5,7 @@
 // 
 // Create Date: 05/11/2026 02:52:14 PM
 // Design Name: 
-// Module Name: ex_erosion3x3
+// Module Name: ex_dilation5x5
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -21,9 +21,9 @@
 `timescale 1ns / 1ps
 
 
-module ex_erosion3x3 #(
+module ex_dilation5x5 #(
     parameter string file_name = "../../../../../kaan.bmp", 
-    parameter string out_file_name = "../../../../../kaan_erosion3x3.bmp"
+    parameter string out_file_name = "../../../../../kaan_dilation5x5.bmp"
 )();
      
     // -----------------------------------------
@@ -75,12 +75,12 @@ module ex_erosion3x3 #(
         .out_ready(out_thresh_ready)
     );
     
-    erosion3x3 uut_erosion3x3(
+    dilation5x5 uut_dilation5x5(
         .clk(clk),
         .rst(rst),
         .in_valid(out_thresh_ready),
         .in_pixel(out_thresh),
-        .in_kernel(9'b010_111_010), // 3x3 diamond kernel for erosion
+        .in_kernel(25'b00100_01110_11111_01110_00100), // 5x5 diamond kernel for dilation
         .out_pixel(out_pixel),
         .out_valid(out_valid)
     );
@@ -168,7 +168,7 @@ module ex_erosion3x3 #(
                     end
                 end
             end
-        join_any
+        join
         
         // --- E. Cleanup ---
         $display("Image processed and saved successfully.");

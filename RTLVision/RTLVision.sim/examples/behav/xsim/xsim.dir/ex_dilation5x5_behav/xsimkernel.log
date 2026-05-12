@@ -1,0 +1,4 @@
+Running: xsim.dir/ex_dilation5x5_behav/xsimk -simmode gui -wdb ex_dilation5x5_behav.wdb -simrunnum 0 -socket 50865
+Design successfully loaded
+Design Loading Memory Usage: 199212 KB (Peak: 199212 KB)
+Design Loading CPU Usage: 620 ms

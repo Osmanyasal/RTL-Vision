@@ -75,7 +75,7 @@ module ex_dilation3x3 #(
     logic [7:0] out_gray, out_thresh;
     logic out_grayscale_ready;
     logic out_thresh_ready;
-    logic [8:0] out_pixel;
+    logic [7:0] out_pixel;
     logic out_valid;
     grayscale uut_grayscale (
         .clk(clk),
