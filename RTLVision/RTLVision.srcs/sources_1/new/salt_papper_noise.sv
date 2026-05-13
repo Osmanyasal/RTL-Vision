@@ -69,17 +69,20 @@ module salt_pepper_noise (
     // -----------------------------------------------------------------
     // 2. Noise Injection Logic (Pipelined)
     // -----------------------------------------------------------------
+    logic is_prev_salt_papper;
     always_ff @(posedge clk) begin
         if (rst) begin
             out_valid <= 1'b0;
             out_red <= 8'h00;
             out_green <= 8'h00;
             out_blue <= 8'h00;
+            is_prev_salt_papper <= 1'b0;
         end else begin
             out_valid <= in_valid;
 
             if (in_valid) begin
-                if (lfsr[7:0] < noise_level) begin
+                if (~is_prev_salt_papper && lfsr[7:0] < noise_level) begin
+                    is_prev_salt_papper <= 1'b1;
                     if (lfsr[0] == 1'b1) begin
                         out_red <= 8'hFF; // Salt (White)
                         out_green <= 8'hFF; // Salt (White)
@@ -93,6 +96,7 @@ module salt_pepper_noise (
                     out_red <= in_red;
                     out_green <= in_green;
                     out_blue <= in_blue;
+                    is_prev_salt_papper <= 1'b0;
                 end
             end
         end
