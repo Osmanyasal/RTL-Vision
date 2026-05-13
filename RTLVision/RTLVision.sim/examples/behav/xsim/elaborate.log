@@ -1,4 +1,4 @@
-Vivado Simulator v2025.2
+Vivado Simulator v2025.2.1
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 Running: /home/rt7/vivado/2025.2/Vivado/bin/unwrapped/lnx64.o/xelab --incr --debug typical --relax --mt 8 -L xil_defaultlib -L uvm -L unisims_ver -L unimacro_ver -L secureip --snapshot ex_emboss3x3_behav xil_defaultlib.ex_emboss3x3 xil_defaultlib.glbl -log elaborate.log 
