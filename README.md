@@ -81,14 +81,14 @@ The checked-in HDL sources currently cover these image-processing kernels and he
 
 ### Noise Reduction
 - ✅ Salt Papper (`saltpapper`)
-- Median filter (`median3x3`, `median5x5`)
+- ✅ Median filter (`median3x3`, `median5x5`)
 
 ### Edge and Feature Extraction
 - ✅ Sobel: `sobel3x3`, `sobel5x5`
 - ✅ Sharpen: `sharpen3x3_ycbcr`
 - ✅ Blur: `blur3x3_ycbcr`, `blur5x5_ycbcr`
 - ✅ Grayscale: `grayscale`
-- Prewitt filter (`prewitt3x3`)
+- ✅ Prewitt filter (`prewitt3x3`)
 - Laplacian filter (`laplacian3x3`)
 - Emboss filter (`emboss3x3`)
 - Gradient magnitude / gradient direction split
