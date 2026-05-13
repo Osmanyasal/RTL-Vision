@@ -28,7 +28,7 @@ module mac(
     input logic[7:0] a2,
     input logic[7:0] b1,
     output logic[7:0] out_value,
-    output logic out_ready
+    output logic out_valid
     );
 
     logic mul_valid;
@@ -55,10 +55,10 @@ module mac(
     always_ff @( posedge clk ) begin
         if(rst) begin
             out_value <= 0;
-            out_ready <= 0;
+            out_valid <= 0;
         end
         else begin
-            out_ready <= mul_valid;
+            out_valid <= mul_valid;
             out_value <= full_sum > 16'd255 ? 8'd255 : full_sum[7:0];        
 end
     end

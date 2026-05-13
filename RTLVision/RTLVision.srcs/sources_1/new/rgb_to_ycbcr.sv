@@ -26,7 +26,7 @@ module rgb_to_ycbcr(
     input  logic [7:0]  in_green,
     input  logic [7:0]  in_blue,
     output logic [23:0] out_ycbcr,
-    output logic        out_ready
+    output logic        out_valid
 );
     
     // Stage 1: Input Registration (Making sure inputs are "ready")
@@ -63,9 +63,9 @@ module rgb_to_ycbcr(
     
     always_ff @(posedge clk) begin
         if (rst) begin
-            out_ready <= 1'b0;
+            out_valid <= 1'b0;
         end else begin
-            out_ready <= vld2;
+            out_valid <= vld2;
             if (vld2) begin
                 y_reg  <= y_prod[15:8];            // Logical shift right by 8
                 cb_reg <= cb_prod[15:8] + 8'd128;  // Apply chrominance offset

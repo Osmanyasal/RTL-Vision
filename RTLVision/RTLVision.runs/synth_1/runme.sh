@@ -37,4 +37,4 @@ EAStep()
      fi
 }
 
-EAStep vivado -log salt_pepper_noise.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source salt_pepper_noise.tcl
+EAStep vivado -log emboss3x3.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source emboss3x3.tcl

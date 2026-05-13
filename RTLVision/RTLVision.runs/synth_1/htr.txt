@@ -7,4 +7,4 @@
 # Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
 #
 
-vivado -log salt_pepper_noise.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source salt_pepper_noise.tcl
+vivado -log emboss3x3.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source emboss3x3.tcl

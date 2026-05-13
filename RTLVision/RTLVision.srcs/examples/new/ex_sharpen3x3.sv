@@ -69,7 +69,7 @@ module ex_sharpen3x3 #(
         .in_green(in_green),
         .in_blue(in_blue),
         .out_ycbcr(ycbcr_pix),
-        .out_ready(ycbcr_valid)
+        .out_valid(ycbcr_valid)
     );
 
     sharpen3x3_ycbcr #(
@@ -80,7 +80,7 @@ module ex_sharpen3x3 #(
         .in_ready(ycbcr_valid),
         .in_ycbcr(ycbcr_pix),
         .out_ycbcr(sharpen_ycbcr_pix),
-        .out_ready(sharpen_valid)
+        .out_valid(sharpen_valid)
     );
 
     ycbcr_to_rgb u_ycbcr_to_rgb (
@@ -91,7 +91,7 @@ module ex_sharpen3x3 #(
         .out_red(out_red),
         .out_green(out_green),
         .out_blue(out_blue),
-        .out_ready(out_rgb_valid)
+        .out_valid(out_rgb_valid)
     );
 
     initial begin

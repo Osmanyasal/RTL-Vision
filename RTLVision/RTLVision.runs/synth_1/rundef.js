@@ -28,7 +28,7 @@ eval( EAInclude(ISEJScriptLib) );
 
 
 ISEStep( "vivado",
-         "-log salt_pepper_noise.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source salt_pepper_noise.tcl" );
+         "-log emboss3x3.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source emboss3x3.tcl" );
 
 
 

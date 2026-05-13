@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1778662984" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/grayscale.dcp">
-  <File Type="RDS-DCP" Name="salt_pepper_noise.dcp"/>
-  <File Type="RDS-RDS" Name="salt_pepper_noise.vds"/>
-  <File Type="RDS-UTIL" Name="salt_pepper_noise_utilization_synth.rpt"/>
-  <File Type="RDS-UTIL-PB" Name="salt_pepper_noise_utilization_synth.pb"/>
-  <File Type="PA-TCL" Name="salt_pepper_noise.tcl"/>
-  <File Type="REPORTS-TCL" Name="salt_pepper_noise_reports.tcl"/>
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1778700033" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/grayscale.dcp">
+  <File Type="VDS-TIMING-PB" Name="emboss3x3_timing_summary_synth.pb"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="emboss3x3_timing_summary_synth.rpt"/>
+  <File Type="RDS-DCP" Name="emboss3x3.dcp"/>
+  <File Type="RDS-UTIL-PB" Name="emboss3x3_utilization_synth.pb"/>
+  <File Type="RDS-UTIL" Name="emboss3x3_utilization_synth.rpt"/>
+  <File Type="RDS-PROPCONSTRS" Name="emboss3x3_drc_synth.rpt"/>
+  <File Type="RDS-RDS" Name="emboss3x3.vds"/>
+  <File Type="REPORTS-TCL" Name="emboss3x3_reports.tcl"/>
+  <File Type="PA-TCL" Name="emboss3x3.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/blur5x5_ycbcr.sv">
@@ -104,14 +107,6 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/fifo_pipeline2.sv">
-      <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
     <File Path="$PSRCDIR/sources_1/new/erosion3x3.sv">
       <FileInfo>
         <Attr Name="AutoDisabled" Val="1"/>
@@ -129,14 +124,6 @@
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sources_1/new/fifo_pipeline5.sv">
-      <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/sync_fifo.sv">
       <FileInfo>
         <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -176,7 +163,45 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PSRCDIR/sources_1/new/prewitt3x3.sv">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/histogram.sv">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PSRCDIR/sources_1/new/salt_papper_noise.sv">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/fifo_pipeline2.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/sync_fifo.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/emboss3x3.sv">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
@@ -185,7 +210,7 @@
     </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
-      <Option Name="TopModule" Val="salt_pepper_noise"/>
+      <Option Name="TopModule" Val="emboss3x3"/>
     </Config>
   </FileSet>
   <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1" RelGenDir="$PGENDIR/constrs_1">

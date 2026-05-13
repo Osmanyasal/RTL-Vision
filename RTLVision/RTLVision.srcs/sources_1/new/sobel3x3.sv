@@ -26,7 +26,7 @@ module sobel3x3 #(parameter IMG_WIDTH = 1024)(
     input  logic       in_ready,
     input  logic [7:0] in_gray,
     output logic [7:0] out_sobel,
-    output logic       out_ready
+    output logic       out_valid
 );
 
     // ---------------------------------------------------------------------
@@ -113,9 +113,9 @@ module sobel3x3 #(parameter IMG_WIDTH = 1024)(
     always_ff @(posedge clk) begin
         if (rst) begin
             out_sobel <= 8'd0;
-            out_ready <= 1'b0;
+            out_valid <= 1'b0;
         end else begin
-            out_ready <= valid_p2;
+            out_valid <= valid_p2;
             
             if (valid_p2) begin
                 out_sobel <= (mag_p2 > 13'd255) ? 8'd255 : mag_p2[7:0];
