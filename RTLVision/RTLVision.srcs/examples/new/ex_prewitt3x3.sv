@@ -5,7 +5,7 @@
 // 
 // Create Date: 04/30/2026 03:09:05 PM
 // Design Name: 
-// Module Name: ex_sobel
+// Module Name: ex_prewitt3x3
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,9 +20,9 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module ex_sobel #(
+module ex_prewitt3x3 #(
     parameter string file_name     = "../../../../../kaan.bmp",
-    parameter string out_file_name = "../../../../../kaan_sobel.bmp",
+    parameter string out_file_name = "../../../../../kaan_prewitt3x3.bmp",
     parameter int    IMG_WIDTH     = 1024  // must match BMP width
 )();
 
@@ -56,7 +56,7 @@ module ex_sobel #(
     logic       gray_valid;
 
     // sobel outputs
-    logic [7:0] sobel_pix;
+    logic [7:0] prewitt_pix;
     logic       out_ready;
 
     grayscale u_gray (
@@ -70,14 +70,14 @@ module ex_sobel #(
         .out_ready(gray_valid)
     );
 
-    sobel #(
+    prewitt3x3 #(
         .IMG_WIDTH(IMG_WIDTH)
     ) uut (
         .clk(clk),
         .rst(rst),
         .in_ready(gray_valid),
         .in_gray(gray_pix),
-        .out_sobel(sobel_pix),
+        .out_prewitt(prewitt_pix),
         .out_ready(out_ready)
     );
 
@@ -163,9 +163,9 @@ module ex_sobel #(
                     @(posedge clk);
                     #1;
                     if (out_ready) begin
-                        $fwrite(file_out, "%c", sobel_pix); // B
-                        $fwrite(file_out, "%c", sobel_pix); // G
-                        $fwrite(file_out, "%c", sobel_pix); // R
+                        $fwrite(file_out, "%c", prewitt_pix); // B
+                        $fwrite(file_out, "%c", prewitt_pix); // G
+                        $fwrite(file_out, "%c", prewitt_pix); // R
                         produced++;
                     end
                 end

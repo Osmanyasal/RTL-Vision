@@ -1,0 +1,24 @@
+#
+# An unexpected error has occurred (6) Aborted
+#
+Stack:
+/lib/x86_64-linux-gnu/libc.so.6(+0x45330) [0x7f32ab845330]
+/lib/x86_64-linux-gnu/libc.so.6(pthread_kill+0x11c) [0x7f32ab89eb2c]
+/lib/x86_64-linux-gnu/libc.so.6(gsignal+0x1e) [0x7f32ab84527e]
+/lib/x86_64-linux-gnu/libc.so.6(abort+0xdf) [0x7f32ab8288ff]
+/home/rt7/vivado/2025.2/Vivado/lib/lnx64.o/Ubuntu/24/libstdc++.so.6(+0xa5ff5) [0x7f32ac0a5ff5]
+/home/rt7/vivado/2025.2/Vivado/lib/lnx64.o/Ubuntu/24/libstdc++.so.6(+0xbb0da) [0x7f32ac0bb0da]
+/home/rt7/vivado/2025.2/Vivado/lib/lnx64.o/Ubuntu/24/libstdc++.so.6(_ZSt10unexpectedv+0) [0x7f32ac0a5a55]
+/home/rt7/vivado/2025.2/Vivado/lib/lnx64.o/Ubuntu/24/libstdc++.so.6(+0xbbfc3) [0x7f32ac0bbfc3]
+/home/rt7/vivado/2025.2/Vivado/lib/lnx64.o/libxv_wavedata.so(+0x2575cd) [0x7f3278a575cd]
+/home/rt7/vivado/2025.2/Vivado/lib/lnx64.o/libxv_wavedata.so(SG_Model::WaveformRender::render(SG_Model::WVDataObject const&)+0x8f) [0x7f3278ba3d5f]
+/home/rt7/vivado/2025.2/Vivado/lib/lnx64.o/libxv_wavedata.so(WaveViewer::WVWaveformPanel::WaveformTraverser::drawWaveform(SG_Model::WVDataObject const*, int, int)+0x2cf) [0x7f3278bf1b2f]
+/home/rt7/vivado/2025.2/Vivado/lib/lnx64.o/libxv_wavedata.so(WaveViewer::WVWaveformPanel::WaveformTraverser::handleItemSize(WaveViewer::WVTreeWVObjectModel::ITraverseHandler::TraverseItem const&)+0x54) [0x7f3278bf1ca4]
+/home/rt7/vivado/2025.2/Vivado/lib/lnx64.o/libxv_wavedata.so(WaveViewer::WVTreeWVObjectModel::traverseYRange(SG_Model::WVDataObject const*, WaveViewer::WVTreeWVObjectModel::ITraverseHandler&, int, int, int&, int&) const+0x1a7) [0x7f3278a391a7]
+/home/rt7/vivado/2025.2/Vivado/lib/lnx64.o/libxv_wavedata.so(WaveViewer::WVTreeWVObjectModel::traverseYRange(SG_Model::WVDataObject const*, WaveViewer::WVTreeWVObjectModel::ITraverseHandler&, int, int, int&, int&) const+0x22c) [0x7f3278a3922c]
+/home/rt7/vivado/2025.2/Vivado/lib/lnx64.o/libxv_wavedata.so(WaveViewer::WVTreeWVObjectModel::traverseYRange(WaveViewer::WVTreeWVObjectModel::ITraverseHandler&, int, int) const+0x58) [0x7f3278a3a8e8]
+/home/rt7/vivado/2025.2/Vivado/lib/lnx64.o/libxv_wavedata.so(WaveViewer::WVWaveformPanel::getGraphics(HDGDStringStream&, long&)+0x3de) [0x7f3278bf137e]
+/home/rt7/vivado/2025.2/Vivado/lib/lnx64.o/libxv_wavedata.so(WVExecutiveImp::getGraphicsDataSize()+0x9a) [0x7f3278c037da]
+/home/rt7/vivado/2025.2/Vivado/lib/lnx64.o/libxv_wavedata.so(WVExecutive::getGraphicsDataSize()+0x12) [0x7f3278c03c62]
+/home/rt7/vivado/2025.2/Vivado/lib/lnx64.o/libxv_wavedata.so(Java_ui_views_waveform_waveformi_WVExecutive_1getGraphicsDataSize+0x1c) [0x7f3278a050dc]
+[0x7f325c7956ea]
