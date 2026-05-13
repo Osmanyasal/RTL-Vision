@@ -3,8 +3,8 @@
 # SW Build 6299465 on Fri Nov 14 12:34:56 MST 2025
 # IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
 # SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
-# Start of session at: Wed May 13 00:16:07 2026
-# Process ID         : 190976
+# Start of session at: Wed May 13 12:03:06 2026
+# Process ID         : 227632
 # Current directory  : /home/rt7/Desktop/RTLVision/RTLVision/RTLVision.runs/synth_1
 # Command line       : vivado -log salt_pepper_noise.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source salt_pepper_noise.tcl
 # Log file           : /home/rt7/Desktop/RTLVision/RTLVision/RTLVision.runs/synth_1/salt_pepper_noise.vds
@@ -13,12 +13,12 @@
 # Platform           : Ubuntu
 # Operating System   : Ubuntu 24.04.3 LTS
 # Processor Detail   : AMD Ryzen 9 7950X 16-Core Processor
-# CPU Frequency      : 5375.845 MHz
+# CPU Frequency      : 5350.215 MHz
 # CPU Physical cores : 16
 # CPU Logical cores  : 32
 # Host memory        : 66418 MB
 # Swap memory        : 8589 MB
 # Total Virtual      : 75007 MB
-# Available Virtual  : 66429 MB
+# Available Virtual  : 63206 MB
 #-----------------------------------------------------------
 source salt_pepper_noise.tcl -notrace
