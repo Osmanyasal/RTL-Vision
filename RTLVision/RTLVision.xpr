@@ -203,6 +203,13 @@
         </FileInfo>
       </File>
       <File Path="$PSRCDIR/sources_1/new/histogram.sv">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PSRCDIR/sources_1/new/rgb_to_hsv.sv">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
@@ -509,6 +516,12 @@
         </FileInfo>
       </File>
       <File Path="$PSRCDIR/examples/new/ex_emboss3x3.sv">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PSRCDIR/examples/new/ex_brightness_increase.sv">
         <FileInfo>
           <Attr Name="AutoDisabled" Val="1"/>
