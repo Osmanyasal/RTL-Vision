@@ -1,10 +1,2 @@
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/fifo_pipeline2.sv" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module fifo_pipeline2
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/grayscale.sv" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module grayscale
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/prewitt3x3.sv" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module prewitt3x3
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/sync_fifo.sv" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module sync_fifo
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/examples/new/ex_prewitt3x3.sv" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module ex_prewitt3x3
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/examples/new/ex_brightness_decrease.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ex_brightness_decrease

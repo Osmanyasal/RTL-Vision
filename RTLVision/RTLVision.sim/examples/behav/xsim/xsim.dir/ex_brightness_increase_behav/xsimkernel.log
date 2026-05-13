@@ -1,0 +1,7 @@
+Running: xsim.dir/ex_brightness_increase_behav/xsimk.exe -simmode gui -wdb ex_brightness_increase_behav.wdb -simrunnum 0 -socket 60489
+Design successfully loaded
+Design Loading Memory Usage: 11120 KB (Peak: 11120 KB)
+Design Loading CPU Usage: 15 ms
+Simulation completed
+Simulation Memory Usage: 19940 KB (Peak: 19940 KB)
+Simulation CPU Usage: 2109 ms
