@@ -62,7 +62,7 @@ module ex_erosion5x5 #(
         .in_green(in_green),
         .in_blue(in_blue),
         .out_gray(out_gray),
-        .out_ready(out_grayscale_ready)
+        .out_valid(out_grayscale_valid)
     );
     
     threshold uut_thresh (
@@ -71,7 +71,7 @@ module ex_erosion5x5 #(
         .thresh(128),
         .in_ready(out_grayscale_ready),
         .out_gray(out_thresh),
-        .out_ready(out_thresh_ready)
+        .out_valid(out_thresh_valid)
     );
     
     erosion5x5 uut_erosion5x5(

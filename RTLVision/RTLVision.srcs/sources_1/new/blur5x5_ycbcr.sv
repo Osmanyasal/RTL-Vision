@@ -25,7 +25,7 @@ module blur5x5_ycbcr #(parameter IMG_WIDTH = 1024)(
     input  logic        in_ready,
     input  logic [23:0] in_ycbcr,  // 24-bit packed vector {Y, Cb, Cr}
     output logic [23:0] out_ycbcr, // 24-bit packed vector {Y, Cb, Cr}
-    output logic        out_ready
+    output logic        out_valid
 );
 
     logic [7:0] y;
@@ -72,7 +72,7 @@ module blur5x5_ycbcr #(parameter IMG_WIDTH = 1024)(
     // --- Sequential Output & Clamping ---
     always_ff @(posedge clk) begin
         if (rst) begin
-            out_ready <= 0;
+            out_valid <= 0;
             out_ycbcr <= 0;
         end
         else if (window_valid) begin
@@ -83,10 +83,10 @@ module blur5x5_ycbcr #(parameter IMG_WIDTH = 1024)(
                 out_ycbcr[23:16] <= blurred_y_raw[7:0];
 
             out_ycbcr[15:0] <= in_ycbcr[15:0];
-            out_ready       <= 1;
+            out_valid       <= 1;
         end
         else begin
-            out_ready <= 0;
+            out_valid <= 0;
             out_ycbcr <= 0;
         end
     end

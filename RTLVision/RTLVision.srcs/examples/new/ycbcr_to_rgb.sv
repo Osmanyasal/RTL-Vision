@@ -27,7 +27,7 @@ module ycbcr_to_rgb(
     output logic [7:0]  out_red,
     output logic [7:0]  out_green,
     output logic [7:0]  out_blue,
-    output logic        out_ready
+    output logic        out_valid
 );
     
     // Extract the 8-bit channels from the 24-bit input bus
@@ -50,7 +50,7 @@ module ycbcr_to_rgb(
 
     always_ff @(posedge clk) begin
         if (rst) begin
-            out_ready <= 0;
+            out_valid <= 0;
             r  <= '0; 
             g  <= '0; 
             b  <= '0;
@@ -70,10 +70,10 @@ module ycbcr_to_rgb(
             g <= (g_calc < 0) ? 8'd0 : ((g_calc > 255) ? 8'd255 : g_calc[7:0]);
             b <= (b_calc < 0) ? 8'd0 : ((b_calc > 255) ? 8'd255 : b_calc[7:0]);
 
-            out_ready <= 1;
+            out_valid <= 1;
         end
         else begin
-            out_ready <= 0;
+            out_valid <= 0;
             r  <= '0; 
             g  <= '0; 
             b  <= '0;

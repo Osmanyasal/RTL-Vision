@@ -90,7 +90,7 @@ The checked-in HDL sources currently cover these image-processing kernels and he
 - ✅ Grayscale: `grayscale`
 - ✅ Prewitt filter (`prewitt3x3`)
 - Laplacian filter (`laplacian3x3`)
-- Emboss filter (`emboss3x3`)
+- ✅ Emboss filter (`emboss3x3`)
 - Gradient magnitude / gradient direction split
 
 ### Color Segmentation and Masking

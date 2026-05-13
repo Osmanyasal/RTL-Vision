@@ -20,7 +20,7 @@ module sharpen3x3_ycbcr #(parameter IMG_WIDTH = 1024)(
     input  logic        in_ready,
     input  logic [23:0] in_ycbcr,  
     output logic [23:0] out_ycbcr, 
-    output logic        out_ready
+    output logic        out_valid
 );
     
     logic [7:0] in_y;
@@ -106,10 +106,10 @@ module sharpen3x3_ycbcr #(parameter IMG_WIDTH = 1024)(
     // ---------------------------------------------------------------------
     always_ff @(posedge clk) begin
         if (rst) begin
-            out_ready <= 1'b0;
+            out_valid <= 1'b0;
             out_ycbcr <= 24'd0;
         end else begin
-            out_ready <= vld2;
+            out_valid <= vld2;
             if (vld2) begin
                 if (sharp_raw_p2 > 13'sd255) 
                     out_ycbcr[23:16] <= 8'd255;

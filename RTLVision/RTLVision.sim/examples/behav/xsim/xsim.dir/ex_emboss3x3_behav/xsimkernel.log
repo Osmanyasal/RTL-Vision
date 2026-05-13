@@ -1,0 +1,7 @@
+Running: xsim.dir/ex_emboss3x3_behav/xsimk -simmode gui -wdb ex_emboss3x3_behav.wdb -simrunnum 0 -socket 50015
+Design successfully loaded
+Design Loading Memory Usage: 199224 KB (Peak: 199224 KB)
+Design Loading CPU Usage: 650 ms
+Simulation completed
+Simulation Memory Usage: 281220 KB (Peak: 338492 KB)
+Simulation CPU Usage: 3980 ms

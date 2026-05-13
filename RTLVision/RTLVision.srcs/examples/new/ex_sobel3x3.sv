@@ -57,7 +57,7 @@ module ex_sobel3x3 #(
 
     // sobel outputs
     logic [7:0] sobel_pix;
-    logic       out_ready;
+    logic       out_valid;
 
     grayscale u_gray (
         .clk(clk),
@@ -67,7 +67,7 @@ module ex_sobel3x3 #(
         .in_green(in_green),
         .in_blue(in_blue),
         .out_gray(gray_pix),
-        .out_ready(gray_valid)
+        .out_valid(gray_valid)
     );
 
     sobel3x3 #(
@@ -78,7 +78,7 @@ module ex_sobel3x3 #(
         .in_ready(gray_valid),
         .in_gray(gray_pix),
         .out_sobel(sobel_pix),
-        .out_ready(out_ready)
+        .out_valid(out_valid)
     );
 
     initial begin
@@ -162,7 +162,7 @@ module ex_sobel3x3 #(
                 while (produced < valid_target) begin
                     @(posedge clk);
                     #1;
-                    if (out_ready) begin
+                    if (out_valid) begin
                         $fwrite(file_out, "%c", sobel_pix); // B
                         $fwrite(file_out, "%c", sobel_pix); // G
                         $fwrite(file_out, "%c", sobel_pix); // R

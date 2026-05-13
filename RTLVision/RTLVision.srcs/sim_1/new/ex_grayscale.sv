@@ -30,7 +30,7 @@ module ex_grayscale #(
     logic in_ready;
     logic [7:0] in_red, in_green, in_blue;
     logic [7:0] out_gray;
-    logic out_ready;
+    logic out_valid;
 
     grayscale uut (
         .clk(clk),
@@ -40,7 +40,7 @@ module ex_grayscale #(
         .in_green(in_green),
         .in_blue(in_blue),
         .out_gray(out_gray),
-        .out_ready(out_ready)
+        .out_valid(out_valid)
     );
         
     initial begin
@@ -118,7 +118,7 @@ module ex_grayscale #(
                         @(posedge clk);
                         #1; 
                          
-                        if(out_ready) begin
+                        if(out_valid) begin
                             // Write the grayscale byte to B, G, and R channels
                             $fwrite(file_out, "%c", out_gray); 
                             $fwrite(file_out, "%c", out_gray); 

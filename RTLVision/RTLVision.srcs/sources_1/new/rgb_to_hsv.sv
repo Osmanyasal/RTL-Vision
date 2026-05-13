@@ -30,7 +30,7 @@ module rgb_to_hsv(
     output logic [7:0]  out_hue,        
     output logic [7:0]  out_saturation, 
     output logic [7:0]  out_value,      
-    output logic        out_ready       // Pipeline valid output
+    output logic        out_valid       // Pipeline valid output
 );
 
     // ---------------------------------------------------------
@@ -152,12 +152,12 @@ module rgb_to_hsv(
     // ---------------------------------------------------------
     always_ff @(posedge clk) begin
         if (rst) begin
-            out_ready <= 1'b0;
+            out_valid <= 1'b0;
             out_hue   <= '0;
             out_saturation <= '0;
             out_value <= '0;
         end else begin
-            out_ready <= vld2;
+            out_valid <= vld2;
             if (vld2) begin
                 // 1. Value Calculation
                 out_value <= cmax2;

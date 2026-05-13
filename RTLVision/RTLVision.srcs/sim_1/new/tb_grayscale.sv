@@ -28,7 +28,7 @@ module tb_grayscale;
     logic [7:0] in_green;
     logic [7:0] in_blue;
     logic [7:0] out_gray;
-    logic out_ready;
+    logic out_valid;
 
     grayscale dut (
         .clk(clk),
@@ -38,7 +38,7 @@ module tb_grayscale;
         .in_green(in_green),
         .in_blue(in_blue),
         .out_gray(out_gray),
-        .out_ready(out_ready)
+        .out_valid(out_valid)
     );
 
     always #5 clk = ~clk;
@@ -58,9 +58,9 @@ module tb_grayscale;
         input logic [7:0] expected_value,
         input string test_name
     );
-        if ((out_ready !== expected_ready) || (out_gray !== expected_value)) begin
-            $error("%s failed: out_ready=%0b expected=%0b out_gray=0x%0h expected=0x%0h",
-                   test_name, out_ready, expected_ready, out_gray, expected_value);
+        if ((out_valid !== expected_ready) || (out_gray !== expected_value)) begin
+            $error("%s failed: out_valid=%0b expected=%0b out_gray=0x%0h expected=0x%0h",
+                   test_name, out_valid, expected_ready, out_gray, expected_value);
             $fatal;
         end
     endtask

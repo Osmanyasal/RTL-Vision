@@ -69,7 +69,7 @@ module ex_blur5x5 #(
         .in_green(in_green),
         .in_blue(in_blue),
         .out_ycbcr(ycbcr_pix),
-        .out_ready(ycbcr_valid)
+        .out_valid(ycbcr_valid)
     );
 
     blur5x5_ycbcr #(
@@ -80,7 +80,7 @@ module ex_blur5x5 #(
         .in_ready(ycbcr_valid),
         .in_ycbcr(ycbcr_pix),
         .out_ycbcr(blur_ycbcr_pix),
-        .out_ready(blur_valid)
+        .out_valid(blur_valid)
     );
 
     ycbcr_to_rgb u_ycbcr_to_rgb (
@@ -91,7 +91,7 @@ module ex_blur5x5 #(
         .out_red(out_red),
         .out_green(out_green),
         .out_blue(out_blue),
-        .out_ready(out_rgb_valid)
+        .out_valid(out_rgb_valid)
     );
 
     initial begin
