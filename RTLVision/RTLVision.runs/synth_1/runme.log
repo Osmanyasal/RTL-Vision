@@ -1,130 +1,109 @@
 
 *** Running vivado
-    with args -log emboss3x3.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source emboss3x3.tcl
+    with args -log hsv_inrange.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source hsv_inrange.tcl
 
 
-****** Vivado v2025.2 (64-bit)
-  **** SW Build 6299465 on Fri Nov 14 12:34:56 MST 2025
-  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
-  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
-  **** Start of session at: Wed May 13 22:20:34 2026
+
+****** Vivado v2025.2.1 (64-bit)
+  **** SW Build 6403652 on Thu Mar 19 19:48:24 GMT 2026
+  **** IP Build 6403511 on Thu Mar 19 12:41:45 MDT 2026
+  **** SharedData Build 6403650 on Thu Mar 19 14:02:13 MDT 2026
+  **** Start of session at: Sat May 16 22:38:24 2026
     ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
-    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+    ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
 
-source emboss3x3.tcl -notrace
-Command: read_checkpoint -auto_incremental -incremental /home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/utils_1/imports/synth_1/grayscale.dcp
-INFO: [Vivado 12-5825] Read reference checkpoint from /home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/utils_1/imports/synth_1/grayscale.dcp for incremental synthesis
+source hsv_inrange.tcl -notrace
+Command: read_checkpoint -auto_incremental -incremental C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/utils_1/imports/synth_1/grayscale.dcp
+INFO: [Vivado 12-5825] Read reference checkpoint from C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/utils_1/imports/synth_1/grayscale.dcp for incremental synthesis
 INFO: [Vivado 12-7989] Please ensure there are no constraint changes
-Command: synth_design -top emboss3x3 -part xc7a100tcsg324-1
+Command: synth_design -top hsv_inrange -part xc7a100tcsg324-1
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+WARNING: [Vivado_Tcl 4-1809] The reference checkpoint is from an old version of Vivado; A full resynthesis flow will be run
 INFO: [Device 21-403] Loading part xc7a100tcsg324-1
-INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 7 processes.
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 278277
+INFO: [Synth 8-7075] Helper process launched with PID 33984
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 2203.062 ; gain = 482.188 ; free physical = 35308 ; free virtual = 59431
+Starting RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:09 . Memory (MB): peak = 1290.578 ; gain = 541.895
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-6157] synthesizing module 'emboss3x3' [/home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/emboss3x3.sv:23]
-INFO: [Synth 8-6157] synthesizing module 'fifo_pipeline2' [/home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/fifo_pipeline2.sv:23]
-	Parameter DATA_WIDTH bound to: 8 - type: integer 
-	Parameter DEPTH bound to: 1024 - type: integer 
-INFO: [Synth 8-6157] synthesizing module 'sync_fifo' [/home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/sync_fifo.sv:23]
-	Parameter DATA_WIDTH bound to: 8 - type: integer 
-	Parameter DEPTH bound to: 1024 - type: integer 
-	Parameter ADDR_WIDTH bound to: 10 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'sync_fifo' (0#1) [/home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/sync_fifo.sv:23]
-INFO: [Synth 8-6155] done synthesizing module 'fifo_pipeline2' (0#1) [/home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/fifo_pipeline2.sv:23]
-INFO: [Synth 8-6155] done synthesizing module 'emboss3x3' (0#1) [/home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/emboss3x3.sv:23]
-WARNING: [Synth 8-7137] Register mem_reg in module sync_fifo has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code 
-WARNING: [Synth 8-4767] Trying to implement RAM 'mem_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons. [/home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/sync_fifo.sv:55]
-Reason is one or more of the following :
-	1: RAM is sensitive to asynchronous reset signal. this RTL style is not supported. 
-WARNING: [Synth 8-6014] Unused sequential element input_p0_reg was removed.  [/home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/fifo_pipeline2.sv:58]
-WARNING: [Synth 8-6014] Unused sequential element input_p1_reg was removed.  [/home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/fifo_pipeline2.sv:59]
+INFO: [Synth 8-6157] synthesizing module 'hsv_inrange' [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/hsv_inrange.sv:23]
+INFO: [Synth 8-6157] synthesizing module 'rgb_to_hsv' [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/rgb_to_hsv.sv:22]
+INFO: [Synth 8-6155] done synthesizing module 'rgb_to_hsv' (0#1) [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/rgb_to_hsv.sv:22]
+INFO: [Synth 8-6155] done synthesizing module 'hsv_inrange' (0#1) [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/hsv_inrange.sv:23]
+WARNING: [Synth 8-6014] Unused sequential element hue_base_reg was removed.  [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/rgb_to_hsv.sv:151]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2356.031 ; gain = 635.156 ; free physical = 35120 ; free virtual = 59245
+Finished RTL Elaboration : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1411.391 ; gain = 662.707
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 2356.031 ; gain = 635.156 ; free physical = 35120 ; free virtual = 59245
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:11 ; elapsed = 00:00:13 . Memory (MB): peak = 1411.391 ; gain = 662.707
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 2356.031 ; gain = 635.156 ; free physical = 35120 ; free virtual = 59245
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:13 . Memory (MB): peak = 1411.391 ; gain = 662.707
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00.26 ; elapsed = 00:00:00.27 . Memory (MB): peak = 2356.031 ; gain = 0.000 ; free physical = 35127 ; free virtual = 59252
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.012 . Memory (MB): peak = 1411.391 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
-Parsing XDC File [/home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/constrs_1/new/constraints.xdc]
-Finished Parsing XDC File [/home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/constrs_1/new/constraints.xdc]
-INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/constrs_1/new/constraints.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/emboss3x3_propImpl.xdc].
-Resolution: To avoid this warning, move constraints listed in [.Xil/emboss3x3_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Parsing XDC File [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/constrs_1/new/constraints.xdc]
+Finished Parsing XDC File [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/constrs_1/new/constraints.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/constrs_1/new/constraints.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/hsv_inrange_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/hsv_inrange_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2500.465 ; gain = 0.000 ; free physical = 35045 ; free virtual = 59170
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1494.570 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.09 ; elapsed = 00:00:00.09 . Memory (MB): peak = 2500.500 ; gain = 0.000 ; free physical = 35045 ; free virtual = 59170
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.014 . Memory (MB): peak = 1494.570 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 2500.500 ; gain = 779.625 ; free physical = 35147 ; free virtual = 59272
+Finished Constraint Validation : Time (s): cpu = 00:00:26 ; elapsed = 00:00:30 . Memory (MB): peak = 1494.570 ; gain = 745.887
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a100tcsg324-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 2508.469 ; gain = 787.594 ; free physical = 35147 ; free virtual = 59272
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:26 ; elapsed = 00:00:30 . Memory (MB): peak = 1494.570 ; gain = 745.887
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 2508.469 ; gain = 787.594 ; free physical = 35147 ; free virtual = 59272
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:26 ; elapsed = 00:00:30 . Memory (MB): peak = 1494.570 ; gain = 745.887
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Start Preparing Guide Design
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:26 ; elapsed = 00:00:31 . Memory (MB): peak = 1494.570 ; gain = 745.887
 ---------------------------------------------------------------------------------
-CRITICAL WARNING: [Synth 8-6895] The reference checkpoint /home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/utils_1/imports/synth_1/grayscale.dcp is not suitable for use with incremental synthesis for this design. Please regenerate the checkpoint for this design with -incremental_synth switch in the same Vivado session that synth_design has been run. Synthesis will continue with the default flow
----------------------------------------------------------------------------------
-Finished Doing Graph Differ : Time (s): cpu = 00:00:11 ; elapsed = 00:00:10 . Memory (MB): peak = 2508.469 ; gain = 787.594 ; free physical = 35124 ; free virtual = 59252
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Finished Preparing Guide Design : Time (s): cpu = 00:00:11 ; elapsed = 00:00:10 . Memory (MB): peak = 2508.469 ; gain = 787.594 ; free physical = 35124 ; free virtual = 59252
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:12 . Memory (MB): peak = 2508.469 ; gain = 787.594 ; free physical = 35139 ; free virtual = 59267
----------------------------------------------------------------------------------
-
-
-Incremental Synthesis Report Summary:
-
-1. Incremental synthesis run: no
-
-   Reason for not running incremental synthesis : 
-
-
-INFO: [Synth 8-7130] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
-	   8 Input   12 Bit       Adders := 3     
-	   2 Input   11 Bit       Adders := 24    
+	   3 Input    9 Bit       Adders := 3     
+	   2 Input    9 Bit       Adders := 3     
+	   3 Input    8 Bit       Adders := 1     
 +---Registers : 
-	               12 Bit    Registers := 3     
-	               11 Bit    Registers := 12    
-	                8 Bit    Registers := 6177  
+	               32 Bit    Registers := 1     
+	               17 Bit    Registers := 2     
+	                9 Bit    Registers := 1     
+	                8 Bit    Registers := 3     
+	                7 Bit    Registers := 2     
+	                2 Bit    Registers := 2     
 	                1 Bit    Registers := 5     
++---ROMs : 
+	                    ROMs := 1     
 +---Muxes : 
-	   2 Input   11 Bit        Muxes := 12    
-	   2 Input    8 Bit        Muxes := 6     
+	   3 Input   10 Bit        Muxes := 1     
+	   4 Input    9 Bit        Muxes := 1     
+	   2 Input    8 Bit        Muxes := 4     
+	   2 Input    2 Bit        Muxes := 1     
+	   2 Input    1 Bit        Muxes := 4     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -140,26 +119,74 @@ Finished Part Resource Summary
 ---------------------------------------------------------------------------------
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
+WARNING: [Synth 8-3936] Found unconnected internal register 'rgb_to_hsv_inst/sat_mult2_reg' and it is trimmed from '32' to '23' bits. [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/rgb_to_hsv.sv:119]
+DSP Report: Generating DSP rgb_to_hsv_inst/out_value1, operation Mode is: (C:0x8000)+(A:0x6464)*B''.
+DSP Report: register rgb_to_hsv_inst/cmax1_reg is absorbed into DSP rgb_to_hsv_inst/out_value1.
+DSP Report: register rgb_to_hsv_inst/cmax2_reg is absorbed into DSP rgb_to_hsv_inst/out_value1.
+DSP Report: operator rgb_to_hsv_inst/out_value1 is absorbed into DSP rgb_to_hsv_inst/out_value1.
+DSP Report: operator rgb_to_hsv_inst/out_value2 is absorbed into DSP rgb_to_hsv_inst/out_value1.
+DSP Report: Generating DSP rgb_to_hsv_inst/out_saturation1, operation Mode is: (C:0x8000)+(A2*B2)'.
+DSP Report: register rgb_to_hsv_inst/sat_num1_reg is absorbed into DSP rgb_to_hsv_inst/out_saturation1.
+DSP Report: register rgb_to_hsv_inst/inv_cmax1_reg is absorbed into DSP rgb_to_hsv_inst/out_saturation1.
+DSP Report: register rgb_to_hsv_inst/sat_mult2_reg is absorbed into DSP rgb_to_hsv_inst/out_saturation1.
+DSP Report: operator rgb_to_hsv_inst/sat_mult20 is absorbed into DSP rgb_to_hsv_inst/out_saturation1.
+DSP Report: operator rgb_to_hsv_inst/out_saturation1 is absorbed into DSP rgb_to_hsv_inst/out_saturation1.
+DSP Report: Generating DSP rgb_to_hsv_inst/out_hue3, operation Mode is: (C:0x8000)+(A*B2)'.
+DSP Report: register rgb_to_hsv_inst/hue_num1_reg is absorbed into DSP rgb_to_hsv_inst/out_hue3.
+DSP Report: register rgb_to_hsv_inst/hue_mult2_reg is absorbed into DSP rgb_to_hsv_inst/out_hue3.
+DSP Report: operator rgb_to_hsv_inst/hue_mult20 is absorbed into DSP rgb_to_hsv_inst/out_hue3.
+DSP Report: operator rgb_to_hsv_inst/out_hue3 is absorbed into DSP rgb_to_hsv_inst/out_hue3.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:19 ; elapsed = 00:00:18 . Memory (MB): peak = 2598.469 ; gain = 877.594 ; free physical = 35047 ; free virtual = 59190
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:32 ; elapsed = 00:00:36 . Memory (MB): peak = 1494.570 ; gain = 745.887
+---------------------------------------------------------------------------------
+ Sort Area is  rgb_to_hsv_inst/out_hue3_4 : 0 0 : 2269 2269 : Used 1 time 0
+ Sort Area is  rgb_to_hsv_inst/out_saturation1_2 : 0 0 : 1962 1962 : Used 1 time 0
+ Sort Area is  rgb_to_hsv_inst/out_value1_0 : 0 0 : 393 393 : Used 1 time 0
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+ROM: Preliminary Mapping Report
++------------+--------------------------------+---------------+----------------+
+|Module Name | RTL Object                     | Depth x Width | Implemented As | 
++------------+--------------------------------+---------------+----------------+
+|rgb_to_hsv  | inv_table                      | 256x17        | LUT            | 
+|hsv_inrange | p_0_out                        | 256x17        | LUT            | 
+|hsv_inrange | rgb_to_hsv_inst/inv_delta1_reg | 256x17        | Block RAM      | 
++------------+--------------------------------+---------------+----------------+
+
+
+DSP: Preliminary Mapping Report (see note below. The ' indicates corresponding REG is set)
++------------+---------------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name | DSP Mapping               | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++------------+---------------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|hsv_inrange | (C:0x8000)+(A:0x6464)*B'' | 8      | 15     | 16     | -      | 23     | 2    | 0    | 0    | -    | -     | 0    | 0    | 
+|rgb_to_hsv  | (C:0x8000)+(A2*B2)'       | 17     | 15     | 16     | -      | 23     | 1    | 1    | 0    | -    | -     | 1    | 0    | 
+|rgb_to_hsv  | (C:0x8000)+(A*B2)'        | 18     | 16     | 17     | -      | 32     | 0    | 1    | 0    | -    | -     | 1    | 0    | 
++------------+---------------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+Note: The table above is a preliminary report that shows the DSPs inferred at the current stage of the synthesis flow. Some DSP may be reimplemented as non DSP primitives later in the synthesis flow. Multiple instantiated DSPs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:21 ; elapsed = 00:00:21 . Memory (MB): peak = 2598.469 ; gain = 877.594 ; free physical = 35028 ; free virtual = 59171
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:47 ; elapsed = 00:00:53 . Memory (MB): peak = 1658.312 ; gain = 909.629
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:26 ; elapsed = 00:00:26 . Memory (MB): peak = 2778.281 ; gain = 1057.406 ; free physical = 34867 ; free virtual = 59010
+Finished Timing Optimization : Time (s): cpu = 00:00:47 ; elapsed = 00:00:53 . Memory (MB): peak = 1659.496 ; gain = 910.812
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
+INFO: [Synth 8-7052] The timing for the instance rgb_to_hsv_inst/inv_delta1_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:30 ; elapsed = 00:00:29 . Memory (MB): peak = 2778.281 ; gain = 1057.406 ; free physical = 34874 ; free virtual = 59017
+Finished Technology Mapping : Time (s): cpu = 00:00:47 ; elapsed = 00:00:54 . Memory (MB): peak = 1678.594 ; gain = 929.910
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -177,41 +204,51 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:33 ; elapsed = 00:00:33 . Memory (MB): peak = 2857.094 ; gain = 1136.219 ; free physical = 34816 ; free virtual = 58959
+Finished IO Insertion : Time (s): cpu = 00:00:55 ; elapsed = 00:01:01 . Memory (MB): peak = 1921.457 ; gain = 1172.773
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:33 ; elapsed = 00:00:33 . Memory (MB): peak = 2857.094 ; gain = 1136.219 ; free physical = 34816 ; free virtual = 58959
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:55 ; elapsed = 00:01:01 . Memory (MB): peak = 1921.457 ; gain = 1172.773
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:36 ; elapsed = 00:00:36 . Memory (MB): peak = 2857.094 ; gain = 1136.219 ; free physical = 34807 ; free virtual = 58949
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:55 ; elapsed = 00:01:01 . Memory (MB): peak = 1921.457 ; gain = 1172.773
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:36 ; elapsed = 00:00:36 . Memory (MB): peak = 2857.094 ; gain = 1136.219 ; free physical = 34807 ; free virtual = 58949
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:55 ; elapsed = 00:01:01 . Memory (MB): peak = 1921.457 ; gain = 1172.773
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:36 ; elapsed = 00:00:36 . Memory (MB): peak = 2860.234 ; gain = 1139.359 ; free physical = 34807 ; free virtual = 58950
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:55 ; elapsed = 00:01:02 . Memory (MB): peak = 1922.434 ; gain = 1173.750
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:36 ; elapsed = 00:00:36 . Memory (MB): peak = 2860.234 ; gain = 1139.359 ; free physical = 34807 ; free virtual = 58950
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:55 ; elapsed = 00:01:02 . Memory (MB): peak = 1922.434 ; gain = 1173.750
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
 ---------------------------------------------------------------------------------
+
+DSP Final Report (the ' indicates corresponding REG is set)
++------------+---------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name | DSP Mapping   | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++------------+---------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|hsv_inrange | (C+A''*B)'    | 8      | 15     | 16     | -      | 23     | 2    | 0    | 0    | -    | -     | 0    | 1    | 
+|rgb_to_hsv  | (C+(A'*B')')' | 17     | 15     | 16     | -      | 23     | 1    | 1    | 0    | -    | -     | 1    | 1    | 
+|rgb_to_hsv  | (C+A*B')'     | 17     | 18     | 16     | -      | 32     | 0    | 1    | 0    | -    | -     | 0    | 1    | 
++------------+---------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
 
 Report BlackBoxes: 
 +-+--------------+----------+
@@ -220,49 +257,47 @@ Report BlackBoxes:
 +-+--------------+----------+
 
 Report Cell Usage: 
-+------+-------+------+
-|      |Cell   |Count |
-+------+-------+------+
-|1     |BUFG   |     1|
-|2     |CARRY4 |    39|
-|3     |LUT1   |   133|
-|4     |LUT2   |   231|
-|5     |LUT3   |   226|
-|6     |LUT4   |   148|
-|7     |LUT5   |  5973|
-|8     |LUT6   | 14301|
-|9     |MUXF7  |  6528|
-|10    |MUXF8  |  3264|
-|11    |FDCE   |   559|
-|12    |FDRE   | 49433|
-|13    |IBUF   |    27|
-|14    |OBUF   |    25|
-+------+-------+------+
++------+---------+------+
+|      |Cell     |Count |
++------+---------+------+
+|1     |BUFG     |     1|
+|2     |CARRY4   |    42|
+|3     |DSP48E1  |     3|
+|6     |LUT1     |     3|
+|7     |LUT2     |    56|
+|8     |LUT3     |    17|
+|9     |LUT4     |   128|
+|10    |LUT5     |    10|
+|11    |LUT6     |    96|
+|12    |MUXF7    |    14|
+|13    |MUXF8    |     7|
+|14    |RAMB18E1 |     1|
+|15    |FDRE     |    42|
+|16    |IBUF     |    73|
+|17    |OBUF     |     9|
++------+---------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:36 ; elapsed = 00:00:36 . Memory (MB): peak = 2860.234 ; gain = 1139.359 ; free physical = 34807 ; free virtual = 58950
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:55 ; elapsed = 00:01:02 . Memory (MB): peak = 1922.434 ; gain = 1173.750
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 1 critical warnings and 0 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:32 ; elapsed = 00:00:33 . Memory (MB): peak = 2860.234 ; gain = 994.891 ; free physical = 34807 ; free virtual = 58950
-Synthesis Optimization Complete : Time (s): cpu = 00:00:36 ; elapsed = 00:00:36 . Memory (MB): peak = 2860.242 ; gain = 1139.359 ; free physical = 34807 ; free virtual = 58950
+Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:41 ; elapsed = 00:00:57 . Memory (MB): peak = 1922.434 ; gain = 1090.570
+Synthesis Optimization Complete : Time (s): cpu = 00:00:55 ; elapsed = 00:01:02 . Memory (MB): peak = 1922.434 ; gain = 1173.750
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00.26 ; elapsed = 00:00:00.25 . Memory (MB): peak = 2860.242 ; gain = 0.000 ; free physical = 34974 ; free virtual = 59116
-INFO: [Netlist 29-17] Analyzing 9831 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.013 . Memory (MB): peak = 1931.633 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 67 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2923.895 ; gain = 0.000 ; free physical = 34937 ; free virtual = 59087
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1935.258 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Synth Design complete | Checksum: dbf1f4c3
+Synth Design complete | Checksum: a211651
 INFO: [Common 17-83] Releasing license: Synthesis
-24 Infos, 4 Warnings, 1 Critical Warnings and 0 Errors encountered.
+22 Infos, 3 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:52 ; elapsed = 00:00:50 . Memory (MB): peak = 2923.930 ; gain = 1310.359 ; free physical = 34948 ; free virtual = 59098
-INFO: [Common 17-2834] synth_design peak Physical Memory [PSS] (MB): overall = 2166.747; main = 2032.575; forked = 282.391
-INFO: [Common 17-2834] synth_design peak Virtual Memory [VSS] (MB): overall = 3772.492; main = 2923.898; forked = 994.207
-INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
-Write ShapeDB Complete: Time (s): cpu = 00:00:00.08 ; elapsed = 00:00:00.03 . Memory (MB): peak = 2947.906 ; gain = 0.000 ; free physical = 34947 ; free virtual = 59100
-INFO: [Common 17-1381] The checkpoint '/home/rt7/Desktop/RTLVision/RTLVision/RTLVision.runs/synth_1/emboss3x3.dcp' has been generated.
-INFO: [Vivado 12-24828] Executing command : report_utilization -file emboss3x3_utilization_synth.rpt -pb emboss3x3_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Wed May 13 22:21:28 2026...
+synth_design: Time (s): cpu = 00:01:02 ; elapsed = 00:01:26 . Memory (MB): peak = 1935.258 ; gain = 1388.938
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1935.258 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.runs/synth_1/hsv_inrange.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file hsv_inrange_utilization_synth.rpt -pb hsv_inrange_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Sat May 16 22:39:57 2026...
