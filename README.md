@@ -116,7 +116,7 @@ The checked-in HDL sources currently cover these image-processing kernels and he
 - Contrast adjustment (`contrast`)
 - ✅ Invert (`invert`)
 - Gamma approximation / LUT-based gamma (`gamma_lut`)
-- Alpha blending (`alpha_blend`)
+- Multiply Accumulate (`mac`)
 - ✅ Image or mask add/subtract operations
 
 ### Geometric Operations
