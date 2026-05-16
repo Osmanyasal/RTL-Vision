@@ -107,7 +107,7 @@ The checked-in HDL sources currently cover these image-processing kernels and he
 - Dynamic thresholding from running luminance statistics
 
 ### Histogram and Contrast Operations
-- Histogram generator (`histogram`)
+- ✅ Histogram generator (`histogram`)
 - Contrast stretch (`contrast_stretch`)
 - Histogram equalization (`histeq`)
 
@@ -116,15 +116,13 @@ The checked-in HDL sources currently cover these image-processing kernels and he
 - Contrast adjustment (`contrast`)
 - ✅ Invert (`invert`)
 - Gamma approximation / LUT-based gamma (`gamma_lut`)
-- Multiply Accumulate (`mac`)
+- ✅ Multiply Accumulate (`mac`)
 - ✅ Image or mask add/subtract operations
 
 ### Geometric Operations
 - Crop ROI (`crop_roi`)
 - Resize with nearest-neighbor (`resize_nn`)
 - Horizontal flip (`flip_horizontal`)
-- Vertical flip
-- Rotate 90° (if buffering strategy allows)
 
 ### Advanced Vision Features
 - Scharr filter
@@ -133,11 +131,10 @@ The checked-in HDL sources currently cover these image-processing kernels and he
 - Hough pre-processing blocks
 
 ### Binary Image Analysis
-- Connected-component pre-label helpers
 - Blob area counter
 - Bounding box extractor
 - Centroid estimator
- 
+  
 ## Sample Timing
 The default frame budget is approximately `~9.2 ms`.
 
