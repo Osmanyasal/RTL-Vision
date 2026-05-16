@@ -4,13 +4,17 @@
 # Vivado(TM)
 # runme.sh: a Vivado-generated Runs Script for UNIX
 # Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
-# Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+# Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
 # 
 
+echo "This script was generated under a different operating system."
+echo "Please update the PATH and LD_LIBRARY_PATH variables below, before executing this script"
+exit
+
 if [ -z "$PATH" ]; then
-  PATH=/home/rt7/vivado/2025.2/Vitis/bin:/home/rt7/vivado/2025.2/Vivado/ids_lite/ISE/bin/lin64:/home/rt7/vivado/2025.2/Vivado/bin
+  PATH=C:/AMDDesignTools/2025.2.1/Vitis/bin;C:/AMDDesignTools/2025.2.1/Vivado/ids_lite/ISE/bin/nt64;C:/AMDDesignTools/2025.2.1/Vivado/ids_lite/ISE/lib/nt64:C:/AMDDesignTools/2025.2.1/Vivado/bin
 else
-  PATH=/home/rt7/vivado/2025.2/Vitis/bin:/home/rt7/vivado/2025.2/Vivado/ids_lite/ISE/bin/lin64:/home/rt7/vivado/2025.2/Vivado/bin:$PATH
+  PATH=C:/AMDDesignTools/2025.2.1/Vitis/bin;C:/AMDDesignTools/2025.2.1/Vivado/ids_lite/ISE/bin/nt64;C:/AMDDesignTools/2025.2.1/Vivado/ids_lite/ISE/lib/nt64:C:/AMDDesignTools/2025.2.1/Vivado/bin:$PATH
 fi
 export PATH
 
@@ -21,7 +25,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='/home/rt7/Desktop/RTLVision/RTLVision/RTLVision.runs/synth_1'
+HD_PWD='C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.runs/synth_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log
@@ -37,4 +41,4 @@ EAStep()
      fi
 }
 
-EAStep vivado -log emboss3x3.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source emboss3x3.tcl
+EAStep vivado -log hsv_inrange.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source hsv_inrange.tcl
