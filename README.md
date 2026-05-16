@@ -91,13 +91,13 @@ The checked-in HDL sources currently cover these image-processing kernels and he
 - ✅ Prewitt filter (`prewitt3x3`)
 - ✅ Laplacian filter (`laplacian3x3`)
 - ✅ Emboss filter (`emboss3x3`)
-- Gradient magnitude / gradient direction split
 
 ### Color Segmentation and Masking
-- HSV range threshold (`hsv_inrange`)
-- YCbCr skin-color detector (`ycbcr_skin_mask`)
-- Channel extraction (`channel_extract`)
-- False-color mask overlay
+- ✅ RGB_to_HSV
+- ✅ RGB_to_YCBCR
+- ✅ Inverse
+- ✅ Inrage
+- ✅ HSV range threshold (`hsv_inrange`)   
 
 ### Thresholding Improvements
 - ✅ Threshold simple: `threshold`
@@ -114,7 +114,7 @@ The checked-in HDL sources currently cover these image-processing kernels and he
 ### Pixel Arithmetic and Compositing
 - ✅ Brightness adjustment (`brightness`)
 - Contrast adjustment (`contrast`)
-- Invert (`invert`)
+- ✅ Invert (`invert`)
 - Gamma approximation / LUT-based gamma (`gamma_lut`)
 - Alpha blending (`alpha_blend`)
 - ✅ Image or mask add/subtract operations

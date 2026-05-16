@@ -19,41 +19,34 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
 module rgb_to_hsv( 
     input  logic        clk,
     input  logic        rst,            
-    input  logic        in_ready,       // Pipeline valid input
+    input  logic        in_ready,       
     input  logic [7:0]  in_red,
     input  logic [7:0]  in_green,
     input  logic [7:0]  in_blue,
-    output logic [7:0]  out_hue,        
-    output logic [7:0]  out_saturation, 
-    output logic [7:0]  out_value,      
-    output logic        out_valid       // Pipeline valid output
+    output logic [8:0]  out_hue,         // UPGRADED: 9-bit (0-359)
+    output logic [6:0]  out_saturation,  // UPGRADED: 7-bit (0-100)
+    output logic [6:0]  out_value,       // UPGRADED: 7-bit (0-100)
+    output logic        out_valid       
 );
 
-    // ---------------------------------------------------------
-    // Reciprocal ROM Definition
-    // Stores (1 << 16) / x to turn division into multiplication
-    // ---------------------------------------------------------
-    logic [15:0] inv_table [0:255];
+    // 17-bit Reciprocal ROM to prevent overflow at i=1
+    logic [16:0] inv_table [0:255];
     initial begin
-        inv_table[0] = 16'd0; // Prevent divide by zero corruption
+        inv_table[0] = 17'd0; 
         for (int i = 1; i <= 255; i++) begin
             inv_table[i] = (1 << 16) / i;
         end
     end
 
-    // ---------------------------------------------------------
-    // Stage 0: Combinatorial Extrema & Difference 
-    // ---------------------------------------------------------
+    // Stage 0 Signals
     logic [7:0] cmax_c, cmin_c, delta_c;
-    logic [1:0] max_color_c; // 0=Red, 1=Green, 2=Blue
+    logic [1:0] max_color_c; 
     logic signed [9:0] hue_diff_c;
 
     always_comb begin
-        // Find Max
         if (in_red >= in_green && in_red >= in_blue) begin
             cmax_c = in_red; max_color_c = 2'd0;
         end else if (in_green >= in_red && in_green >= in_blue) begin
@@ -62,18 +55,12 @@ module rgb_to_hsv(
             cmax_c = in_blue; max_color_c = 2'd2;
         end
 
-        // Find Min
-        if (in_red <= in_green && in_red <= in_blue) begin
-            cmin_c = in_red;
-        end else if (in_green <= in_red && in_green <= in_blue) begin
-            cmin_c = in_green;
-        end else begin
-            cmin_c = in_blue;
-        end
+        if (in_red <= in_green && in_red <= in_blue)       cmin_c = in_red;
+        else if (in_green <= in_red && in_green <= in_blue) cmin_c = in_green;
+        else                                                cmin_c = in_blue;
         
         delta_c = cmax_c - cmin_c;
 
-        // Calculate raw hue difference based on dominant color
         case (max_color_c)
             2'd0: hue_diff_c = $signed({1'b0, in_green}) - $signed({1'b0, in_blue});
             2'd1: hue_diff_c = $signed({1'b0, in_blue})  - $signed({1'b0, in_red});
@@ -82,16 +69,14 @@ module rgb_to_hsv(
         endcase
     end
 
-    // ---------------------------------------------------------
-    // Stage 1: Register Inputs, Prepare Numerators, Read ROM
-    // ---------------------------------------------------------
+    // Stage 1 Registers
     logic        vld1;
     logic [7:0]  cmax1, delta1;
     logic [1:0]  max_color1;
     logic [15:0] sat_num1;
     logic signed [15:0] hue_num1; 
-    logic [15:0] inv_cmax1;
-    logic [15:0] inv_delta1;
+    logic [16:0] inv_cmax1;
+    logic [16:0] inv_delta1;
 
     always_ff @(posedge clk) begin
         if (rst) begin
@@ -103,26 +88,21 @@ module rgb_to_hsv(
                 delta1     <= delta_c;
                 max_color1 <= max_color_c;
                 
-                // Saturation Numerator: Delta * 255
-                // Trick: Delta * 255 == (Delta << 8) - Delta
-                sat_num1   <= {delta_c, 8'd0} - delta_c; 
+                // Saturation Numerator: Delta * 100 (for 0-100%)
+                sat_num1   <= delta_c * 7'd100; 
                 
-                // Hue Numerator: Diff * 43 
-                // 43 is approx 256/6, scaling the 360 degree circle to 8-bit space
-                hue_num1   <= hue_diff_c * 16'sd43;
+                // Hue Numerator: Diff * 60 (for true 0-60 degree sectors)
+                hue_num1   <= hue_diff_c * 16'sd60;
 
-                // Trigger ROM reads (Vivado infers BRAM or distributed RAM here)
                 inv_cmax1  <= inv_table[cmax_c];
                 inv_delta1 <= inv_table[delta_c];
             end
         end
     end
 
-    // ---------------------------------------------------------
-    // Stage 2: Multiply Numerators by Reciprocals (DSP Stage)
-    // ---------------------------------------------------------
+    // Stage 2 Registers
     logic        vld2;
-    logic [7:0]  cmax2, delta2;
+    logic [7:0]  cmax2;
     logic [1:0]  max_color2;
     logic [31:0] sat_mult2;
     logic signed [31:0] hue_mult2;
@@ -134,22 +114,15 @@ module rgb_to_hsv(
             vld2 <= vld1;
             if (vld1) begin
                 cmax2      <= cmax1;
-                delta2     <= delta1;
                 max_color2 <= max_color1;
                 
-                // Unsigned multiplication for saturation
                 sat_mult2  <= sat_num1 * inv_cmax1;
-                
-                // Signed multiplication for hue
-                // Force inv_delta1 to be treated as a positive signed value
                 hue_mult2  <= hue_num1 * $signed({1'b0, inv_delta1});
             end
         end
     end
 
-    // ---------------------------------------------------------
-    // Stage 3: Apply Shifts and Hue Offsets
-    // ---------------------------------------------------------
+    // Stage 3: Output Formatting
     always_ff @(posedge clk) begin
         if (rst) begin
             out_valid <= 1'b0;
@@ -159,36 +132,35 @@ module rgb_to_hsv(
         end else begin
             out_valid <= vld2;
             if (vld2) begin
-                // 1. Value Calculation
-                out_value <= cmax2;
+                // 1. Value Calculation (Scale 0-255 down to 0-100%)
+                // 25700 / 65536 is structurally equivalent to multiplying by 100/255
+                out_value <= (cmax2 * 16'd25700 + 32'd32768) >> 16;
 
-                // 2. Saturation Calculation
+                // 2. Saturation Calculation (0-100%)
                 if (cmax2 == 0) begin
-                    out_saturation <= 8'd0;
+                    out_saturation <= 7'd0;
                 end else begin
-                    // Equivalent to dividing by 65536
-                    out_saturation <= sat_mult2[23:16];
+                    out_saturation <= (sat_mult2 + 32'd32768) >> 16;
                 end
 
-                // 3. Hue Calculation
-                if (delta2 == 0) begin
-                    out_hue <= 8'd0;
+                // 3. Hue Calculation (0-359 Degrees)
+                if (delta1 == 0) begin
+                    out_hue <= 9'd0;
                 end else begin
-                    // Shift signed result right by 16 bits
                     logic signed [15:0] hue_base;
-                    hue_base = hue_mult2 >>> 16;
+                    hue_base = (hue_mult2 + 32'sd32768) >>> 16;
                     
-                    // Apply phase offsets (85 = 120 deg, 171 = 240 deg)
-                    // Standard 8-bit unsigned addition naturally handles negative wrap-around
                     case (max_color2)
-                        2'd0: out_hue <= hue_base[7:0];                 
-                        2'd1: out_hue <= 8'd85  + hue_base[7:0];        
-                        2'd2: out_hue <= 8'd171 + hue_base[7:0];        
+                        2'd0: begin // Red Sector
+                            if (hue_base < 0) out_hue <= 9'd360 + hue_base; // Handles the 356 deg wrap cleanly
+                            else              out_hue <= hue_base[8:0];
+                        end                 
+                        2'd1: out_hue <= 9'd120 + hue_base; // Green offset       
+                        2'd2: out_hue <= 9'd240 + hue_base; // Blue offset       
                         default: out_hue <= '0;
                     endcase
                 end
             end
         end
     end
-
 endmodule

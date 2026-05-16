@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1778700033" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/grayscale.dcp">
-  <File Type="RDS-DCP" Name="emboss3x3.dcp"/>
-  <File Type="RDS-RDS" Name="emboss3x3.vds"/>
+  <File Type="REPORTS-TCL" Name="emboss3x3_reports.tcl"/>
   <File Type="RDS-UTIL" Name="emboss3x3_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="emboss3x3_utilization_synth.pb"/>
   <File Type="PA-TCL" Name="emboss3x3.tcl"/>
-  <File Type="REPORTS-TCL" Name="emboss3x3_reports.tcl"/>
+  <File Type="RDS-RDS" Name="emboss3x3.vds"/>
+  <File Type="RDS-DCP" Name="emboss3x3.dcp"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/blur5x5_ycbcr.sv">

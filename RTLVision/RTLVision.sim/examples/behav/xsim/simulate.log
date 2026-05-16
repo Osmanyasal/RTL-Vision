@@ -1,7 +1,6 @@
 Time resolution is 1 ps
-Image Info: 1280 x 720, Data starts at: 54
-WARNING: BMP width (1280) != IMG_WIDTH parameter (1024). laplacian line buffer will misalign.
-Starting laplacian streaming...
+Image Info: 999 x 596, Data starts at: 138
+WARNING: BMP width (999) != IMG_WIDTH parameter (1280). laplacian line buffer will misalign.
+Starting HSV inrange streaming...
 laplacian image processed and saved.
-$finish called at time : 9190545 ns : File "/home/rt7/Desktop/RTLVision/RTLVision/RTLVision.srcs/examples/new/ex_laplacian3x3.sv" Line 181
-INFO: xsimkernel Simulation Memory Usage: 281176 KB (Peak: 338448 KB), Simulation CPU Usage: 2510 ms
+$finish called at time : 5954135 ns : File "C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/examples/new/ex_hsv_inrage.sv" Line 171
