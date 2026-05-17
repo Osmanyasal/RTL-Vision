@@ -24,7 +24,7 @@ eval( EAInclude(ISEJScriptLib) );
 
 
 ISEStep( "vivado",
-         "-log hsv_inrange.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source hsv_inrange.tcl" );
+         "-log histeq.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source histeq.tcl" );
 
 
 
