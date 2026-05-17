@@ -1,20 +1,17 @@
 Vivado Simulator v2025.2.1
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
-Running: C:/AMDDesignTools/2025.2.1/Vivado/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L uvm -L unisims_ver -L unimacro_ver -L secureip --snapshot ex_remove_red_behav xil_defaultlib.ex_remove_red xil_defaultlib.glbl -log elaborate.log 
+Running: C:/AMDDesignTools/2025.2.1/Vivado/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L uvm -L unisims_ver -L unimacro_ver -L secureip --snapshot ex_histeq_behav xil_defaultlib.ex_histeq xil_defaultlib.glbl -log elaborate.log 
 Using 2 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
-WARNING: [VRFC 10-3091] actual bit length 32 differs from formal bit length 8 for port 'a1' [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/examples/new/ex_remove_red.sv:79]
-WARNING: [VRFC 10-3091] actual bit length 32 differs from formal bit length 8 for port 'a1' [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/examples/new/ex_remove_red.sv:90]
-WARNING: [VRFC 10-3091] actual bit length 32 differs from formal bit length 8 for port 'a1' [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/examples/new/ex_remove_red.sv:101]
 Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis
 Time Resolution for simulation is 1ps
-Compiling module xil_defaultlib.rgb_to_hsv
-Compiling module xil_defaultlib.hsv_inrange
-Compiling module xil_defaultlib.mac
-Compiling module xil_defaultlib.ex_remove_red
+Compiling module xil_defaultlib.grayscale
+Compiling module xil_defaultlib.histogram
+Compiling module xil_defaultlib.histeq_default
+Compiling module xil_defaultlib.ex_histeq
 Compiling module xil_defaultlib.glbl
-Built simulation snapshot ex_remove_red_behav
+Built simulation snapshot ex_histeq_behav

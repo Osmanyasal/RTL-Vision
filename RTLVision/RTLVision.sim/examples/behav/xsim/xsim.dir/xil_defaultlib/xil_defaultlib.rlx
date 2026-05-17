@@ -3,9 +3,14 @@
 Mar 19 2026
 19:50:51
 C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.sim/examples/behav/xsim/glbl.v,1778337884,verilog,,,,glbl,,uvm,,,,,,
+C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/examples/new/ex_histeq.sv,1779017782,systemVerilog,,,,ex_histeq,,uvm,../../../../../../../../../AMDDesignTools/2025.2.1/Vivado/data/rsb/busdef,,,,,
+C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/examples/new/ex_histogram.sv,1779017263,systemVerilog,,,,ex_histogram,,uvm,../../../../../../../../../AMDDesignTools/2025.2.1/Vivado/data/rsb/busdef,,,,,
 C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/examples/new/ex_hsv_inrage.sv,1778955321,systemVerilog,,,,ex_hsv_inrange,,uvm,../../../../../../../../../AMDDesignTools/2025.2.1/Vivado/data/rsb/busdef,,,,,
 C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/examples/new/ex_hsv_inrage_inv.sv,1778964199,systemVerilog,,,,ex_hsv_inrange_inv,,uvm,../../../../../../../../../AMDDesignTools/2025.2.1/Vivado/data/rsb/busdef,,,,,
 C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/examples/new/ex_remove_red.sv,1778964629,systemVerilog,,,,ex_remove_red,,uvm,../../../../../../../../../AMDDesignTools/2025.2.1/Vivado/data/rsb/busdef,,,,,
+C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/grayscale.sv,1778708336,systemVerilog,,C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/histeq.sv,,grayscale,,uvm,../../../../../../../../../AMDDesignTools/2025.2.1/Vivado/data/rsb/busdef,,,,,
+C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/histeq.sv,1779017532,systemVerilog,,C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/histogram.sv,,histeq,,uvm,../../../../../../../../../AMDDesignTools/2025.2.1/Vivado/data/rsb/busdef,,,,,
+C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/histogram.sv,1779017360,systemVerilog,,C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/examples/new/ex_histeq.sv,,histogram,,uvm,../../../../../../../../../AMDDesignTools/2025.2.1/Vivado/data/rsb/busdef,,,,,
 C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/hsv_inrange.sv,1778954695,systemVerilog,,C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/mac.sv,,hsv_inrange,,uvm,../../../../../../../../../AMDDesignTools/2025.2.1/Vivado/data/rsb/busdef,,,,,
 C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/inverse.sv,1778951959,systemVerilog,,C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/rgb_to_hsv.sv,,inverse,,uvm,../../../../../../../../../AMDDesignTools/2025.2.1/Vivado/data/rsb/busdef,,,,,
 C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/mac.sv,1778964454,systemVerilog,,C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/rgb_to_hsv.sv,,mac,,uvm,../../../../../../../../../AMDDesignTools/2025.2.1/Vivado/data/rsb/busdef,,,,,

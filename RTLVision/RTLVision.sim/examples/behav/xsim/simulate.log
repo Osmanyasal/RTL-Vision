@@ -1,6 +1,8 @@
 Time resolution is 1 ps
-Image Info: 999 x 596, Data starts at: 138
-WARNING: BMP width (999) != IMG_WIDTH parameter (1280). laplacian line buffer will misalign.
-Starting HSV inrange streaming...
-laplacian image processed and saved.
-$finish called at time : 5954135 ns : File "C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/examples/new/ex_remove_red.sv" Line 206
+WARNING: BMP width (999) != IMG_WIDTH parameter (1024).
+WARNING: BMP pixel count (595404) != FRAME_PIXELS parameter (786432).
+Pass 1: building histogram for 999 x 596 image.
+Histogram[135] = 2291
+WARNING: BMP width (999) != IMG_WIDTH parameter (1024).
+WARNING: BMP pixel count (595404) != FRAME_PIXELS parameter (786432).
+Pass 2: applying histogram equalization.

@@ -109,7 +109,7 @@ The checked-in HDL sources currently cover these image-processing kernels and he
 ### Histogram and Contrast Operations
 - ✅ Histogram generator (`histogram`)
 - Contrast stretch (`contrast_stretch`)
-- Histogram equalization (`histeq`)
+- ✅ Histogram equalization (`histeq`)
 
 ### Pixel Arithmetic and Compositing
 - ✅ Brightness adjustment (`brightness`)
