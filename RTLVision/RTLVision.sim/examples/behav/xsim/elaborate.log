@@ -1,7 +1,7 @@
 Vivado Simulator v2025.2.1
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
-Running: C:/AMDDesignTools/2025.2.1/Vivado/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L uvm -L unisims_ver -L unimacro_ver -L secureip --snapshot ex_histeq_behav xil_defaultlib.ex_histeq xil_defaultlib.glbl -log elaborate.log 
+Running: C:/AMDDesignTools/2025.2.1/Vivado/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L uvm -L unisims_ver -L unimacro_ver -L secureip --snapshot ex_threshold_binary_adaptive_mean_behav xil_defaultlib.ex_threshold_binary_adaptive_mean xil_defaultlib.glbl -log elaborate.log 
 Using 2 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
@@ -10,8 +10,9 @@ Starting simulation data flow analysis
 Completed simulation data flow analysis
 Time Resolution for simulation is 1ps
 Compiling module xil_defaultlib.grayscale
-Compiling module xil_defaultlib.histogram
-Compiling module xil_defaultlib.histeq_default
-Compiling module xil_defaultlib.ex_histeq
+Compiling module xil_defaultlib.sync_fifo(DEPTH=1024,ADDR_WIDTH=...
+Compiling module xil_defaultlib.fifo_pipeline5(DEPTH=1024)
+Compiling module xil_defaultlib.threshold_adaptive_binary_mean
+Compiling module xil_defaultlib.ex_threshold_binary_adaptive_mea...
 Compiling module xil_defaultlib.glbl
-Built simulation snapshot ex_histeq_behav
+Built simulation snapshot ex_threshold_binary_adaptive_mean_behav

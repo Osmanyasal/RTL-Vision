@@ -66,8 +66,9 @@ module ex_thresh #(
         .out_valid(out_grayscale_valid)
     );
     
-    threshold uut_thresh (
+    threshold_binary uut_thresh (
         .clk(clk),
+        .rst(rst),
         .in_gray(out_gray),
         .thresh(128),
         .in_ready(out_grayscale_ready),

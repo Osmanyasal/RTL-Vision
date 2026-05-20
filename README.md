@@ -101,10 +101,7 @@ The checked-in HDL sources currently cover these image-processing kernels and he
 
 ### Thresholding Improvements
 - ✅ Threshold simple: `threshold`
-- Adaptive / local thresholding (`adaptive_threshold`)
-- Otsu thresholding or a hardware-friendly approximation
-- Mean-based local thresholding
-- Dynamic thresholding from running luminance statistics
+- ✅ Adaptive / local thresholding (`adaptive_threshold`)
 
 ### Histogram and Contrast Operations
 - ✅ Histogram generator (`histogram`)

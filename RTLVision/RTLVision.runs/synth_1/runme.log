@@ -1,6 +1,6 @@
 
 *** Running vivado
-    with args -log histeq.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source histeq.tcl
+    with args -log threshold_adaptive_mean.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source threshold_adaptive_mean.tcl
 
 
 
@@ -8,129 +8,129 @@
   **** SW Build 6403652 on Thu Mar 19 19:48:24 GMT 2026
   **** IP Build 6403511 on Thu Mar 19 12:41:45 MDT 2026
   **** SharedData Build 6403650 on Thu Mar 19 14:02:13 MDT 2026
-  **** Start of session at: Sun May 17 13:55:38 2026
+  **** Start of session at: Sun May 17 19:48:05 2026
     ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
     ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
 
-source histeq.tcl -notrace
+source threshold_adaptive_mean.tcl -notrace
+create_project: Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 543.738 ; gain = 222.840
 Command: read_checkpoint -auto_incremental -incremental C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/utils_1/imports/synth_1/grayscale.dcp
 INFO: [Vivado 12-5825] Read reference checkpoint from C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/utils_1/imports/synth_1/grayscale.dcp for incremental synthesis
 INFO: [Vivado 12-7989] Please ensure there are no constraint changes
-Command: synth_design -top histeq -part xc7a100tcsg324-1
+Command: synth_design -top threshold_adaptive_mean -part xc7a100tcsg324-1
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
 INFO: [Device 21-403] Loading part xc7a100tcsg324-1
-INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
-INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 7344
+INFO: [Synth 8-7075] Helper process launched with PID 2708
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 1292.316 ; gain = 543.293
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1293.656 ; gain = 542.863
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-6157] synthesizing module 'histeq' [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/histeq.sv:21]
-INFO: [Synth 8-6155] done synthesizing module 'histeq' (0#1) [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/histeq.sv:21]
-WARNING: [Synth 8-7129] Port in_hist_query_count[31] in module histeq is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in_hist_query_count[30] in module histeq is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in_hist_query_count[29] in module histeq is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in_hist_query_count[28] in module histeq is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in_hist_query_count[27] in module histeq is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in_hist_query_count[26] in module histeq is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in_hist_query_count[25] in module histeq is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in_hist_query_count[24] in module histeq is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in_hist_query_count[23] in module histeq is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in_hist_query_count[22] in module histeq is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in_hist_query_count[21] in module histeq is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in_hist_query_count[20] in module histeq is either unconnected or has no load
+INFO: [Synth 8-6157] synthesizing module 'threshold_adaptive_mean' [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/threshold_adaptive_mean.sv:23]
+INFO: [Synth 8-6157] synthesizing module 'fifo_pipeline5' [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/fifo_pipeline5.sv:25]
+	Parameter DATA_WIDTH bound to: 8 - type: integer 
+	Parameter DEPTH bound to: 1024 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'sync_fifo' [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/sync_fifo.sv:23]
+	Parameter DATA_WIDTH bound to: 8 - type: integer 
+	Parameter DEPTH bound to: 1024 - type: integer 
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'sync_fifo' (0#1) [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/sync_fifo.sv:23]
+INFO: [Synth 8-6155] done synthesizing module 'fifo_pipeline5' (0#1) [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/fifo_pipeline5.sv:25]
+INFO: [Synth 8-6155] done synthesizing module 'threshold_adaptive_mean' (0#1) [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/threshold_adaptive_mean.sv:23]
+WARNING: [Synth 8-7137] Register mem_reg in module sync_fifo has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code 
+WARNING: [Synth 8-4767] Trying to implement RAM 'mem_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons. [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/sync_fifo.sv:55]
+Reason is one or more of the following :
+	1: RAM is sensitive to asynchronous reset signal. this RTL style is not supported. 
+WARNING: [Synth 8-6014] Unused sequential element input_p0_reg was removed.  [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/fifo_pipeline5.sv:91]
+WARNING: [Synth 8-6014] Unused sequential element input_p1_reg was removed.  [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/fifo_pipeline5.sv:92]
+WARNING: [Synth 8-6014] Unused sequential element input_p2_reg was removed.  [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/fifo_pipeline5.sv:93]
+WARNING: [Synth 8-6014] Unused sequential element input_p3_reg was removed.  [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/fifo_pipeline5.sv:94]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1411.883 ; gain = 662.859
+Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1492.797 ; gain = 742.004
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1411.883 ; gain = 662.859
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:09 . Memory (MB): peak = 1492.797 ; gain = 742.004
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1411.883 ; gain = 662.859
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:09 . Memory (MB): peak = 1492.797 ; gain = 742.004
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1411.883 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.449 . Memory (MB): peak = 1492.797 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
 Parsing XDC File [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/constrs_1/new/constraints.xdc]
 Finished Parsing XDC File [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/constrs_1/new/constraints.xdc]
-INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/constrs_1/new/constraints.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/histeq_propImpl.xdc].
-Resolution: To avoid this warning, move constraints listed in [.Xil/histeq_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/constrs_1/new/constraints.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/threshold_adaptive_mean_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/threshold_adaptive_mean_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1492.512 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.029 . Memory (MB): peak = 1597.344 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 1492.512 ; gain = 0.000
-INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
-INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.356 . Memory (MB): peak = 1597.344 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1492.512 ; gain = 743.488
+Finished Constraint Validation : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 1597.344 ; gain = 846.551
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a100tcsg324-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1492.512 ; gain = 743.488
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 1597.344 ; gain = 846.551
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1492.512 ; gain = 743.488
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 1597.344 ; gain = 846.551
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'histeq'
----------------------------------------------------------------------------------------------------
-                   State |                     New Encoding |                Previous Encoding 
----------------------------------------------------------------------------------------------------
-                 ST_IDLE |                              000 |                              000
-           ST_WAIT_QUERY |                              001 |                              001
-              ST_PREPARE |                              010 |                              010
-         ST_DIVIDE_CHECK |                              011 |                              011
-               ST_DIVIDE |                              100 |                              100
-               ST_COMMIT |                              101 |                              101
----------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'histeq'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1492.512 ; gain = 743.488
+Start Preparing Guide Design
 ---------------------------------------------------------------------------------
+CRITICAL WARNING: [Synth 8-6895] The reference checkpoint C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/utils_1/imports/synth_1/grayscale.dcp is not suitable for use with incremental synthesis for this design. Please regenerate the checkpoint for this design with -incremental_synth switch in the same Vivado session that synth_design has been run. Synthesis will continue with the default flow
+---------------------------------------------------------------------------------
+Finished Doing Graph Differ : Time (s): cpu = 00:00:20 ; elapsed = 00:00:23 . Memory (MB): peak = 1597.344 ; gain = 846.551
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Preparing Guide Design : Time (s): cpu = 00:00:20 ; elapsed = 00:00:23 . Memory (MB): peak = 1597.344 ; gain = 846.551
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:27 ; elapsed = 00:00:32 . Memory (MB): peak = 1597.344 ; gain = 846.551
+---------------------------------------------------------------------------------
+
+
+Incremental Synthesis Report Summary:
+
+1. Incremental synthesis run: no
+
+   Reason for not running incremental synthesis : 
+
+
+INFO: [Synth 8-7130] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
-	   3 Input   28 Bit       Adders := 2     
-	   2 Input   20 Bit       Adders := 2     
-	   3 Input   20 Bit       Adders := 1     
-	   2 Input    8 Bit       Adders := 2     
+	  25 Input   13 Bit       Adders := 1     
+	   2 Input   11 Bit       Adders := 16    
+	   3 Input    9 Bit       Adders := 1     
+	   2 Input    8 Bit       Adders := 1     
 +---Registers : 
-	               28 Bit    Registers := 1     
-	               20 Bit    Registers := 8     
-	                8 Bit    Registers := 5     
-	                1 Bit    Registers := 9     
-+---RAMs : 
-	               2K Bit	(256 X 8 bit)          RAMs := 1     
+	               13 Bit    Registers := 1     
+	               11 Bit    Registers := 8     
+	                8 Bit    Registers := 4126  
+	                1 Bit    Registers := 4     
 +---Muxes : 
-	   2 Input   28 Bit        Muxes := 3     
-	   6 Input   28 Bit        Muxes := 1     
-	   2 Input   20 Bit        Muxes := 1     
-	   6 Input   20 Bit        Muxes := 2     
-	   2 Input    8 Bit        Muxes := 1     
-	   6 Input    8 Bit        Muxes := 3     
-	   6 Input    3 Bit        Muxes := 1     
-	   2 Input    3 Bit        Muxes := 4     
-	   2 Input    1 Bit        Muxes := 4     
-	   6 Input    1 Bit        Muxes := 17    
+	   2 Input   11 Bit        Muxes := 8     
+	   2 Input    1 Bit        Muxes := 2     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -146,67 +146,172 @@ Finished Part Resource Summary
 ---------------------------------------------------------------------------------
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
-WARNING: [Synth 8-7129] Port in_hist_query_count[31] in module histeq is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in_hist_query_count[30] in module histeq is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in_hist_query_count[29] in module histeq is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in_hist_query_count[28] in module histeq is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in_hist_query_count[27] in module histeq is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in_hist_query_count[26] in module histeq is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in_hist_query_count[25] in module histeq is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in_hist_query_count[24] in module histeq is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in_hist_query_count[23] in module histeq is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in_hist_query_count[22] in module histeq is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in_hist_query_count[21] in module histeq is either unconnected or has no load
-WARNING: [Synth 8-7129] Port in_hist_query_count[20] in module histeq is either unconnected or has no load
+
+*** Running vivado
+    with args -log threshold_adaptive_mean.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source threshold_adaptive_mean.tcl
+
+
+
+****** Vivado v2025.2.1 (64-bit)
+  **** SW Build 6403652 on Thu Mar 19 19:48:24 GMT 2026
+  **** IP Build 6403511 on Thu Mar 19 12:41:45 MDT 2026
+  **** SharedData Build 6403650 on Thu Mar 19 14:02:13 MDT 2026
+  **** Start of session at: Sun May 17 19:49:25 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source threshold_adaptive_mean.tcl -notrace
+Command: read_checkpoint -auto_incremental -incremental C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/utils_1/imports/synth_1/grayscale.dcp
+INFO: [Vivado 12-5825] Read reference checkpoint from C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/utils_1/imports/synth_1/grayscale.dcp for incremental synthesis
+INFO: [Vivado 12-7989] Please ensure there are no constraint changes
+Command: synth_design -top threshold_adaptive_mean -part xc7a100tcsg324-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Device 21-403] Loading part xc7a100tcsg324-1
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 1556
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1492.512 ; gain = 743.488
+Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1290.152 ; gain = 539.309
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'threshold_adaptive_mean' [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/threshold_adaptive_mean.sv:23]
+INFO: [Synth 8-6157] synthesizing module 'fifo_pipeline5' [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/fifo_pipeline5.sv:25]
+	Parameter DATA_WIDTH bound to: 8 - type: integer 
+	Parameter DEPTH bound to: 1024 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'sync_fifo' [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/sync_fifo.sv:23]
+	Parameter DATA_WIDTH bound to: 8 - type: integer 
+	Parameter DEPTH bound to: 1024 - type: integer 
+	Parameter ADDR_WIDTH bound to: 10 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'sync_fifo' (0#1) [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/sync_fifo.sv:23]
+INFO: [Synth 8-6155] done synthesizing module 'fifo_pipeline5' (0#1) [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/fifo_pipeline5.sv:25]
+INFO: [Synth 8-6155] done synthesizing module 'threshold_adaptive_mean' (0#1) [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/threshold_adaptive_mean.sv:23]
+WARNING: [Synth 8-7137] Register mem_reg in module sync_fifo has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code 
+WARNING: [Synth 8-4767] Trying to implement RAM 'mem_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons. [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/sync_fifo.sv:55]
+Reason is one or more of the following :
+	1: RAM is sensitive to asynchronous reset signal. this RTL style is not supported. 
+WARNING: [Synth 8-6014] Unused sequential element input_p0_reg was removed.  [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/fifo_pipeline5.sv:91]
+WARNING: [Synth 8-6014] Unused sequential element input_p1_reg was removed.  [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/fifo_pipeline5.sv:92]
+WARNING: [Synth 8-6014] Unused sequential element input_p2_reg was removed.  [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/fifo_pipeline5.sv:93]
+WARNING: [Synth 8-6014] Unused sequential element input_p3_reg was removed.  [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/sources_1/new/fifo_pipeline5.sv:94]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1492.105 ; gain = 741.262
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 1492.105 ; gain = 741.262
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 1492.105 ; gain = 741.262
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.391 . Memory (MB): peak = 1492.105 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/constrs_1/new/constraints.xdc]
+Finished Parsing XDC File [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/constrs_1/new/constraints.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/constrs_1/new/constraints.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/threshold_adaptive_mean_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/threshold_adaptive_mean_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.013 . Memory (MB): peak = 1535.570 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.395 . Memory (MB): peak = 1535.574 ; gain = 0.000
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1535.574 ; gain = 784.730
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a100tcsg324-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1535.574 ; gain = 784.730
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1535.574 ; gain = 784.730
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Preparing Guide Design
+---------------------------------------------------------------------------------
+CRITICAL WARNING: [Synth 8-6895] The reference checkpoint C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/utils_1/imports/synth_1/grayscale.dcp is not suitable for use with incremental synthesis for this design. Please regenerate the checkpoint for this design with -incremental_synth switch in the same Vivado session that synth_design has been run. Synthesis will continue with the default flow
+---------------------------------------------------------------------------------
+Finished Doing Graph Differ : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 1535.574 ; gain = 784.730
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Preparing Guide Design : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 1535.574 ; gain = 784.730
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:28 ; elapsed = 00:00:32 . Memory (MB): peak = 1535.574 ; gain = 784.730
 ---------------------------------------------------------------------------------
 
-Block RAM: Preliminary Mapping Report (see note below)
-+------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
-|Module Name | RTL Object | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
-+------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
-|histeq      | eq_lut_reg | 256 x 8(READ_FIRST)    | W |   | 256 x 8(WRITE_FIRST)   |   | R | Port A and B     | 1      | 0      | 
-+------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
 
-Note: The table above is a preliminary report that shows the Block RAMs at the current stage of the synthesis flow. Some Block RAMs may be reimplemented as non Block RAM primitives later in the synthesis flow. Multiple instantiated Block RAMs are reported only once. 
+Incremental Synthesis Report Summary:
+
+1. Incremental synthesis run: no
+
+   Reason for not running incremental synthesis : 
+
+
+INFO: [Synth 8-7130] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	  25 Input   13 Bit       Adders := 1     
+	   2 Input   11 Bit       Adders := 16    
+	   4 Input   10 Bit       Adders := 1     
++---Registers : 
+	               13 Bit    Registers := 1     
+	               11 Bit    Registers := 8     
+	                8 Bit    Registers := 4126  
+	                1 Bit    Registers := 4     
++---Muxes : 
+	   2 Input   11 Bit        Muxes := 8     
+	   2 Input    1 Bit        Muxes := 2     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 240 (col length:80)
+BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:42 ; elapsed = 00:00:49 . Memory (MB): peak = 1733.289 ; gain = 982.445
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 1610.207 ; gain = 861.184
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:45 ; elapsed = 00:00:52 . Memory (MB): peak = 1733.289 ; gain = 982.445
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1653.574 ; gain = 904.551
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Start ROM, RAM, DSP, Shift Register and Retiming Reporting
----------------------------------------------------------------------------------
-
-Block RAM: Final Mapping Report
-+------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
-|Module Name | RTL Object | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
-+------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
-|histeq      | eq_lut_reg | 256 x 8(READ_FIRST)    | W |   | 256 x 8(WRITE_FIRST)   |   | R | Port A and B     | 1      | 0      | 
-+------------+------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
-
----------------------------------------------------------------------------------
-Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+Finished Timing Optimization : Time (s): cpu = 00:00:52 ; elapsed = 00:00:59 . Memory (MB): peak = 1983.004 ; gain = 1232.160
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 1653.574 ; gain = 904.551
+Finished Technology Mapping : Time (s): cpu = 00:00:55 ; elapsed = 00:01:02 . Memory (MB): peak = 1983.004 ; gain = 1232.160
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -224,37 +329,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1879.305 ; gain = 1130.281
+Finished IO Insertion : Time (s): cpu = 00:00:57 ; elapsed = 00:01:05 . Memory (MB): peak = 1983.004 ; gain = 1232.160
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1879.305 ; gain = 1130.281
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:57 ; elapsed = 00:01:05 . Memory (MB): peak = 1983.004 ; gain = 1232.160
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1879.305 ; gain = 1130.281
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:59 ; elapsed = 00:01:06 . Memory (MB): peak = 1983.004 ; gain = 1232.160
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1879.305 ; gain = 1130.281
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:59 ; elapsed = 00:01:06 . Memory (MB): peak = 1983.004 ; gain = 1232.160
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1879.305 ; gain = 1130.281
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:59 ; elapsed = 00:01:06 . Memory (MB): peak = 1983.004 ; gain = 1232.160
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1879.305 ; gain = 1130.281
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:59 ; elapsed = 00:01:06 . Memory (MB): peak = 1983.004 ; gain = 1232.160
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -267,44 +372,47 @@ Report BlackBoxes:
 +-+--------------+----------+
 
 Report Cell Usage: 
-+------+---------+------+
-|      |Cell     |Count |
-+------+---------+------+
-|1     |BUFG     |     1|
-|2     |CARRY4   |    36|
-|3     |LUT1     |    27|
-|4     |LUT2     |   107|
-|5     |LUT3     |    31|
-|6     |LUT4     |    73|
-|7     |LUT5     |    45|
-|8     |LUT6     |    35|
-|9     |RAMB18E1 |     1|
-|10    |FDRE     |   240|
-|11    |IBUF     |    33|
-|12    |OBUF     |    20|
-+------+---------+------+
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |BUFG   |     1|
+|2     |CARRY4 |    11|
+|3     |LUT1   |    47|
+|4     |LUT2   |    96|
+|5     |LUT3   |    53|
+|6     |LUT4   |    45|
+|7     |LUT5   |  1990|
+|8     |LUT6   |  4776|
+|9     |MUXF7  |  2176|
+|10    |MUXF8  |  1088|
+|11    |FDCE   |   214|
+|12    |FDRE   | 16436|
+|13    |IBUF   |    19|
+|14    |OBUF   |     9|
++------+-------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1879.305 ; gain = 1130.281
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:59 ; elapsed = 00:01:06 . Memory (MB): peak = 1983.004 ; gain = 1232.160
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 12 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:13 ; elapsed = 00:00:18 . Memory (MB): peak = 1879.305 ; gain = 1049.652
-Synthesis Optimization Complete : Time (s): cpu = 00:00:18 ; elapsed = 00:00:19 . Memory (MB): peak = 1879.305 ; gain = 1130.281
+Synthesis finished with 0 errors, 1 critical warnings and 0 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:45 ; elapsed = 00:00:59 . Memory (MB): peak = 1983.004 ; gain = 1188.691
+Synthesis Optimization Complete : Time (s): cpu = 00:00:59 ; elapsed = 00:01:07 . Memory (MB): peak = 1983.004 ; gain = 1232.160
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1884.977 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 37 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.089 . Memory (MB): peak = 1983.004 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 3275 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1888.641 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1983.004 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Synth Design complete | Checksum: 76151658
+Synth Design complete | Checksum: 54f76232
 INFO: [Common 17-83] Releasing license: Synthesis
-25 Infos, 24 Warnings, 0 Critical Warnings and 0 Errors encountered.
+24 Infos, 6 Warnings, 1 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:21 ; elapsed = 00:00:24 . Memory (MB): peak = 1888.641 ; gain = 1342.051
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1888.641 ; gain = 0.000
-INFO: [Common 17-1381] The checkpoint 'C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.runs/synth_1/histeq.dcp' has been generated.
-INFO: [Vivado 12-24828] Executing command : report_utilization -file histeq_utilization_synth.rpt -pb histeq_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sun May 17 13:56:09 2026...
+synth_design: Time (s): cpu = 00:01:07 ; elapsed = 00:01:16 . Memory (MB): peak = 1983.004 ; gain = 1436.617
+INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.014 . Memory (MB): peak = 1983.004 ; gain = 0.000
+INFO: [Common 17-1381] The checkpoint 'C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.runs/synth_1/threshold_adaptive_mean.dcp' has been generated.
+INFO: [Vivado 12-24828] Executing command : report_utilization -file threshold_adaptive_mean_utilization_synth.rpt -pb threshold_adaptive_mean_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Sun May 17 19:50:48 2026...

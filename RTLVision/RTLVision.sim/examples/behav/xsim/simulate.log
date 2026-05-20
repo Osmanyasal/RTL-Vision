@@ -1,15 +1,5 @@
 Time resolution is 1 ps
-WARNING: BMP width (999) != IMG_WIDTH parameter (1024).
-WARNING: BMP pixel count (595404) != FRAME_PIXELS parameter (786432).
-Pass 1: building histogram for 999 x 596 image.
-Histogram[135] = 2291
-WARNING: BMP width (999) != IMG_WIDTH parameter (1024).
-WARNING: BMP pixel count (595404) != FRAME_PIXELS parameter (786432).
-Pass 2: applying histogram equalization.
-First grayscale pixel = 135
-First equalized pixel = 135
-Equalized valid pixel count = 595404
-Grayscale BMP written to ../../../../../togg_gray.bmp
-Equalized grayscale BMP written to ../../../../../togg_histeq.bmp
-Histogram equalization example completed.
-$finish called at time : 11915965 ns : File "C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/examples/new/ex_histeq.sv" Line 376
+Image Info: 1280 x 720, Data starts at: 54
+Starting on-the-fly processing...
+Image processed and saved successfully.
+$finish called at time : 9216016 ns : File "C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/examples/new/ex_threshold_binary_adaptive_mean.sv" Line 165

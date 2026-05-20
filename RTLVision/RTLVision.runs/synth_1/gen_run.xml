@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1779018937" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/grayscale.dcp">
-  <File Type="PA-TCL" Name="histeq.tcl"/>
-  <File Type="REPORTS-TCL" Name="histeq_reports.tcl"/>
-  <File Type="RDS-RDS" Name="histeq.vds"/>
-  <File Type="RDS-PROPCONSTRS" Name="histeq_drc_synth.rpt"/>
-  <File Type="RDS-UTIL" Name="histeq_utilization_synth.rpt"/>
-  <File Type="RDS-UTIL-PB" Name="histeq_utilization_synth.pb"/>
-  <File Type="RDS-DCP" Name="histeq.dcp"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="histeq_timing_summary_synth.rpt"/>
-  <File Type="VDS-TIMING-PB" Name="histeq_timing_summary_synth.pb"/>
+<GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1779040159" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/grayscale.dcp">
+  <File Type="REPORTS-TCL" Name="threshold_adaptive_mean_reports.tcl"/>
+  <File Type="RDS-UTIL" Name="threshold_adaptive_mean_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="threshold_adaptive_mean_utilization_synth.pb"/>
+  <File Type="PA-TCL" Name="threshold_adaptive_mean.tcl"/>
+  <File Type="RDS-RDS" Name="threshold_adaptive_mean.vds"/>
+  <File Type="RDS-DCP" Name="threshold_adaptive_mean.dcp"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/blur3x3_ycbcr.sv">
@@ -60,14 +57,6 @@
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sources_1/new/erosion5x5.sv">
-      <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/fifo_pipeline5.sv">
       <FileInfo>
         <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -211,14 +200,6 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/sync_fifo.sv">
-      <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
     <File Path="$PSRCDIR/sources_1/new/emboss3x3.sv">
       <FileInfo>
         <Attr Name="AutoDisabled" Val="1"/>
@@ -251,7 +232,37 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
+    <File Path="$PSRCDIR/sources_1/new/threshold_binary.sv">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PSRCDIR/sources_1/new/histeq.sv">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/fifo_pipeline5.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/sync_fifo.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/threshold_adaptive_mean.sv">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
@@ -260,7 +271,7 @@
     </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
-      <Option Name="TopModule" Val="histeq"/>
+      <Option Name="TopModule" Val="threshold_adaptive_mean"/>
     </Config>
   </FileSet>
   <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1" RelGenDir="$PGENDIR/constrs_1">

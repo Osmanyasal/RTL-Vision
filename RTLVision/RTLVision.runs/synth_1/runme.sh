@@ -41,4 +41,4 @@ EAStep()
      fi
 }
 
-EAStep vivado -log histeq.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source histeq.tcl
+EAStep vivado -log threshold_adaptive_mean.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source threshold_adaptive_mean.tcl
