@@ -20,8 +20,8 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module ex_threshold_binary_adaptive_mean#(
-    parameter string file_name = "../../../../../kaan.bmp", 
-    parameter string out_file_name = "../../../../../kaan_thresh_binary_adaptive_mean_5.bmp"
+    parameter string file_name = "../../../../../butterfly.bmp", 
+    parameter string out_file_name = "../../../../../butterfly_thresh_binary_adaptive_mean_5.bmp"
 )();
     // -----------------------------------------
     // 0. File settings & Variables (No image array!)

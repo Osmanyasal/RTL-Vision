@@ -44,8 +44,8 @@
 
 
 module ex_dilation3x3 #(
-    parameter string file_name = "../../../../../kaan.bmp", 
-    parameter string out_file_name = "../../../../../kaan_dilation3x3.bmp"
+    parameter string file_name = "../../../../../butterfly.bmp", 
+    parameter string out_file_name = "../../../../../butterfly_dilation3x3.bmp"
 )();
      
     // -----------------------------------------

@@ -20,8 +20,8 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module ex_histogram #(
-    parameter string file_name     = "../../../../../togg.bmp",
-    parameter int    IMG_WIDTH     = 1024  // must match BMP width
+    parameter string file_name     = "../../../../../butterfly.bmp",
+    parameter int    IMG_WIDTH     = 4096  // must match BMP width
 )();
 
     // -----------------------------------------

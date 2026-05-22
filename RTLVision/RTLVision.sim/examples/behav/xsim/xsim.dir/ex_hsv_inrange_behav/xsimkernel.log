@@ -1,7 +1,7 @@
-Running: xsim.dir/ex_hsv_inrange_behav/xsimk.exe -simmode gui -wdb ex_hsv_inrange_behav.wdb -simrunnum 0 -socket 57504
+Running: xsim.dir/ex_hsv_inrange_behav/xsimk.exe -simmode gui -wdb ex_hsv_inrange_behav.wdb -simrunnum 0 -socket 64230
 Design successfully loaded
-Design Loading Memory Usage: 11104 KB (Peak: 11104 KB)
-Design Loading CPU Usage: 62 ms
+Design Loading Memory Usage: 11112 KB (Peak: 11112 KB)
+Design Loading CPU Usage: 0 ms
 Simulation completed
-Simulation Memory Usage: 19872 KB (Peak: 19872 KB)
-Simulation CPU Usage: 1186 ms
+Simulation Memory Usage: 19948 KB (Peak: 19948 KB)
+Simulation CPU Usage: 12640 ms

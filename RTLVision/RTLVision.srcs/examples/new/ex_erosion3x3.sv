@@ -22,8 +22,8 @@
 
 
 module ex_erosion3x3 #(
-    parameter string file_name = "../../../../../kaan.bmp", 
-    parameter string out_file_name = "../../../../../kaan_erosion3x3.bmp"
+    parameter string file_name = "../../../../../butterfly.bmp", 
+    parameter string out_file_name = "../../../../../butterfly_erosion3x3.bmp"
 )();
      
     // -----------------------------------------
@@ -51,8 +51,8 @@ module ex_erosion3x3 #(
     logic in_ready;
     logic [7:0] in_red, in_green, in_blue;
     logic [7:0] out_gray, out_thresh;
-    logic out_grayscale_ready;
-    logic out_thresh_ready;
+    logic out_grayscale_valid;
+    logic out_thresh_valid;
     logic [7:0] out_pixel;
     logic out_valid;
     grayscale uut_grayscale (
@@ -70,15 +70,15 @@ module ex_erosion3x3 #(
         .clk(clk),
         .in_gray(out_gray),
         .thresh(128),
-        .in_ready(out_grayscale_ready),
+        .in_ready(out_grayscale_valid),
         .out_gray(out_thresh),
         .out_valid(out_thresh_valid)
     );
     
-    erosion3x3 uut_erosion3x3(
+    erosion3x3  #( .IMG_WIDTH(4096) )  uut_erosion3x3(
         .clk(clk),
         .rst(rst),
-        .in_valid(out_thresh_ready),
+        .in_valid(out_thresh_valid),
         .in_pixel(out_thresh),
         .in_kernel(9'b010_111_010), // 3x3 diamond kernel for erosion
         .out_pixel(out_pixel),

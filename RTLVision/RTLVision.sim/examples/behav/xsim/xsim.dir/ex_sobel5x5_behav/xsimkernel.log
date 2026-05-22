@@ -1,7 +1,7 @@
-Running: xsim.dir/ex_sobel5x5_behav/xsimk -simmode gui -wdb ex_sobel5x5_behav.wdb -simrunnum 0 -socket 48639
+Running: xsim.dir/ex_sobel5x5_behav/xsimk.exe -simmode gui -wdb ex_sobel5x5_behav.wdb -simrunnum 0 -socket 64201
 Design successfully loaded
-Design Loading Memory Usage: 199228 KB (Peak: 199228 KB)
-Design Loading CPU Usage: 620 ms
+Design Loading Memory Usage: 11336 KB (Peak: 11336 KB)
+Design Loading CPU Usage: 46 ms
 Simulation completed
-Simulation Memory Usage: 281224 KB (Peak: 338496 KB)
-Simulation CPU Usage: 4850 ms
+Simulation Memory Usage: 20372 KB (Peak: 20372 KB)
+Simulation CPU Usage: 50093 ms

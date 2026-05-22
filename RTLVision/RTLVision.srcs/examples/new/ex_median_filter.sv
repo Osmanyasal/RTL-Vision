@@ -22,8 +22,8 @@
 `timescale 1ns / 1ps
 
 module ex_median_filter #(
-    parameter string file_name = "../../../../../kaan_salt_papper_noise.bmp", 
-    parameter string out_file_name = "../../../../../kaan_salt_papper_filtered.bmp"
+    parameter string file_name = "../../../../../butterfly_salt_papper_noise.bmp", 
+    parameter string out_file_name = "../../../../../butterfly_salt_papper_filtered.bmp"
 )();
      
     // -----------------------------------------

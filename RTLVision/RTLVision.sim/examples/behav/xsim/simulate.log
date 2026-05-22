@@ -1,5 +1,4 @@
 Time resolution is 1 ps
-Image Info: 1280 x 720, Data starts at: 54
-Starting on-the-fly processing...
-Image processed and saved successfully.
-$finish called at time : 9216016 ns : File "C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/examples/new/ex_threshold_binary_adaptive_mean.sv" Line 165
+Pass 1: Converting RGB to YCbCr and building Y Histogram.
+Histogram[174] = 28286
+Pass 2: Applying YCbCr histogram equalization.

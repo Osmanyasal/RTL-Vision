@@ -1,7 +1,7 @@
-Running: xsim.dir/ex_blur3x3_behav/xsimk -simmode gui -wdb ex_blur3x3_behav.wdb -simrunnum 0 -socket 38075
+Running: xsim.dir/ex_blur3x3_behav/xsimk.exe -simmode gui -wdb ex_blur3x3_behav.wdb -simrunnum 0 -socket 64174
 Design successfully loaded
-Design Loading Memory Usage: 199204 KB (Peak: 199204 KB)
-Design Loading CPU Usage: 670 ms
+Design Loading Memory Usage: 11132 KB (Peak: 11132 KB)
+Design Loading CPU Usage: 61 ms
 Simulation completed
-Simulation Memory Usage: 281200 KB (Peak: 338472 KB)
-Simulation CPU Usage: 3430 ms
+Simulation Memory Usage: 19960 KB (Peak: 19960 KB)
+Simulation CPU Usage: 27171 ms

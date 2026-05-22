@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="synth_1" LaunchPart="xc7a100tcsg324-1" LaunchTime="1779040159" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/grayscale.dcp">
   <File Type="REPORTS-TCL" Name="threshold_adaptive_mean_reports.tcl"/>
-  <File Type="RDS-UTIL" Name="threshold_adaptive_mean_utilization_synth.rpt"/>
-  <File Type="RDS-UTIL-PB" Name="threshold_adaptive_mean_utilization_synth.pb"/>
+  <File Type="RDS-UTIL" Name="dilation3x3_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="dilation3x3_utilization_synth.pb"/>
   <File Type="PA-TCL" Name="threshold_adaptive_mean.tcl"/>
   <File Type="RDS-RDS" Name="threshold_adaptive_mean.vds"/>
   <File Type="RDS-DCP" Name="threshold_adaptive_mean.dcp"/>

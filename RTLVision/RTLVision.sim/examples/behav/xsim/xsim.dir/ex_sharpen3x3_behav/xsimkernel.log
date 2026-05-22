@@ -1,7 +1,7 @@
-Running: xsim.dir/ex_sharpen3x3_behav/xsimk -simmode gui -wdb ex_sharpen3x3_behav.wdb -simrunnum 0 -socket 54705
+Running: xsim.dir/ex_sharpen3x3_behav/xsimk.exe -simmode gui -wdb ex_sharpen3x3_behav.wdb -simrunnum 0 -socket 64193
 Design successfully loaded
-Design Loading Memory Usage: 199204 KB (Peak: 199204 KB)
-Design Loading CPU Usage: 670 ms
+Design Loading Memory Usage: 11364 KB (Peak: 11364 KB)
+Design Loading CPU Usage: 77 ms
 Simulation completed
-Simulation Memory Usage: 281200 KB (Peak: 338472 KB)
-Simulation CPU Usage: 3530 ms
+Simulation Memory Usage: 20420 KB (Peak: 20420 KB)
+Simulation CPU Usage: 30109 ms

@@ -21,8 +21,8 @@
 
 
 module ex_laplacian3x3 #(
-    parameter string file_name     = "../../../../../kaan.bmp",
-    parameter string out_file_name = "../../../../../kaan_laplacian3x3.bmp",
+    parameter string file_name     = "../../../../../butterfly.bmp",
+    parameter string out_file_name = "../../../../../butterfly_laplacian3x3.bmp",
     parameter int    IMG_WIDTH     = 1024  // must match BMP width
 )();
 

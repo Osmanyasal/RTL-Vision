@@ -21,9 +21,9 @@
 
 
 module ex_prewitt3x3 #(
-    parameter string file_name     = "../../../../../kaan.bmp",
-    parameter string out_file_name = "../../../../../kaan_prewitt3x3.bmp",
-    parameter int    IMG_WIDTH     = 1024  // must match BMP width
+    parameter string file_name     = "../../../../../butterfly.bmp",
+    parameter string out_file_name = "../../../../../butterfly_prewitt3x3.bmp",
+    parameter int    IMG_WIDTH     = 4096  // must match BMP width
 )();
 
     // -----------------------------------------

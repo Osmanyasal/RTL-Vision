@@ -1,7 +1,7 @@
-Running: xsim.dir/ex_salt_papper_noise_behav/xsimk -simmode gui -wdb ex_salt_papper_noise_behav.wdb -simrunnum 0 -socket 47783
+Running: xsim.dir/ex_salt_papper_noise_behav/xsimk.exe -simmode gui -wdb ex_salt_papper_noise_behav.wdb -simrunnum 0 -socket 55081
 Design successfully loaded
-Design Loading Memory Usage: 199140 KB (Peak: 199196 KB)
-Design Loading CPU Usage: 640 ms
+Design Loading Memory Usage: 11104 KB (Peak: 11104 KB)
+Design Loading CPU Usage: 77 ms
 Simulation completed
-Simulation Memory Usage: 281136 KB (Peak: 338408 KB)
-Simulation CPU Usage: 2160 ms
+Simulation Memory Usage: 19872 KB (Peak: 19872 KB)
+Simulation CPU Usage: 16467 ms

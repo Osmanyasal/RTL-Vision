@@ -21,8 +21,8 @@
 
 
 module ex_remove_red #(
-    parameter string file_name     = "../../../../../togg.bmp",
-    parameter string out_file_name = "../../../../../togg_remove_red.bmp",
+    parameter string file_name     = "../../../../../butterfly.bmp",
+    parameter string out_file_name = "../../../../../butterfly_remove_red.bmp",
     parameter int    IMG_WIDTH     = 1280  // must match BMP width
 )();
 

@@ -121,7 +121,7 @@ module histeq #(
             calc_use_zero = 1'b1;
         end else begin
             calc_cdf_span = calc_cdf_after - cdf_min_effective;
-            calc_numerator = ({calc_cdf_span, 8'b0} - calc_cdf_span);
+            calc_numerator = (calc_cdf_span << ADDR_WIDTH) - calc_cdf_span;
         end
     end
 

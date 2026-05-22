@@ -5,7 +5,7 @@
 // 
 // Create Date: 05/11/2026 03:09:51 PM
 // Design Name: 
-// Module Name: ex_dilation3x3
+// Module Name: ex_salt_papper_noise
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -18,34 +18,11 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
-
-
-`timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 05/11/2026 02:52:14 PM
-// Design Name: 
-// Module Name: ex_erosion3x3
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-`timescale 1ns / 1ps
 
 
 module ex_salt_papper_noise #(
-    parameter string file_name = "../../../../../kaan.bmp", 
-    parameter string out_file_name = "../../../../../kaan_salt_papper_noise.bmp"
+    parameter string file_name = "../../../../../butterfly.bmp", 
+    parameter string out_file_name = "../../../../../butterfly_salt_papper_noise.bmp"
 )();
      
     // -----------------------------------------
@@ -173,7 +150,7 @@ module ex_salt_papper_noise #(
                     end
                 end
             end
-        join_any
+        join
         
         // --- E. Cleanup ---
         $display("Image processed and saved successfully.");

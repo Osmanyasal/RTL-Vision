@@ -1,18 +1,28 @@
 Vivado Simulator v2025.2.1
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
-Running: C:/AMDDesignTools/2025.2.1/Vivado/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L uvm -L unisims_ver -L unimacro_ver -L secureip --snapshot ex_threshold_binary_adaptive_mean_behav xil_defaultlib.ex_threshold_binary_adaptive_mean xil_defaultlib.glbl -log elaborate.log 
+Running: C:/AMDDesignTools/2025.2.1/Vivado/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L uvm -L unisims_ver -L unimacro_ver -L secureip --snapshot ex_histeq_colored_behav xil_defaultlib.ex_histeq_colored xil_defaultlib.glbl -log elaborate.log 
 Using 2 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
+WARNING: [VRFC 10-3818] variable 'gray_valid_count' is driven by invalid combination of procedural drivers [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/examples/new/ex_histeq_colored.sv:28]
+WARNING: [VRFC 10-2921] 'gray_valid_count' driven by this always_ff block should not be driven by any other process [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/examples/new/ex_histeq_colored.sv:171]
+WARNING: [VRFC 10-3818] variable 'eq_valid_count' is driven by invalid combination of procedural drivers [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/examples/new/ex_histeq_colored.sv:29]
+WARNING: [VRFC 10-2921] 'eq_valid_count' driven by this always_ff block should not be driven by any other process [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/examples/new/ex_histeq_colored.sv:185]
+WARNING: [VRFC 10-3818] variable 'first_y_value' is driven by invalid combination of procedural drivers [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/examples/new/ex_histeq_colored.sv:32]
+WARNING: [VRFC 10-3818] variable 'first_eq_pixel' is driven by invalid combination of procedural drivers [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/examples/new/ex_histeq_colored.sv:33]
+WARNING: [VRFC 10-3818] variable 'gray_pixels' is driven by invalid combination of procedural drivers [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/examples/new/ex_histeq_colored.sv:36]
+WARNING: [VRFC 10-3818] variable 'eq_pixels_b' is driven by invalid combination of procedural drivers [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/examples/new/ex_histeq_colored.sv:37]
+WARNING: [VRFC 10-3818] variable 'eq_pixels_g' is driven by invalid combination of procedural drivers [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/examples/new/ex_histeq_colored.sv:38]
+WARNING: [VRFC 10-3818] variable 'eq_pixels_r' is driven by invalid combination of procedural drivers [C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/examples/new/ex_histeq_colored.sv:39]
 Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis
 Time Resolution for simulation is 1ps
-Compiling module xil_defaultlib.grayscale
-Compiling module xil_defaultlib.sync_fifo(DEPTH=1024,ADDR_WIDTH=...
-Compiling module xil_defaultlib.fifo_pipeline5(DEPTH=1024)
-Compiling module xil_defaultlib.threshold_adaptive_binary_mean
-Compiling module xil_defaultlib.ex_threshold_binary_adaptive_mea...
+Compiling module xil_defaultlib.rgb_to_ycbcr
+Compiling module xil_defaultlib.histogram
+Compiling module xil_defaultlib.histeq(FRAME_PIXELS=8847360)
+Compiling module xil_defaultlib.ycbcr_to_rgb
+Compiling module xil_defaultlib.ex_histeq_colored
 Compiling module xil_defaultlib.glbl
-Built simulation snapshot ex_threshold_binary_adaptive_mean_behav
+Built simulation snapshot ex_histeq_colored_behav

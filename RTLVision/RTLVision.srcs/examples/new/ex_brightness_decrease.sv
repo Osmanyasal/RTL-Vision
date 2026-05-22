@@ -23,9 +23,9 @@
 
 
 module ex_brightness_decrease #(
-    parameter string file_name     = "../../../../../kaan.bmp",
-    parameter string out_file_name = "../../../../../kaan_brightness_decrease.bmp",
-    parameter int    IMG_WIDTH     = 1024
+    parameter string file_name     = "../../../../../butterfly.bmp",
+    parameter string out_file_name = "../../../../../butterfly_brightness_decrease.bmp",
+    parameter int    IMG_WIDTH     = 4096
 )();
 
     // -----------------------------------------

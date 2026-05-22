@@ -20,15 +20,15 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module ex_histeq #(
-    parameter string file_name = "../../../../../togg.bmp",
-    parameter string gray_out_file_name = "../../../../../togg_gray.bmp",
-    parameter string out_file_name = "../../../../../togg_histeq.bmp",
-    parameter int IMG_WIDTH    = 1024
+    parameter string file_name = "../../../../../butterfly.bmp",
+    parameter string gray_out_file_name = "../../../../../butterfly_gray.bmp",
+    parameter string out_file_name = "../../../../../butterfly_histeq.bmp",
+    parameter int IMG_WIDTH    = 4096
 )();
 
     localparam int ADDR_WIDTH   = 8;
     localparam int DATA_WIDTH   = 32;
-    localparam int FRAME_PIXELS = 1024 * 768;
+    localparam int FRAME_PIXELS = 4096 * 2160;
 
     int file_h;
     int out_file_h;

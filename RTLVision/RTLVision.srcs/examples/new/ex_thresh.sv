@@ -23,8 +23,8 @@
 `timescale 1ns / 1ps
 
 module ex_thresh #(
-    parameter string file_name = "../../../../../kaan.bmp", 
-    parameter string out_file_name = "../../../../../kaan_thresh128.bmp"
+    parameter string file_name = "../../../../../butterfly.bmp", 
+    parameter string out_file_name = "../../../../../butterfly_thresh128.bmp"
 )();
      
     // -----------------------------------------
@@ -66,12 +66,12 @@ module ex_thresh #(
         .out_valid(out_grayscale_valid)
     );
     
-    threshold_binary uut_thresh (
+    threshold uut_thresh (
         .clk(clk),
         .rst(rst),
         .in_gray(out_gray),
-        .thresh(128),
-        .in_ready(out_grayscale_ready),
+        .thresh('d128),
+        .in_ready(out_grayscale_valid),
         .out_gray(out_thresh),
         .out_valid(out_thresh_valid)
     );
@@ -151,7 +151,7 @@ module ex_thresh #(
                         @(posedge clk);
                         #1; 
                          
-                        if(out_thresh_ready) begin
+                        if(out_thresh_valid) begin
                             // Write the grayscale byte to B, G, and R channels
                             $fwrite(file_out, "%c", out_thresh); 
                             $fwrite(file_out, "%c", out_thresh); 
@@ -160,7 +160,7 @@ module ex_thresh #(
                     end
                 end
             end
-        join_any
+        join
         
         // --- E. Cleanup ---
         $display("Image processed and saved successfully.");

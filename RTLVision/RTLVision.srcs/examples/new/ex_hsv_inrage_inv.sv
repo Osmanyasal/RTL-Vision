@@ -21,8 +21,8 @@
 
 
 module ex_hsv_inrange_inv #(
-    parameter string file_name     = "../../../../../togg.bmp",
-    parameter string out_file_name = "../../../../../togg_hsv_inrange_inv.bmp",
+    parameter string file_name     = "../../../../../butterfly.bmp",
+    parameter string out_file_name = "../../../../../butterfly_hsv_inrange_inv.bmp",
     parameter int    IMG_WIDTH     = 1280  // must match BMP width
 )();
 

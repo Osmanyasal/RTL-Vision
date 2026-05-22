@@ -22,8 +22,8 @@
 
 
 module ex_dilation5x5 #(
-    parameter string file_name = "../../../../../kaan.bmp", 
-    parameter string out_file_name = "../../../../../kaan_dilation5x5.bmp"
+    parameter string file_name = "../../../../../butterfly.bmp", 
+    parameter string out_file_name = "../../../../../butterfly_dilation5x5.bmp"
 )();
      
     // -----------------------------------------
@@ -51,8 +51,8 @@ module ex_dilation5x5 #(
     logic in_ready;
     logic [7:0] in_red, in_green, in_blue;
     logic [7:0] out_gray, out_thresh;
-    logic out_grayscale_ready;
-    logic out_thresh_ready;
+    logic out_grayscale_valid;
+    logic out_thresh_valid;
     logic [7:0] out_pixel;
     logic out_valid;
     grayscale uut_grayscale (
@@ -70,15 +70,16 @@ module ex_dilation5x5 #(
         .clk(clk),
         .in_gray(out_gray),
         .thresh(128),
-        .in_ready(out_grayscale_ready),
+        .in_ready(out_grayscale_valid),
         .out_gray(out_thresh),
         .out_valid(out_thresh_valid)
     );
     
-    dilation5x5 uut_dilation5x5(
+    dilation5x5 #(.IMG_WIDTH(4096)) uut_dilation5x5
+    (
         .clk(clk),
         .rst(rst),
-        .in_valid(out_thresh_ready),
+        .in_valid(out_thresh_valid),
         .in_pixel(out_thresh),
         .in_kernel(25'b00100_01110_11111_01110_00100), // 5x5 diamond kernel for dilation
         .out_pixel(out_pixel),
