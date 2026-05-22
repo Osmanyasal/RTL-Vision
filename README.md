@@ -90,36 +90,15 @@ The checked-in HDL sources currently cover these image-processing kernels and he
 - Bounding box extractor
 - Centroid estimator
   
-## Sample Timing
+## 4K Sample Timing
 The default frame budget is approximately `~9.2 ms`.
 
-For the commonly cited `1024 x 768` reference case at `100 MHz`:
+For the commonly cited `4096 x 2160` reference case at `100 MHz`:
 
-- Total pixels per frame: $1024 \times 768 = 786,432$
+- Total pixels per frame: $4096 \times 2160 = 8,847,360$
 - Clock frequency: $100\,\text{MHz}$, so each cycle is $10\,\text{ns}$
-- Total active pixel time: $786,432 \times 10\,\text{ns} \approx 7.86\,\text{ms}$
-
-For the same `1024 x 768` frame at `5.4 GHz`:
-
-- Clock frequency: $5.4\,\text{GHz}$, so each cycle is $\frac{1}{5.4}\,\text{ns} \approx 0.185\,\text{ns}$
-- Total active pixel time: $786,432 \times 0.185\,\text{ns} \approx 145,636\,\text{ns} \approx 0.146\,\text{ms}$
-
-The difference between the idealized active-pixel time of $7.86\,\text{ms}$ and the rough end-to-end frame budget of `~9.2 ms` comes from blanking intervals plus pipeline and control overhead. The sample `butterfly` image artifacts committed in this repository are `1280 x 720`; the math above is the default latency estimate requested for the `1024 x 768` case.
-
-## 4K Sample Timing
-For a 4K (3840 × 2160) image at 100 MHz:
-
-- Total pixels per frame: $3840 \times 2160 = 8,294,400$
-- Clock frequency: $100\,\text{MHz}$, so each cycle is $10\,\text{ns}$
-- Total active pixel time: $8,294,400 \times 10\,\text{ns} = 82,944,000\,\text{ns} = 82.944\,\text{ms}$
-
-For the same 4K frame at 5.4 GHz:
-
-- Clock frequency: $5.4\,\text{GHz}$, so each cycle is $\frac{1}{5.4}\,\text{ns} \approx 0.185\,\text{ns}$
-- Total active pixel time: $8,294,400 \times 0.185\,\text{ns} \approx 1,534,464\,\text{ns} = 1.53\,\text{ms}$
-
-The difference between the idealized active-pixel time and the end-to-end frame budget comes from blanking intervals plus pipeline and control overhead. For 4K, the frame budget is approximately `~97 ms` at 100 MHz (including blanking/pipeline overhead).
-
+- Total active pixel time: $8,847,360 \times 10\,\text{ns} \approx 88.47\,\text{ms}$
+ 
 ## CPU Comparison Flow
 `cpu_compare.py` reads `butterfly.jpg` or `butterfly.png` as the software input image. It does not generate any Verilog-side assets. It executes the CPU-streaming equivalents of the kernels and writes `cpu_*` output images.
 
