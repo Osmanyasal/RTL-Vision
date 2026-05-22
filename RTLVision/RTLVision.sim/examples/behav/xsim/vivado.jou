@@ -1,0 +1,26 @@
+#-----------------------------------------------------------
+# Vivado v2025.2.1 (64-bit)
+# SW Build 6403652 on Thu Mar 19 19:48:24 GMT 2026
+# IP Build 6403511 on Thu Mar 19 12:41:45 MDT 2026
+# SharedData Build 6403650 on Thu Mar 19 14:02:13 MDT 2026
+# Start of session at: Fri May 22 17:35:51 2026
+# Process ID         : 5416
+# Current directory  : C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.sim/examples/behav/xsim
+# Command line       : vivado.exe -gui_launcher_event rodinguilauncherevent39368 C:\Users\osmya\Desktop\RTLVision\RTLVision\RTLVision.sim\examples\behav\xsim\ex_threshold_binary_adaptive_mean_behav.wdb
+# Log file           : C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.sim/examples/behav/xsim/vivado.log
+# Journal file       : C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.sim/examples/behav/xsim\vivado.jou
+# Running On         : rt7-laptop-duo
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 26200
+# Processor Detail   : Intel(R) Core(TM) Ultra 7 255H
+# CPU Frequency      : 3686 MHz
+# CPU Physical cores : 16
+# CPU Logical cores  : 16
+# Host memory        : 33685 MB
+# Swap memory        : 13421 MB
+# Total Virtual      : 47107 MB
+# Available Virtual  : 16812 MB
+#-----------------------------------------------------------
+start_gui
+open_wave_database {C:\Users\osmya\Desktop\RTLVision\RTLVision\RTLVision.sim\examples\behav\xsim\ex_threshold_binary_adaptive_mean_behav.wdb}
+close_sim
