@@ -91,8 +91,6 @@ The checked-in HDL sources currently cover these image-processing kernels and he
 - Centroid estimator
   
 ## 4K Sample Timing
-The default frame budget is approximately `~9.2 ms`.
-
 For the commonly cited `4096 x 2160` reference case at `100 MHz`:
 
 - Total pixels per frame: $4096 \times 2160 = 8,847,360$
