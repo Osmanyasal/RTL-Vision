@@ -1,7 +1,7 @@
 # RTL-Vision
 FPGA-based image processing library targeting real-time and low-latency vision workloads.
 
-### Kernel Comparison Table
+### Kernel Comparison Table for 4096x2160 Images
 <table>
 	<thead>
 		<tr>
