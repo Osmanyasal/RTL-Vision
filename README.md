@@ -74,7 +74,7 @@ The checked-in HDL sources currently cover these image-processing kernels and he
 ### Geometric Operations
 - Crop ROI (`crop_roi`)
 - Resize with nearest-neighbor (`resize_nn`)
-- Horizontal flip (`flip_horizontal`)
+- ✅ Horizontal flip (`flip_horizontal`)
 
 ### Advanced Vision Features
 - Scharr filter

@@ -1,0 +1,7 @@
+Running: xsim.dir/ex_filip_horizontal_behav/xsimk.exe -simmode gui -wdb ex_filip_horizontal_behav.wdb -simrunnum 0 -socket 52280
+Design successfully loaded
+Design Loading Memory Usage: 11124 KB (Peak: 11124 KB)
+Design Loading CPU Usage: 15 ms
+Simulation completed
+Simulation Memory Usage: 23028 KB (Peak: 23028 KB)
+Simulation CPU Usage: 33109 ms

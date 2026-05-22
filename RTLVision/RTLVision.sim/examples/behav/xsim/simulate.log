@@ -1,4 +1,7 @@
 Time resolution is 1 ps
-Pass 1: Converting RGB to YCbCr and building Y Histogram.
-Histogram[174] = 28286
-Pass 2: Applying YCbCr histogram equalization.
+WIDTH  = 4096
+HEIGHT = 2160
+PADDING= 0
+DONE
+$finish called at time : 176947215 ns : File "C:/Users/osmya/Desktop/RTLVision/RTLVision/RTLVision.srcs/examples/new/ex_filip_horizontal.sv" Line 226
+INFO: xsimkernel Simulation Memory Usage: 23028 KB (Peak: 23028 KB), Simulation CPU Usage: 33109 ms
