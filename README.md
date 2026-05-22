@@ -63,14 +63,11 @@ The checked-in HDL sources currently cover these image-processing kernels and he
 
 ### Histogram and Contrast Operations
 - ✅ Histogram generator (`histogram`)
-- Contrast stretch (`contrast_stretch`)
 - ✅ Histogram equalization (`histeq`)
 
 ### Pixel Arithmetic and Compositing
 - ✅ Brightness adjustment (`brightness`)
-- Contrast adjustment (`contrast`)
 - ✅ Invert (`invert`)
-- Gamma approximation / LUT-based gamma (`gamma_lut`)
 - ✅ Multiply Accumulate (`mac`)
 - ✅ Image or mask add/subtract operations
 
