@@ -70,23 +70,8 @@ The checked-in HDL sources currently cover these image-processing kernels and he
 - ✅ Invert (`invert`)
 - ✅ Multiply Accumulate (`mac`)
 - ✅ Image or mask add/subtract operations
-
-### Geometric Operations
-- Crop ROI (`crop_roi`)
-- Resize with nearest-neighbor (`resize_nn`)
 - ✅ Horizontal flip (`flip_horizontal`)
 
-### Advanced Vision Features
-- Scharr filter
-- Corner response approximation
-- Non-maximum suppression
-- Hough pre-processing blocks
-
-### Binary Image Analysis
-- Blob area counter
-- Bounding box extractor
-- Centroid estimator
-  
 ## 4K Sample Timing
 For the commonly cited `4096 x 2160` reference case at `100 MHz`:
 
